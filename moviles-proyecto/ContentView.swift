@@ -8,9 +8,38 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var showCredits: Bool = false
+    @State var showLab: Bool = false
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        ZStack {
+            VStack {
+                HStack {
+                    Text("Equilibrium")
+                        .padding()
+                    Button(action: {
+                        showCredits = true
+                    }) {
+                        Text("Créditos")
+                    }
+                    .sheet(isPresented: $showCredits, content: {
+                        CreditsView()
+                    })
+                }
+                HStack {
+                    Button(action: {
+                        showLab = true
+                    }) {
+                        Text("Laboratorio")
+                    }
+                    .sheet(isPresented: $showLab, content: {
+                        LabView()
+                    })
+                    
+                }
+            }
+        }
     }
 }
 

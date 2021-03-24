@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		914704BC260BA067009F1DC2 /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914704BB260BA067009F1DC2 /* CreditsView.swift */; };
+		914704C1260BAE8B009F1DC2 /* LabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914704C0260BAE8B009F1DC2 /* LabView.swift */; };
 		9190D92726053F2500C099A3 /* moviles_proyectoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9190D92626053F2500C099A3 /* moviles_proyectoApp.swift */; };
 		9190D92926053F2500C099A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9190D92826053F2500C099A3 /* ContentView.swift */; };
 		9190D92B26053F2600C099A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9190D92A26053F2600C099A3 /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		914704BB260BA067009F1DC2 /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
+		914704C0260BAE8B009F1DC2 /* LabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabView.swift; sourceTree = "<group>"; };
 		9190D92326053F2500C099A3 /* moviles-proyecto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "moviles-proyecto.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9190D92626053F2500C099A3 /* moviles_proyectoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moviles_proyectoApp.swift; sourceTree = "<group>"; };
 		9190D92826053F2500C099A3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,6 +58,8 @@
 			children = (
 				9190D92626053F2500C099A3 /* moviles_proyectoApp.swift */,
 				9190D92826053F2500C099A3 /* ContentView.swift */,
+				914704C0260BAE8B009F1DC2 /* LabView.swift */,
+				914704BB260BA067009F1DC2 /* CreditsView.swift */,
 				9190D92A26053F2600C099A3 /* Assets.xcassets */,
 				9190D92F26053F2600C099A3 /* Info.plist */,
 				9190D92C26053F2600C099A3 /* Preview Content */,
@@ -138,7 +144,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				914704BC260BA067009F1DC2 /* CreditsView.swift in Sources */,
 				9190D92926053F2500C099A3 /* ContentView.swift in Sources */,
+				914704C1260BAE8B009F1DC2 /* LabView.swift in Sources */,
 				9190D92726053F2500C099A3 /* moviles_proyectoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
