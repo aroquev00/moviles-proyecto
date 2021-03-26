@@ -24,6 +24,16 @@ struct LabView: View {
                 Button("Dismiss Me") {
                     presentationMode.wrappedValue.dismiss()
                 }
+                ScrollView(.horizontal) {
+                    HStack(spacing: 20) {
+                        ForEach(0..<10) {
+                            Text("Item \($0)")
+                                .foregroundColor(.white)
+                                .font(.largeTitle)
+                                .background(Color.red)
+                        }
+                    }
+                }
             }
         }
     }
