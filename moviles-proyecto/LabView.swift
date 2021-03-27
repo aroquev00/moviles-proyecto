@@ -12,6 +12,18 @@ struct LabView: View {
     
     @State var rotation: Double = 0.0
     
+//    Sprite array
+    let spritesRow = [
+        Sprite(name: "Mario", weight: 20, height: 1, image: UIImage(named: "mario")),
+        Sprite(name: "Kirby", weight: 10, height: 1, image: UIImage(named: "kirby")),
+        Sprite(name: "Steve", weight: 30, height: 1, image: UIImage(named: "steve")),
+        Sprite(name: "Master Chief", weight: 80, height: 1, image: UIImage(named: "masterchief")),
+        Sprite(name: "Plankton", weight: 50, height: 1, image: UIImage(named: "plankton")),
+        Sprite(name: "Sonic", weight: 15, height: 1, image: UIImage(named: "sonic")),
+        Sprite(name: "Link", weight: 60, height: 1, image: UIImage(named: "link")),
+        Sprite(name: "Megaman", weight: 20, height: 1, image: UIImage(named: "megaman"))
+    ]
+    
     var body: some View {
         ZStack {
             VStack {
@@ -26,11 +38,17 @@ struct LabView: View {
                 }
                 ScrollView(.horizontal) {
                     HStack(spacing: 20) {
-                        ForEach(0..<10) {
-                            Text("Item \($0)")
-                                .foregroundColor(.white)
-                                .font(.largeTitle)
-                                .background(Color.red)
+                        ForEach(0..<spritesRow.count) { i in
+                            VStack {
+                                Text(spritesRow[i].name)
+                                Image(uiImage: spritesRow[i].image!)
+                                    .resizable()
+                                    .scaledToFit()
+    //                                .foregroundColor(.white)
+    //                                .font(.largeTitle)
+    //                                .background(Color.red)
+                            }
+                            
                         }
                     }
                 }
