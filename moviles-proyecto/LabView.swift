@@ -27,12 +27,7 @@ struct LabView: View {
     var body: some View {
         ZStack {
             VStack {
-                Text("Watch me rotate")
-                    .rotationEffect(.degrees(rotation))
-                    .padding()
-                Slider(value: $rotation, in: -90...90)
-                Text("Aquí va el lab")
-                    .padding()
+                SimulatorView()
                 Button("Dismiss Me") {
                     presentationMode.wrappedValue.dismiss()
                 }
@@ -44,6 +39,7 @@ struct LabView: View {
                                 Image(uiImage: spritesRow[i].image!)
                                     .resizable()
                                     .scaledToFit()
+                                Text(String(spritesRow[i].weight) + " kg")
     //                                .foregroundColor(.white)
     //                                .font(.largeTitle)
     //                                .background(Color.red)

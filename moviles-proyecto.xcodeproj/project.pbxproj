@@ -14,6 +14,7 @@
 		9190D92B26053F2600C099A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9190D92A26053F2600C099A3 /* Assets.xcassets */; };
 		9190D92E26053F2600C099A3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9190D92D26053F2600C099A3 /* Preview Assets.xcassets */; };
 		91ACD8A8260D9C0100888CBF /* Sprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ACD8A7260D9C0100888CBF /* Sprite.swift */; };
+		91D97EA2260EF36C008EABB7 /* SimulatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D97EA1260EF36C008EABB7 /* SimulatorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		9190D92D26053F2600C099A3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9190D92F26053F2600C099A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91ACD8A7260D9C0100888CBF /* Sprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprite.swift; sourceTree = "<group>"; };
+		91D97EA1260EF36C008EABB7 /* SimulatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				9190D92626053F2500C099A3 /* moviles_proyectoApp.swift */,
 				9190D92826053F2500C099A3 /* ContentView.swift */,
 				914704C0260BAE8B009F1DC2 /* LabView.swift */,
+				91D97EA1260EF36C008EABB7 /* SimulatorView.swift */,
 				91ACD8A7260D9C0100888CBF /* Sprite.swift */,
 				914704BB260BA067009F1DC2 /* CreditsView.swift */,
 				9190D92A26053F2600C099A3 /* Assets.xcassets */,
@@ -150,6 +153,7 @@
 				91ACD8A8260D9C0100888CBF /* Sprite.swift in Sources */,
 				914704BC260BA067009F1DC2 /* CreditsView.swift in Sources */,
 				9190D92926053F2500C099A3 /* ContentView.swift in Sources */,
+				91D97EA2260EF36C008EABB7 /* SimulatorView.swift in Sources */,
 				914704C1260BAE8B009F1DC2 /* LabView.swift in Sources */,
 				9190D92726053F2500C099A3 /* moviles_proyectoApp.swift in Sources */,
 			);
