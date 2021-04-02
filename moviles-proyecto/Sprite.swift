@@ -7,7 +7,7 @@
 
 import UIKit
 
-class Sprite: NSObject {
+struct Sprite {
 
     var name: String
     var weight: Float
