@@ -26,29 +26,34 @@ struct LabView: View {
     
     var body: some View {
         ZStack {
-            VStack {
-                SimulatorView()
-                Button("Dismiss Me") {
-                    presentationMode.wrappedValue.dismiss()
-                }
-                ScrollView(.horizontal) {
-                    HStack(spacing: 20) {
-                        ForEach(0..<spritesRow.count) { i in
-                            VStack {
-                                Text(spritesRow[i].name)
-                                Image(uiImage: spritesRow[i].image!)
-                                    .resizable()
-                                    .scaledToFit()
-                                Text(String(spritesRow[i].weight) + " kg")
-    //                                .foregroundColor(.white)
-    //                                .font(.largeTitle)
-    //                                .background(Color.red)
+            GeometryReader { geo in
+                VStack {
+                    SimulatorView()
+                        .frame(height: geo.size.height / 1.5)
+                    
+                    Button("Dismiss Me") {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                    ScrollView(.horizontal) {
+                        HStack(spacing: 20) {
+                            ForEach(0..<spritesRow.count) { i in
+                                VStack {
+                                    //Text(spritesRow[i].name)
+                                    Image(uiImage: spritesRow[i].image!)
+                                        .resizable()
+                                        .scaledToFit()
+                                    Text(String(spritesRow[i].weight) + " kg")
+        //                                .foregroundColor(.white)
+        //                                .font(.largeTitle)
+        //                                .background(Color.red)
+                                }
+                                
                             }
-                            
                         }
                     }
                 }
             }
+            
         }
     }
 }

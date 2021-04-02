@@ -25,7 +25,7 @@ struct SimulatorView: View {
                 HStack {
                     ForEach(simulator.spots, id: \.self) { spot in
                         Button {
-                            
+                            simulator.spots[spot.index].sprite = Sprite(name: "Mario", weight: 20, height: 1, image: UIImage(named: "mario"))
                         } label: {
                             Text(String(spot.distance))
                         }
@@ -62,9 +62,10 @@ struct SimulatorView: View {
                 
                 
             }
-            .rotationEffect(.degrees(rotation))
+            .rotationEffect(.degrees(Double(simulator.totalTorque)))
+            .animation(.easeIn)
+            Text(String(simulator.totalTorque))
             
-            Slider(value: $rotation, in: -90...90)
         }
         
         

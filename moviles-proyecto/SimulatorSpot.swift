@@ -6,6 +6,7 @@
 //
 
 struct SimulatorSpot: Hashable {
+    var index: Int
     var side: Bool // Left is false, right is true
     var distance: Float // Distance from centre
     var sprite: Sprite? // The sprite placed in it
