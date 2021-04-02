@@ -13,36 +13,51 @@ struct SimulatorView: View {
     @State private var showingAlert = false
     @State var selectedNumber = 0.0
     
+    // Data structure to store placed characters
+    @State var simulator: Simulator = Simulator.init()
+    
     var body: some View {
         VStack {
             ZStack {
-                Color(.red)
-                VStack {
-                    Image("line")
-                    HStack {
-                        ForEach(Array(stride(from: -2, to: 2.25, by: 0.25)), id: \.self) { number in
-                            Button {
-                                showingAlert = true
-                                selectedNumber = number
-                            } label: {
-                                Text(String(number))
-                                    .font(.system(size: 12))
-                            }
-                            .alert(isPresented: $showingAlert) {
-                                        Alert(title: Text("Se dio click"), message: Text(String(selectedNumber)), dismissButton: .default(Text("Got it!")))
-                                    }
+                //Color(.red)
+                Image("line")
+                
+                HStack {
+                    ForEach(simulator.spots, id: \.self) { spot in
+                        Button {
                             
-                            
+                        } label: {
+                            Text(String(spot.distance))
                         }
-    //                    ForEach(Array(stride(from: -2, to: 2, by: 0.25)), id: \.self) {
-    //                        Text(String(id))
-    //                    }
-    //                    Text("Hi")
-    //                        .foregroundColor(.black)
-    //                    Text("2")
-    //                        .foregroundColor(.black)
+                        
                     }
                 }
+//                VStack {
+//
+//                    HStack {
+//                        ForEach(Array(stride(from: -2, to: 2.25, by: 0.25)), id: \.self) { number in
+//                            Button {
+//                                showingAlert = true
+//                                selectedNumber = number
+//                            } label: {
+//                                Text(String(number))
+//                                    .font(.system(size: 12))
+//                            }
+//                            .alert(isPresented: $showingAlert) {
+//                                        Alert(title: Text("Se dio click"), message: Text(String(selectedNumber)), dismissButton: .default(Text("Got it!")))
+//                                    }
+//
+//
+//                        }
+//    //                    ForEach(Array(stride(from: -2, to: 2, by: 0.25)), id: \.self) {
+//    //                        Text(String(id))
+//    //                    }
+//    //                    Text("Hi")
+//    //                        .foregroundColor(.black)
+//    //                    Text("2")
+//    //                        .foregroundColor(.black)
+//                    }
+//                }
                 
                 
                 
