@@ -20,48 +20,43 @@ struct SimulatorView: View {
         VStack {
             GeometryReader { mainGeo in
                 HStack(spacing: 0.0) {
-                    Text("Nivel izq")
+                    Text("Nivel izquierdo")
                         .frame(width: mainGeo.size.width * 0.1)
                     ZStack {
                         Image("line")
                             .resizable()
                             .scaledToFit()
+                        
+                        
                                 
-                        HStack { // Buttons and characters stack
+                        HStack { // Sprites
                             ForEach(simulator.spots, id: \.self) { spot in
-                                GeometryReader { vGeo in
-                                    VStack() {
-                                        if let sprite = spot.sprite {
-                                            Image(uiImage: sprite.image!)
-                                                .resizable()
-                                                .scaledToFit()
-                                                //.padding(-20)
-                                                .frame(height: vGeo.size.height * 0.4)
-                                                //.position(x: 0)
-                                        } else {
-                                            Text("Placeholder")
-                                                .frame(height: vGeo.size.height * 0.4)
-                                        }
-//                                        Image(uiImage: UIImage(named: "mario")!)
-//                                            .resizable()
-//                                            .scaledToFit()
-//                                            .padding(-20)
-                                        Button {
-                                            simulator.spots[spot.index].sprite = Sprite(name: "Mario", weight: 20, height: 1, image: UIImage(named: "mario"))
-                                        } label: {
-                                            Text(String(spot.distance))
-                                                .font(.system(size: 10))
-                                        }
-                                        .frame(height: vGeo.size.height * 0.5, alignment: .top)
-                                        //.frame(height: 10, alignment: .top)
-                                        //.position(y: vGeo.size.height / 2)
+                                if let sprite = spot.sprite {
+                                    Image(uiImage: sprite.image!)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: mainGeo.size.height / 3, alignment: .center)
+                                        .offset(y: -45)
+                                        .padding(-20)
+                                } else {
+                                    Text(".")
                                         
-                                    }
-                                        .position(y: vGeo.size.height / 2)
-                                    
                                 }
-                                
-                                
+                                Spacer()
+                            }
+                            
+                        }
+                            .frame(width: mainGeo.size.width * 0.75)
+                            
+                        HStack() { // Buttons
+                            ForEach(simulator.spots, id: \.self) { spot in
+                                Button {
+                                    simulator.spots[spot.index].sprite = Sprite(name: "Mario", weight: 20, height: 1, image: UIImage(named: "mario"))
+                                } label: {
+                                    Text(String(spot.distance))
+                                        .font(.system(size: 15))
+                                }
+                                Spacer()
                             }
                         }
                             .frame(width: mainGeo.size.width * 0.75)
@@ -75,13 +70,13 @@ struct SimulatorView: View {
                     Text("Nivel derecho")
                         .frame(width: mainGeo.size.width * 0.1)
                 }
+                .frame(width: mainGeo.size.width, height: mainGeo.size.height)
                 
             }
             
             Text(String(simulator.totalTorque))
             
         }
-        
         
     }
 }
