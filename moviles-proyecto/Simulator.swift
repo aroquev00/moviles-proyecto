@@ -20,7 +20,14 @@ struct Simulator {
                 }
             }
         }
-        return torque
+        if torque > 20 {
+            return 20
+        } else if torque < -20 {
+            return -20
+        } else {
+            return torque
+        }
+        
     }
     
     init() {

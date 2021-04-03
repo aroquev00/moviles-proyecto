@@ -18,56 +18,65 @@ struct SimulatorView: View {
     
     var body: some View {
         VStack {
-            ZStack {
-                //Color(.red)
-                Image("line")
-                
-                HStack {
-                    ForEach(simulator.spots, id: \.self) { spot in
-                        Button {
-                            simulator.spots[spot.index].sprite = Sprite(name: "Mario", weight: 20, height: 1, image: UIImage(named: "mario"))
-                        } label: {
-                            Text(String(spot.distance))
+            GeometryReader { mainGeo in
+                HStack(spacing: 0.0) {
+                    Text("Nivel izquierdo")
+                        .frame(width: mainGeo.size.width * 0.1)
+                    ZStack {
+                        Image("line")
+                            .resizable()
+                            .scaledToFit()
+                        
+                        
+                                
+                        HStack { // Sprites
+                            ForEach(simulator.spots, id: \.self) { spot in
+                                if let sprite = spot.sprite {
+                                    Image(uiImage: sprite.image!)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: mainGeo.size.height / 3, alignment: .center)
+                                        .offset(y: -45)
+                                        .padding(-20)
+                                } else {
+                                    Text(".")
+                                        
+                                }
+                                Spacer()
+                            }
+                            
                         }
+                            .frame(width: mainGeo.size.width * 0.75)
+                            
+                        HStack() { // Buttons
+                            ForEach(simulator.spots, id: \.self) { spot in
+                                Button {
+                                    simulator.spots[spot.index].sprite = Sprite(name: "Mario", weight: 20, height: 1, image: UIImage(named: "mario"))
+                                } label: {
+                                    Text(String(spot.distance))
+                                        .font(.system(size: 15))
+                                }
+                                Spacer()
+                            }
+                        }
+                            .frame(width: mainGeo.size.width * 0.75)
                         
                     }
+                        .frame(width: mainGeo.size.width * 0.8)
+                        .rotationEffect(.degrees(Double(simulator.totalTorque)))
+                        .animation(.easeIn)
+                    
+                    
+                    Text("Nivel derecho")
+                        .frame(width: mainGeo.size.width * 0.1)
                 }
-//                VStack {
-//
-//                    HStack {
-//                        ForEach(Array(stride(from: -2, to: 2.25, by: 0.25)), id: \.self) { number in
-//                            Button {
-//                                showingAlert = true
-//                                selectedNumber = number
-//                            } label: {
-//                                Text(String(number))
-//                                    .font(.system(size: 12))
-//                            }
-//                            .alert(isPresented: $showingAlert) {
-//                                        Alert(title: Text("Se dio click"), message: Text(String(selectedNumber)), dismissButton: .default(Text("Got it!")))
-//                                    }
-//
-//
-//                        }
-//    //                    ForEach(Array(stride(from: -2, to: 2, by: 0.25)), id: \.self) {
-//    //                        Text(String(id))
-//    //                    }
-//    //                    Text("Hi")
-//    //                        .foregroundColor(.black)
-//    //                    Text("2")
-//    //                        .foregroundColor(.black)
-//                    }
-//                }
-                
-                
+                .frame(width: mainGeo.size.width, height: mainGeo.size.height)
                 
             }
-            .rotationEffect(.degrees(Double(simulator.totalTorque)))
-            .animation(.easeIn)
+            
             Text(String(simulator.totalTorque))
             
         }
-        
         
     }
 }
