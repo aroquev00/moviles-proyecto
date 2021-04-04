@@ -13,13 +13,9 @@ struct SimulatorView: View {
     @State private var showingAlert = false
     @State var selectedNumber = 0.0
     
-    //
-    @Binding var resetSimulator: Bool
-    
     // Data structure to store placed characters
-    @State var simulator: Simulator = Simulator.init()
-    
-    
+    @Binding var simulator: Simulator
+            
     var body: some View {
         VStack {
             GeometryReader { mainGeo in
@@ -81,12 +77,6 @@ struct SimulatorView: View {
             Text(String(simulator.totalTorque))
             
         }
-        .onChange(of: resetSimulator, perform: { value in
-            if value {
-                simulator.reset()
-            }
-            resetSimulator = false
-        })
         
     }
 }
@@ -94,7 +84,7 @@ struct SimulatorView: View {
 struct SimulatorView_Previews: PreviewProvider {
     static var previews: some View {
         Landscape {
-            SimulatorView(resetSimulator: .constant(false))
+            SimulatorView(simulator: .constant(Simulator()))
         }
         
     }

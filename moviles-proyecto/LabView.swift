@@ -25,19 +25,22 @@ struct LabView: View {
         Sprite(name: "Megaman", weight: 20, height: 1, image: UIImage(named: "megaman"))
     ]
     
+    // Data structure to store placed characters
+    @State var simulator: Simulator = Simulator()
+    
     var body: some View {
         ZStack {
             GeometryReader { geo in
                 VStack {
                     HStack {
-                        SimulatorView(resetSimulator: $resetSimulator)
+                        SimulatorView(simulator: $simulator)
                             .frame(width: geo.size.width * 0.8)
                         VStack {
                             HStack {
 //                                Buttons
                                 Button {
                                     // Reset simulator
-                                    resetSimulator = true
+                                    simulator.reset()
                                 } label: {
                                     Image(systemName: "trash")
                                         .foregroundColor(Color.red)
