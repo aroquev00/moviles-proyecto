@@ -11,6 +11,7 @@ struct LabView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State var showRuler: Bool = true
+    @State var resetSimulator: Bool = false
     
 //    Sprite array
     let spritesRow = [
@@ -29,11 +30,18 @@ struct LabView: View {
             GeometryReader { geo in
                 VStack {
                     HStack {
-                        SimulatorView()
+                        SimulatorView(resetSimulator: $resetSimulator)
                             .frame(width: geo.size.width * 0.8)
                         VStack {
                             HStack {
 //                                Buttons
+                                Button {
+                                    // Reset simulator
+                                    resetSimulator = true
+                                } label: {
+                                    Image(systemName: "trash")
+                                        .foregroundColor(Color.red)
+                                }
                             }
                             Text("Panel derecho")
                             Toggle(isOn: $showRuler) {

@@ -31,17 +31,21 @@ struct Simulator {
     }
     
     init() {
-        spots = []
+        self.spots = []
         var index = 0
         for dist in stride(from: 2, to: 0, by: -0.25) {
-            spots.append(SimulatorSpot(index: index, side: false, distance: Float(dist)))
+            self.spots.append(SimulatorSpot(index: index, side: false, distance: Float(dist)))
             index += 1
         }
         for dist in stride(from: 0.25, through: 2, by: 0.25) {
-            spots.append(SimulatorSpot(index: index, side: true, distance: Float(dist)))
+            self.spots.append(SimulatorSpot(index: index, side: true, distance: Float(dist)))
             index += 1
         }
-        
-        //totalTorque = 0.0
+    }
+    
+    mutating func reset() {
+        for index in 0..<spots.count {
+            spots[index].sprite = nil
+        }
     }
 }
