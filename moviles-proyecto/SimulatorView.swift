@@ -21,7 +21,7 @@ struct SimulatorView: View {
             GeometryReader { mainGeo in
                 HStack(spacing: 0.0) {
                     Text("Nivel izquierdo")
-                        .frame(width: mainGeo.size.width * 0.1)
+                        .frame(width: mainGeo.size.width * 0.05)
                     ZStack {
                         Image("line")
                             .resizable()
@@ -62,13 +62,13 @@ struct SimulatorView: View {
                             .frame(width: mainGeo.size.width * 0.75)
                         
                     }
-                        .frame(width: mainGeo.size.width * 0.8)
+                        .frame(width: mainGeo.size.width * 0.9)
                         .rotationEffect(.degrees(Double(simulator.totalTorque)))
                         .animation(.easeIn)
                     
                     
                     Text("Nivel derecho")
-                        .frame(width: mainGeo.size.width * 0.1)
+                        .frame(width: mainGeo.size.width * 0.05)
                 }
                 .frame(width: mainGeo.size.width, height: mainGeo.size.height)
                 

@@ -10,7 +10,7 @@ import SwiftUI
 struct LabView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @State var rotation: Double = 0.0
+    @State var showRuler: Bool = true
     
 //    Sprite array
     let spritesRow = [
@@ -28,12 +28,27 @@ struct LabView: View {
         ZStack {
             GeometryReader { geo in
                 VStack {
-                    SimulatorView()
-                        .frame(height: geo.size.height / 1.5)
+                    HStack {
+                        SimulatorView()
+                            .frame(width: geo.size.width * 0.8)
+                        VStack {
+                            HStack {
+//                                Buttons
+                            }
+                            Text("Panel derecho")
+                            Toggle(isOn: $showRuler) {
+                                Text("Regla")
+                            }
+                        }
+                            .frame(width: geo.size.width * 0.2)
+                        
+                    }
+                    .frame(height: geo.size.height / 1.5)
                     
                     Button("Dismiss Me") {
                         presentationMode.wrappedValue.dismiss()
                     }
+                    
                     ScrollView(.horizontal) {
                         HStack(spacing: 20) {
                             ForEach(0..<spritesRow.count) { i in
