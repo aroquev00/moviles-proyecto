@@ -37,14 +37,26 @@ struct LabView: View {
                             .frame(width: geo.size.width * 0.8)
                         VStack {
                             HStack {
-//                                Buttons
+                                //                                Buttons
+                                Spacer()
+                                Button {
+                                    // Reset simulator
+                                    presentationMode.wrappedValue.dismiss()
+                                } label: {
+                                    Image(systemName: "house.fill")
+                                        .foregroundColor(.blue)
+                                        .font(.title)
+                                }
+                                Spacer()
                                 Button {
                                     // Reset simulator
                                     simulator.reset()
                                 } label: {
                                     Image(systemName: "trash")
                                         .foregroundColor(Color.red)
+                                        .font(.title)
                                 }
+                                Spacer()
                             }
                             Text("Panel derecho")
                             Toggle(isOn: $showRuler) {
@@ -56,9 +68,6 @@ struct LabView: View {
                     }
                     .frame(height: geo.size.height / 1.5)
                     
-                    Button("Dismiss Me") {
-                        presentationMode.wrappedValue.dismiss()
-                    }
                     
                     ScrollView(.horizontal) {
                         HStack(spacing: 20) {
