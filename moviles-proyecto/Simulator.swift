@@ -9,6 +9,7 @@ struct Simulator {
     
     var spots: [SimulatorSpot]
     var columnsEnabled: Bool
+    var rulerEnabled: Bool
     
     var totalTorque: Float {
         if columnsEnabled {
@@ -33,6 +34,7 @@ struct Simulator {
     init() {
         self.spots = []
         self.columnsEnabled = true
+        self.rulerEnabled = true
         var index = 0
         for dist in stride(from: 2, to: 0, by: -0.25) {
             self.spots.append(SimulatorSpot(index: index, side: false, distance: Float(dist)))

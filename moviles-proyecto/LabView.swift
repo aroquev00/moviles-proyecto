@@ -10,9 +10,6 @@ import SwiftUI
 struct LabView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @State var showRuler: Bool = true
-    @State var resetSimulator: Bool = false
-    
 //    Sprite array
     let spritesRow = [
         Sprite(name: "Mario", weight: 20, height: 1, image: UIImage(named: "mario")),
@@ -58,8 +55,12 @@ struct LabView: View {
                                 }
                                 Spacer()
                             }
-                            Text("Panel derecho")
-                            Toggle(isOn: $showRuler) {
+                            HStack {
+                                Toggle(isOn: $simulator.columnsEnabled) {
+                                    Text("Columnas")
+                                }
+                            }
+                            Toggle(isOn: $simulator.rulerEnabled) {
                                 Text("Regla")
                             }
                         }

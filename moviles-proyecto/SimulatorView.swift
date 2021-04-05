@@ -53,7 +53,8 @@ struct SimulatorView: View {
                                 Button {
                                     simulator.spots[spot.index].sprite = Sprite(name: "Mario", weight: 20, height: 1, image: UIImage(named: "mario"))
                                 } label: {
-                                    Text(String(spot.distance))
+                                    Text(simulator.rulerEnabled ?  String(spot.distance) : "|"
+                                        )
                                         .font(.system(size: 15))
                                 }
                                 Spacer()
