@@ -8,30 +8,31 @@
 struct Simulator {
     
     var spots: [SimulatorSpot]
+    var columnsEnabled: Bool
+    
     var totalTorque: Float {
-        var torque: Float = 0.0
-        for spot in spots {
-            if let sprite = spot.sprite {
-                let selfTorque = sprite.weight * spot.distance
-                if spot.side {
-                    torque += selfTorque
-                } else {
-                    torque -= selfTorque
+        if columnsEnabled {
+            return 0.0
+        }
+        else {
+            var torque: Float = 0.0
+            for spot in spots {
+                if let sprite = spot.sprite {
+                    let selfTorque = sprite.weight * spot.distance
+                    if spot.side {
+                        torque += selfTorque
+                    } else {
+                        torque -= selfTorque
+                    }
                 }
             }
-        }
-        if torque > 20 {
-            return 20
-        } else if torque < -20 {
-            return -20
-        } else {
             return torque
         }
-        
     }
     
     init() {
         self.spots = []
+        self.columnsEnabled = true
         var index = 0
         for dist in stride(from: 2, to: 0, by: -0.25) {
             self.spots.append(SimulatorSpot(index: index, side: false, distance: Float(dist)))

@@ -63,7 +63,9 @@ struct SimulatorView: View {
                         
                     }
                         .frame(width: mainGeo.size.width * 0.9)
-                        .rotationEffect(.degrees(Double(simulator.totalTorque)))
+                        .rotationEffect(
+                            simulator.totalTorque > 20 ? .degrees(Double(20)) : (simulator.totalTorque < -20 ? .degrees(Double(-20))  : .degrees(Double(simulator.totalTorque)))
+                        )
                         .animation(.easeIn)
                     
                     
