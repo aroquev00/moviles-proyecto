@@ -14,14 +14,14 @@ struct SimulatorView: View {
     @State var selectedNumber = 0.0
     
     // Data structure to store placed characters
-    @State var simulator: Simulator = Simulator.init()
-    
+    @Binding var simulator: Simulator
+            
     var body: some View {
         VStack {
             GeometryReader { mainGeo in
                 HStack(spacing: 0.0) {
                     Text("Nivel izquierdo")
-                        .frame(width: mainGeo.size.width * 0.1)
+                        .frame(width: mainGeo.size.width * 0.05)
                     ZStack {
                         Image("line")
                             .resizable()
@@ -53,7 +53,8 @@ struct SimulatorView: View {
                                 Button {
                                     simulator.spots[spot.index].sprite = Sprite(name: "Mario", weight: 20, height: 1, image: UIImage(named: "mario"))
                                 } label: {
-                                    Text(String(spot.distance))
+                                    Text(simulator.rulerEnabled ?  String(spot.distance) : "|"
+                                        )
                                         .font(.system(size: 15))
                                 }
                                 Spacer()
@@ -62,13 +63,15 @@ struct SimulatorView: View {
                             .frame(width: mainGeo.size.width * 0.75)
                         
                     }
-                        .frame(width: mainGeo.size.width * 0.8)
-                        .rotationEffect(.degrees(Double(simulator.totalTorque)))
+                        .frame(width: mainGeo.size.width * 0.9)
+                        .rotationEffect(
+                            simulator.totalTorque > 20 ? .degrees(Double(20)) : (simulator.totalTorque < -20 ? .degrees(Double(-20))  : .degrees(Double(simulator.totalTorque)))
+                        )
                         .animation(.easeIn)
                     
                     
                     Text("Nivel derecho")
-                        .frame(width: mainGeo.size.width * 0.1)
+                        .frame(width: mainGeo.size.width * 0.05)
                 }
                 .frame(width: mainGeo.size.width, height: mainGeo.size.height)
                 
@@ -84,7 +87,7 @@ struct SimulatorView: View {
 struct SimulatorView_Previews: PreviewProvider {
     static var previews: some View {
         Landscape {
-            SimulatorView()
+            SimulatorView(simulator: .constant(Simulator()))
         }
         
     }

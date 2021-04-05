@@ -10,8 +10,6 @@ import SwiftUI
 struct LabView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @State var rotation: Double = 0.0
-    
 //    Sprite array
     let spritesRow = [
         Sprite(name: "Mario", weight: 20, height: 1, image: UIImage(named: "mario")),
@@ -24,16 +22,54 @@ struct LabView: View {
         Sprite(name: "Megaman", weight: 20, height: 1, image: UIImage(named: "megaman"))
     ]
     
+    // Data structure to store placed characters
+    @State var simulator: Simulator = Simulator()
+    
     var body: some View {
         ZStack {
             GeometryReader { geo in
                 VStack {
-                    SimulatorView()
-                        .frame(height: geo.size.height / 1.5)
-                    
-                    Button("Dismiss Me") {
-                        presentationMode.wrappedValue.dismiss()
+                    HStack {
+                        SimulatorView(simulator: $simulator)
+                            .frame(width: geo.size.width * 0.8)
+                        VStack {
+                            HStack {
+                                //                                Buttons
+                                Spacer()
+                                Button {
+                                    // Reset simulator
+                                    presentationMode.wrappedValue.dismiss()
+                                } label: {
+                                    Image(systemName: "house.fill")
+                                        .foregroundColor(.blue)
+                                        .font(.title)
+                                }
+                                Spacer()
+                                Button {
+                                    // Reset simulator
+                                    simulator.reset()
+                                } label: {
+                                    Image(systemName: "trash")
+                                        .foregroundColor(Color.red)
+                                        .font(.title)
+                                }
+                                Spacer()
+                            }
+                            HStack {
+                                Toggle(isOn: $simulator.columnsEnabled) {
+                                    Text("Columnas")
+                                }
+                            }
+                            Toggle(isOn: $simulator.rulerEnabled) {
+                                Text("Regla")
+                            }
+                        }
+                            .frame(width: geo.size.width * 0.2)
+                        
                     }
+                    .frame(height: geo.size.height / 1.5)
+                    
+                    
                     ScrollView(.horizontal) {
                         HStack(spacing: 20) {
                             ForEach(0..<spritesRow.count) { i in
