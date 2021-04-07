@@ -25,6 +25,8 @@ struct LabView: View {
     // Data structure to store placed characters
     @State var simulator: Simulator = Simulator()
     
+    @State var indexSelectedSprite: Int? = nil
+    
     var body: some View {
         ZStack {
             GeometryReader { geo in
@@ -34,7 +36,7 @@ struct LabView: View {
                             .frame(width: geo.size.width * 0.8)
                         VStack {
                             HStack {
-                                //                                Buttons
+                                // Buttons
                                 Spacer()
                                 Button {
                                     // Reset simulator
@@ -73,15 +75,27 @@ struct LabView: View {
                     ScrollView(.horizontal) {
                         HStack(spacing: 20) {
                             ForEach(0..<spritesRow.count) { i in
-                                VStack {
-                                    //Text(spritesRow[i].name)
-                                    Image(uiImage: spritesRow[i].image!)
-                                        .resizable()
-                                        .scaledToFit()
-                                    Text(String(spritesRow[i].weight) + " kg")
-        //                                .foregroundColor(.white)
-        //                                .font(.largeTitle)
-        //                                .background(Color.red)
+                                Button {
+                                    simulator.selectedSprite = spritesRow[i]
+                                    if indexSelectedSprite == i {
+                                        indexSelectedSprite = nil
+                                        simulator.selectedSprite = nil
+                                    } else {
+                                        indexSelectedSprite = i
+                                    }
+                                    
+                                } label: {
+                                    VStack {
+                                        //Text(spritesRow[i].name)
+                                        Image(uiImage: spritesRow[i].image!)
+                                            .resizable()
+                                            .scaledToFit()
+                                        Text(String(spritesRow[i].weight) + " kg")
+            //                                .foregroundColor(.white)
+            //                                .font(.largeTitle)
+                                            
+                                    }
+                                    .background(Color.red.opacity(indexSelectedSprite == i ? 1.0 : 0.0))
                                 }
                                 
                             }

@@ -10,6 +10,7 @@ struct Simulator {
     var spots: [SimulatorSpot]
     var columnsEnabled: Bool
     var rulerEnabled: Bool
+    var selectedSprite: Sprite?
     
     var totalTorque: Float {
         if columnsEnabled {
