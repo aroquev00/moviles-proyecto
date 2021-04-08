@@ -16,7 +16,7 @@ struct LabView: View {
         Sprite(name: "Kirby", weight: 10, height: 1, image: UIImage(named: "kirby")),
         Sprite(name: "Steve", weight: 30, height: 1, image: UIImage(named: "steve")),
         Sprite(name: "Master Chief", weight: 80, height: 1, image: UIImage(named: "masterchief")),
-        Sprite(name: "Plankton", weight: 50, height: 1, image: UIImage(named: "plankton")),
+        Sprite(name: "Plankton", weight: 5, height: 1, image: UIImage(named: "plankton")),
         Sprite(name: "Sonic", weight: 15, height: 1, image: UIImage(named: "sonic")),
         Sprite(name: "Link", weight: 60, height: 1, image: UIImage(named: "link")),
         Sprite(name: "Megaman", weight: 20, height: 1, image: UIImage(named: "megaman"))
