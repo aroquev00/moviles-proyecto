@@ -10,6 +10,8 @@ import SwiftUI
 struct LabView: View {
     @Environment(\.presentationMode) var presentationMode
     
+    @State var showCalculations: Bool = false
+    
 //    Sprite array
     let spritesRow = [
         Sprite(name: "Mario", weight: 20, height: 1, image: UIImage(named: "mario")),
@@ -35,6 +37,7 @@ struct LabView: View {
                         SimulatorView(simulator: $simulator)
                             .frame(width: geo.size.width * 0.8)
                         VStack {
+                            Spacer()
                             HStack {
                                 // Buttons
                                 Spacer()
@@ -57,14 +60,26 @@ struct LabView: View {
                                 }
                                 Spacer()
                             }
-                            HStack {
-                                Toggle(isOn: $simulator.columnsEnabled) {
-                                    Text("Columnas")
-                                }
+                            Spacer()
+                            Toggle(isOn: $simulator.columnsEnabled) {
+                                Text("Columnas")
                             }
+                            Spacer()
                             Toggle(isOn: $simulator.rulerEnabled) {
                                 Text("Regla")
                             }
+                            Spacer()
+                            Button {
+                                // Show calc screen
+                                showCalculations = true
+                            } label: {
+                                
+                                Text("Ver cálculos ⚙️")
+                                    
+                            }
+                            .sheet(isPresented: $showCalculations, content: {
+                                CalculationsView(simulator: simulator)
+                            })
                         }
                             .frame(width: geo.size.width * 0.2)
                         
