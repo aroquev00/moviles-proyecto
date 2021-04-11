@@ -13,14 +13,30 @@ struct CalculationsView: View {
     let simulator: Simulator
     
     var body: some View {
-        ZStack {
+        ScrollView {
             VStack {
-                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-                Button("Dismiss Me") {
-                    presentationMode.wrappedValue.dismiss()
+                HStack {
+                    Button {
+                        // Return to lab view
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Image(systemName: "arrowshape.turn.up.left.fill")
+                            .foregroundColor(.black)
+                            .font(.title)
+                    }
+                    Spacer()
+                    Text("Cálculos para el problema")
+                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(.white)
+                    Spacer()
                 }
+                    .background(Color(.red))
+                
+                // Monitos
+                
             }
         }
+        
         
     }
 }

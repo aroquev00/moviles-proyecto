@@ -42,7 +42,7 @@ struct LabView: View {
                                 // Buttons
                                 Spacer()
                                 Button {
-                                    // Reset simulator
+                                    // Return to home
                                     presentationMode.wrappedValue.dismiss()
                                 } label: {
                                     Image(systemName: "house.fill")
