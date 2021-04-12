@@ -10,7 +10,19 @@ import SwiftUI
 struct CalculationsView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    let simulator: Simulator
+    var simulator: Simulator
+    
+    var leftSpots: [SimulatorSpot] {
+        return simulator.spots.filter {
+            $0.sprite != nil && !$0.side
+        }
+    }
+    
+    var rightSpots: [SimulatorSpot] {
+        return simulator.spots.filter {
+            $0.sprite != nil && $0.side
+        }
+    }
     
     var body: some View {
         ScrollView {
@@ -38,10 +50,14 @@ struct CalculationsView: View {
                     Text("Lado izquierdo")
                         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                         .foregroundColor(.red)
-                    ForEach(simulator.spots, id: \.self) { spot in
-                        if !spot.side && spot.sprite != nil {
+                    if leftSpots.count > 0 {
+                        ForEach(leftSpots, id: \.self) { spot in
+                            
                             spriteDataView(spot: spot)
+                            
                         }
+                    } else {
+                        Text("No se pusieron personajes del lado izquierdo")
                     }
                 }
                 
@@ -50,20 +66,93 @@ struct CalculationsView: View {
                     Text("Lado derecho")
                         .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                         .foregroundColor(.blue)
-                    ForEach(simulator.spots, id: \.self) { spot in
-                        if spot.side && spot.sprite != nil {
+                    if rightSpots.count > 0 {
+                        ForEach(rightSpots, id: \.self) { spot in
+                            
                             spriteDataView(spot: spot)
+                            
                         }
+                    } else {
+                        Text("No se pusieron personajes del lado derecho")
                     }
+                    
                 }
                 
+                // Resultado final
+                VStack {
+                    Text("Cálculo final")
+                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(.green)
+                    
+                    // Left torque
+                    let leftData = sideTorqueTotal(spots: leftSpots)
+                    if leftSpots.count != 0 {
+                        Text("Torca izquierda = \(leftData.names!)")
+                        if leftSpots.count > 1 {
+                            Text("Torca izquierda = \(leftData.torques!)")
+                        }
+                    }
+                    Text("Torca izquierda = \(leftData.totalTorque)")
+                        .foregroundColor(.red)
+                    
+                    Spacer()
+                    
+                    // Right torque
+                    let rightData = sideTorqueTotal(spots: rightSpots)
+                    if rightSpots.count != 0 {
+                        Text("Torca derecha = \(rightData.names!)")
+                        if rightSpots.count > 1 {
+                            Text("Torca derecha = \(rightData.torques!)")
+                        }
+                    }
+                    Text("Torca derecha = \(rightData.totalTorque)")
+                        .foregroundColor(.blue)
+                    
+                    Spacer()
+                    
+                    // Final result
+                    if simulator.totalTorque == 0 {
+                        Text("Como las torcas izquierda y derecha son iguales, la tabla se mantiene en equilibrio.")
+                    } else if (simulator.totalTorque > 0) {
+                        Text("Como la torca derecha es mayor, se ladea hacia la derecha.")
+                    } else {
+                        Text("Como la torca izquierda es mayor, se ladea hacia la izquierda.")
+                    }
+                    
+                }
             }
         }
-        
-        
     }
     
-    
+    func sideTorqueTotal(spots: [SimulatorSpot]) -> (names: String?, torques: String?, totalTorque: String) {
+        if spots.count == 0 {
+            return (nil, nil, "0 Nm")
+        } else {
+            var names: String = ""
+            var torques: String = ""
+            var totalTorque: Float = 0.0
+            
+            for (index, spot) in spots.enumerated() {
+                // Add to the names
+                names += "Torca \(spot.sprite!.name)"
+                
+                
+                // Add to the description of torques and total torque
+                let spriteTorque = spot.sprite!.weight * 9.81 * spot.distance
+                
+                torques += "\(String(format: "%.2f", spriteTorque)) Nm"
+                
+                totalTorque += spriteTorque
+                
+                // Add + signs to strings if needed
+                if index != spots.count - 1 {
+                    names += " + "
+                    torques += " + "
+                }
+            }
+            return (names, torques, String(format: "%.2f", totalTorque) + " Nm")
+        }
+    }
 }
 
 struct spriteDataView: View {
