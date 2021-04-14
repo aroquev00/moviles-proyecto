@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9100844D261E8D8000BDC5AD /* CalculationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9100844C261E8D8000BDC5AD /* CalculationsView.swift */; };
 		9126C2192617AC5600240F36 /* Simulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9126C2182617AC5600240F36 /* Simulator.swift */; };
 		9126C21C2617AD4600240F36 /* SimulatorSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9126C21B2617AD4600240F36 /* SimulatorSpot.swift */; };
 		914704BC260BA067009F1DC2 /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914704BB260BA067009F1DC2 /* CreditsView.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9100844C261E8D8000BDC5AD /* CalculationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationsView.swift; sourceTree = "<group>"; };
 		9126C2182617AC5600240F36 /* Simulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Simulator.swift; sourceTree = "<group>"; };
 		9126C21B2617AD4600240F36 /* SimulatorSpot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatorSpot.swift; sourceTree = "<group>"; };
 		914704BB260BA067009F1DC2 /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				9126C2182617AC5600240F36 /* Simulator.swift */,
 				9126C21B2617AD4600240F36 /* SimulatorSpot.swift */,
 				914704C0260BAE8B009F1DC2 /* LabView.swift */,
+				9100844C261E8D8000BDC5AD /* CalculationsView.swift */,
 				91D97EA1260EF36C008EABB7 /* SimulatorView.swift */,
 				91ACD8A7260D9C0100888CBF /* Sprite.swift */,
 				914704BB260BA067009F1DC2 /* CreditsView.swift */,
@@ -156,6 +159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9100844D261E8D8000BDC5AD /* CalculationsView.swift in Sources */,
 				91ACD8A8260D9C0100888CBF /* Sprite.swift in Sources */,
 				914704BC260BA067009F1DC2 /* CreditsView.swift in Sources */,
 				9190D92926053F2500C099A3 /* ContentView.swift in Sources */,
