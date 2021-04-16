@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MainMenuView.swift
 //  moviles-proyecto
 //
 //  Created by Armando Roque Rodriguez on 19/03/21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MainMenuView: View {
     
     @State var showCredits: Bool = false
     @State var showLab: Bool = false
@@ -43,10 +43,10 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct MainMenuView_Previews: PreviewProvider {
     static var previews: some View {
         Landscape {
-            ContentView()
+            MainMenuView()
         }
         
     }
