@@ -10,7 +10,7 @@ import SwiftUI
 struct CalculationsView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    var simulator: Simulator
+    @Binding var simulator: Simulator
     
     var leftSpots: [SimulatorSpot] {
         return simulator.spots.filter {
@@ -30,6 +30,7 @@ struct CalculationsView: View {
                 HStack {
                     Button {
                         // Return to lab view
+                        print(simulator.spots)
                         presentationMode.wrappedValue.dismiss()
                     } label: {
                         Image(systemName: "arrowshape.turn.up.left.fill")
@@ -195,7 +196,7 @@ struct spriteDataView: View {
 struct CalculationsView_Previews: PreviewProvider {
     static var previews: some View {
         Landscape {
-            CalculationsView(simulator: Simulator())
+            CalculationsView(simulator: .constant(Simulator()))
         }
     }
 }

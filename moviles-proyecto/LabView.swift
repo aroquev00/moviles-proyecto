@@ -72,13 +72,12 @@ struct LabView: View {
                             Button {
                                 // Show calc screen
                                 showCalculations = true
-                            } label: {
                                 
+                            } label: {
                                 Text("Ver cálculos ⚙️")
-                                    
                             }
                             .sheet(isPresented: $showCalculations, content: {
-                                CalculationsView(simulator: simulator)
+                                CalculationsView(simulator: $simulator)
                             })
                         }
                             .frame(width: geo.size.width * 0.2)
@@ -91,34 +90,30 @@ struct LabView: View {
                         HStack(spacing: 20) {
                             ForEach(0..<spritesRow.count) { i in
                                 Button {
-                                    simulator.selectedSprite = spritesRow[i]
-                                    if indexSelectedSprite == i {
+                                    if indexSelectedSprite != i {
+                                        // User just selected this sprite
+                                        simulator.selectedSprite = spritesRow[i]
+                                        indexSelectedSprite = i
+                                        //print(simulator.spots)
+                                    } else {
+                                        // User is toggling this sprite
                                         indexSelectedSprite = nil
                                         simulator.selectedSprite = nil
-                                    } else {
-                                        indexSelectedSprite = i
                                     }
-                                    
                                 } label: {
                                     VStack {
-                                        //Text(spritesRow[i].name)
                                         Image(uiImage: spritesRow[i].image!)
                                             .resizable()
                                             .scaledToFit()
                                         Text(String(spritesRow[i].weight) + " kg")
-            //                                .foregroundColor(.white)
-            //                                .font(.largeTitle)
-                                            
                                     }
                                     .background(Color.red.opacity(indexSelectedSprite == i ? 1.0 : 0.0))
                                 }
-                                
                             }
                         }
                     }
                 }
             }
-            
         }
     }
 }
