@@ -31,6 +31,9 @@ struct LabView: View {
     
     var body: some View {
         ZStack {
+            // Aquí va el fondo del juego
+            // Image(...)
+            
             GeometryReader { geo in
                 VStack {
                     HStack {
@@ -94,7 +97,6 @@ struct LabView: View {
                                         // User just selected this sprite
                                         simulator.selectedSprite = spritesRow[i]
                                         indexSelectedSprite = i
-                                        //print(simulator.spots)
                                     } else {
                                         // User is toggling this sprite
                                         indexSelectedSprite = nil
@@ -107,7 +109,7 @@ struct LabView: View {
                                             .scaledToFit()
                                         Text(String(spritesRow[i].weight) + " kg")
                                     }
-                                    .background(Color.red.opacity(indexSelectedSprite == i ? 1.0 : 0.0))
+                                    .background(Color.red.opacity(indexSelectedSprite == i ? 1.0 : 0.0)) // Background is red if sprite is selected to be placed in simulator
                                 }
                             }
                         }

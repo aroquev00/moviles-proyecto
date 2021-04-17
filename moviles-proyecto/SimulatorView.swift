@@ -9,12 +9,7 @@ import SwiftUI
 
 struct SimulatorView: View {
     
-    @State var rotation: Double = 0.0
-    @State private var showingAlert = false
-    @State var selectedNumber = 0.0
-    
-    // Data structure to store placed characters
-    @Binding var simulator: Simulator
+    @Binding var simulator: Simulator // Data structure to store placed characters
             
     var body: some View {
         VStack {
