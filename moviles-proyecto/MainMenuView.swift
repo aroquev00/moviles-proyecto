@@ -11,6 +11,7 @@ struct MainMenuView: View {
     
     @State var showCredits: Bool = false
     @State var showLab: Bool = false
+    @State var showQuizMenu: Bool = false
     
     var body: some View {
         ZStack {
@@ -28,6 +29,8 @@ struct MainMenuView: View {
                     })
                 }
                 HStack {
+                    Spacer()
+                    
                     Button(action: {
                         showLab = true
                     }) {
@@ -37,6 +40,18 @@ struct MainMenuView: View {
                         LabView()
                     })
                     
+                    Spacer()
+                    
+                    Button(action: {
+                        showQuizMenu = true
+                    }) {
+                        Text("Quiz")
+                    }
+                    .sheet(isPresented: $showQuizMenu, content: {
+                        QuizMenuView()
+                    })
+                    
+                    Spacer()
                 }
             }
         }
