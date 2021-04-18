@@ -21,7 +21,7 @@ struct QuizMenuView: View {
                 Text("Nivel 1")
             }
             .sheet(isPresented: $showQuiz, content: {
-                QuizView()
+                QuizView(quiz: Quiz(level: 1, points: 0))
             })
             Button("Dismiss Me") {
                 presentationMode.wrappedValue.dismiss()

@@ -10,12 +10,21 @@ import SwiftUI
 struct QuizView: View {
     @Environment(\.presentationMode) var presentationMode
     
+    var quiz: Quiz
+    
     var body: some View {
         VStack {
             Text("This is a quiz")
-            Button("Dismiss Me") {
-                presentationMode.wrappedValue.dismiss()
+            
+            HStack {
+                Text("Nivel: \(quiz.level)")
+                Text("Pregunta 1 de 6")
+                Text("Puntos: \(quiz.points)")
+                Button("Regresar") {
+                    presentationMode.wrappedValue.dismiss()
+                }
             }
+            
         }
         
     }
@@ -24,7 +33,7 @@ struct QuizView: View {
 struct QuizView_Previews: PreviewProvider {
     static var previews: some View {
         Landscape {
-            QuizView()
+            QuizView(quiz: Quiz(level: 1, points: 0))
         }
     }
 }
