@@ -33,7 +33,7 @@ struct QuizView: View {
 struct QuizView_Previews: PreviewProvider {
     static var previews: some View {
         Landscape {
-            QuizView(quiz: Quiz(level: 1, points: 0))
+            QuizView(quiz: Quiz(level: 1, points: 0, questions: [QuizQuestion]()))
         }
     }
 }

@@ -8,9 +8,11 @@
 struct Quiz {
     var level: Int
     var points: Int
+    var questions: [QuizQuestion]
     
-    init(level: Int, points: Int) {
+    init(level: Int, points: Int, questions: [QuizQuestion]) {
         self.level = level
         self.points = points
+        self.questions = questions
     }
 }
