@@ -18,7 +18,7 @@ struct SimulatorView: View {
                     Text("Nivel izquierdo")
                         .frame(width: mainGeo.size.width * 0.05)
                     ZStack {
-                        Image("line")
+                        Image("tabla")
                             .resizable()
                             .scaledToFit()
                         
