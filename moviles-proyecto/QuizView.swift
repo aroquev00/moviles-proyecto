@@ -15,7 +15,16 @@ struct QuizView: View {
     var body: some View {
         VStack {
             Text("This is a quiz")
-            
+            switch quiz.questions[quiz.currentQuestion] {
+            case is PredictionQuestion:
+                PredictionQuestionView()
+            case is PlacingQuestion:
+                PlacingQuestionView()
+            case is MassEstimationQuestion:
+                MassEstimationQuestionView()
+            default:
+                Text("Bruh, error!")
+            }
             HStack {
                 Text("Nivel: \(quiz.level)")
                 Text("Pregunta \(quiz.currentQuestion + 1) de \(quiz.questions.count)")

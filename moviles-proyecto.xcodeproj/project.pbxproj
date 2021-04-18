@@ -12,6 +12,9 @@
 		9107F1F4262CDE0A0009EA14 /* PredictionQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9107F1F3262CDE0A0009EA14 /* PredictionQuestion.swift */; };
 		9107F1F7262CEB040009EA14 /* PlacingQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9107F1F6262CEB040009EA14 /* PlacingQuestion.swift */; };
 		9107F1FA262CEB3B0009EA14 /* MassEstimationQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9107F1F9262CEB3B0009EA14 /* MassEstimationQuestion.swift */; };
+		9107F1FD262CEC3E0009EA14 /* PredictionQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9107F1FC262CEC3E0009EA14 /* PredictionQuestionView.swift */; };
+		9107F200262CEDF80009EA14 /* PlacingQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9107F1FF262CEDF80009EA14 /* PlacingQuestionView.swift */; };
+		9107F203262CEE120009EA14 /* MassEstimationQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9107F202262CEE120009EA14 /* MassEstimationQuestionView.swift */; };
 		9126C2192617AC5600240F36 /* Simulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9126C2182617AC5600240F36 /* Simulator.swift */; };
 		9126C21C2617AD4600240F36 /* SimulatorSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9126C21B2617AD4600240F36 /* SimulatorSpot.swift */; };
 		914704BC260BA067009F1DC2 /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914704BB260BA067009F1DC2 /* CreditsView.swift */; };
@@ -33,6 +36,9 @@
 		9107F1F3262CDE0A0009EA14 /* PredictionQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionQuestion.swift; sourceTree = "<group>"; };
 		9107F1F6262CEB040009EA14 /* PlacingQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacingQuestion.swift; sourceTree = "<group>"; };
 		9107F1F9262CEB3B0009EA14 /* MassEstimationQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MassEstimationQuestion.swift; sourceTree = "<group>"; };
+		9107F1FC262CEC3E0009EA14 /* PredictionQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionQuestionView.swift; sourceTree = "<group>"; };
+		9107F1FF262CEDF80009EA14 /* PlacingQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacingQuestionView.swift; sourceTree = "<group>"; };
+		9107F202262CEE120009EA14 /* MassEstimationQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MassEstimationQuestionView.swift; sourceTree = "<group>"; };
 		9126C2182617AC5600240F36 /* Simulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Simulator.swift; sourceTree = "<group>"; };
 		9126C21B2617AD4600240F36 /* SimulatorSpot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatorSpot.swift; sourceTree = "<group>"; };
 		914704BB260BA067009F1DC2 /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
@@ -84,6 +90,9 @@
 				9190D92826053F2500C099A3 /* MainMenuView.swift */,
 				91F54E1F262C9D9A00D1FF8A /* QuizMenuView.swift */,
 				91F54E22262C9ED600D1FF8A /* QuizView.swift */,
+				9107F1FC262CEC3E0009EA14 /* PredictionQuestionView.swift */,
+				9107F1FF262CEDF80009EA14 /* PlacingQuestionView.swift */,
+				9107F202262CEE120009EA14 /* MassEstimationQuestionView.swift */,
 				9107F1F6262CEB040009EA14 /* PlacingQuestion.swift */,
 				9107F1F9262CEB3B0009EA14 /* MassEstimationQuestion.swift */,
 				91F54E25262CC52F00D1FF8A /* Quiz.swift */,
@@ -183,8 +192,10 @@
 				9107F1FA262CEB3B0009EA14 /* MassEstimationQuestion.swift in Sources */,
 				9107F1F7262CEB040009EA14 /* PlacingQuestion.swift in Sources */,
 				9100844D261E8D8000BDC5AD /* CalculationsView.swift in Sources */,
+				9107F200262CEDF80009EA14 /* PlacingQuestionView.swift in Sources */,
 				91ACD8A8260D9C0100888CBF /* Sprite.swift in Sources */,
 				91F54E26262CC52F00D1FF8A /* Quiz.swift in Sources */,
+				9107F203262CEE120009EA14 /* MassEstimationQuestionView.swift in Sources */,
 				91F54E23262C9ED600D1FF8A /* QuizView.swift in Sources */,
 				9107F1F4262CDE0A0009EA14 /* PredictionQuestion.swift in Sources */,
 				914704BC260BA067009F1DC2 /* CreditsView.swift in Sources */,
@@ -196,6 +207,7 @@
 				9107F1F1262CCAB70009EA14 /* QuizQuestion.swift in Sources */,
 				914704C1260BAE8B009F1DC2 /* LabView.swift in Sources */,
 				9190D92726053F2500C099A3 /* moviles_proyectoApp.swift in Sources */,
+				9107F1FD262CEC3E0009EA14 /* PredictionQuestionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
