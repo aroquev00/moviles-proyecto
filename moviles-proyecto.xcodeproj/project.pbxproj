@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		9100844D261E8D8000BDC5AD /* CalculationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9100844C261E8D8000BDC5AD /* CalculationsView.swift */; };
 		9107F1F1262CCAB70009EA14 /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9107F1F0262CCAB70009EA14 /* QuizQuestion.swift */; };
+		9107F1F4262CDE0A0009EA14 /* PredictionQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9107F1F3262CDE0A0009EA14 /* PredictionQuestion.swift */; };
+		9107F1F7262CEB040009EA14 /* PlacingQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9107F1F6262CEB040009EA14 /* PlacingQuestion.swift */; };
+		9107F1FA262CEB3B0009EA14 /* MassEstimationQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9107F1F9262CEB3B0009EA14 /* MassEstimationQuestion.swift */; };
 		9126C2192617AC5600240F36 /* Simulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9126C2182617AC5600240F36 /* Simulator.swift */; };
 		9126C21C2617AD4600240F36 /* SimulatorSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9126C21B2617AD4600240F36 /* SimulatorSpot.swift */; };
 		914704BC260BA067009F1DC2 /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914704BB260BA067009F1DC2 /* CreditsView.swift */; };
@@ -27,6 +30,9 @@
 /* Begin PBXFileReference section */
 		9100844C261E8D8000BDC5AD /* CalculationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationsView.swift; sourceTree = "<group>"; };
 		9107F1F0262CCAB70009EA14 /* QuizQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
+		9107F1F3262CDE0A0009EA14 /* PredictionQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionQuestion.swift; sourceTree = "<group>"; };
+		9107F1F6262CEB040009EA14 /* PlacingQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacingQuestion.swift; sourceTree = "<group>"; };
+		9107F1F9262CEB3B0009EA14 /* MassEstimationQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MassEstimationQuestion.swift; sourceTree = "<group>"; };
 		9126C2182617AC5600240F36 /* Simulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Simulator.swift; sourceTree = "<group>"; };
 		9126C21B2617AD4600240F36 /* SimulatorSpot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatorSpot.swift; sourceTree = "<group>"; };
 		914704BB260BA067009F1DC2 /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
@@ -78,7 +84,10 @@
 				9190D92826053F2500C099A3 /* MainMenuView.swift */,
 				91F54E1F262C9D9A00D1FF8A /* QuizMenuView.swift */,
 				91F54E22262C9ED600D1FF8A /* QuizView.swift */,
+				9107F1F6262CEB040009EA14 /* PlacingQuestion.swift */,
+				9107F1F9262CEB3B0009EA14 /* MassEstimationQuestion.swift */,
 				91F54E25262CC52F00D1FF8A /* Quiz.swift */,
+				9107F1F3262CDE0A0009EA14 /* PredictionQuestion.swift */,
 				9126C2182617AC5600240F36 /* Simulator.swift */,
 				9126C21B2617AD4600240F36 /* SimulatorSpot.swift */,
 				914704C0260BAE8B009F1DC2 /* LabView.swift */,
@@ -171,10 +180,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9107F1FA262CEB3B0009EA14 /* MassEstimationQuestion.swift in Sources */,
+				9107F1F7262CEB040009EA14 /* PlacingQuestion.swift in Sources */,
 				9100844D261E8D8000BDC5AD /* CalculationsView.swift in Sources */,
 				91ACD8A8260D9C0100888CBF /* Sprite.swift in Sources */,
 				91F54E26262CC52F00D1FF8A /* Quiz.swift in Sources */,
 				91F54E23262C9ED600D1FF8A /* QuizView.swift in Sources */,
+				9107F1F4262CDE0A0009EA14 /* PredictionQuestion.swift in Sources */,
 				914704BC260BA067009F1DC2 /* CreditsView.swift in Sources */,
 				9190D92926053F2500C099A3 /* MainMenuView.swift in Sources */,
 				9126C2192617AC5600240F36 /* Simulator.swift in Sources */,
