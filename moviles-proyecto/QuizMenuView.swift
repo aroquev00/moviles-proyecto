@@ -10,11 +10,19 @@ import SwiftUI
 struct QuizMenuView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    //@State var showQuiz: Bool = false
+    @State var showQuiz: Bool = false
     
     var body: some View {
         VStack {
             Text("¡Elige un nivel!")
+            Button(action: {
+                showQuiz = true
+            }) {
+                Text("Nivel 1")
+            }
+            .sheet(isPresented: $showQuiz, content: {
+                QuizView()
+            })
             Button("Dismiss Me") {
                 presentationMode.wrappedValue.dismiss()
             }
