@@ -6,7 +6,9 @@
 //
 
 protocol QuizQuestion {
+    var level: Int { get set }
     var simulator: Simulator { get set }
+    var answerStatus: AnswerStatus { get set }
     
-    func checkAnswer() -> Bool
+    func checkAnswer()
 }

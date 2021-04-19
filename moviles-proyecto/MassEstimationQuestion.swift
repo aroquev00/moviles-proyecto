@@ -6,10 +6,17 @@
 //
 
 struct MassEstimationQuestion: QuizQuestion {
+    var level: Int
     var simulator: Simulator
+    var answerStatus: AnswerStatus
     
-    func checkAnswer() -> Bool {
-        return true
+    init(level: Int) {
+        self.level = level
+        simulator = Simulator()
+        answerStatus = .unanswered
+    }
+    
+    func checkAnswer() {
     }
     
 }

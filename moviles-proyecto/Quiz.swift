@@ -34,8 +34,8 @@ struct Quiz {
     }
     
     mutating func generateQuestion() {
-        questions.append(PredictionQuestion(simulator: Simulator()))
-        questions.append(MassEstimationQuestion(simulator: Simulator()))
-        questions.append(PlacingQuestion(simulator: Simulator()))
+        questions.append(PredictionQuestion(level: self.level))
+        questions.append(MassEstimationQuestion(level: self.level))
+        questions.append(PlacingQuestion(level: self.level))
     }
 }

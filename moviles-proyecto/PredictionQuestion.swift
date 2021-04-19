@@ -6,9 +6,19 @@
 //
 
 struct PredictionQuestion: QuizQuestion {
+    var level: Int
     var simulator: Simulator
+    var answerStatus: AnswerStatus
+    var selectedAnswer: String
     
-    func checkAnswer() -> Bool {
-        return true
+    init(level: Int) {
+        self.level = level
+        simulator = Simulator()
+        answerStatus = .unanswered
+        selectedAnswer = ""
+        
+    }
+    
+    func checkAnswer() {
     }
 }

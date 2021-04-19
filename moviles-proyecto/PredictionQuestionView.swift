@@ -8,15 +8,54 @@
 import SwiftUI
 
 struct PredictionQuestionView: View {
+    @State var question: PredictionQuestion
+    @Binding var quiz: Quiz
+    
     var body: some View {
-        Text("This is a prediction question!")
+        
+        
+        GeometryReader { geo in
+            VStack {
+                Text("This is a prediction question!")
+                Text("¿Qué pasará?")
+                SimulatorView(simulator: $quiz.questions[quiz.currentQuestion].simulator)
+                
+                // Answer options
+                HStack {
+                    Button("Se inclina a la izquierda") {
+                        question.selectedAnswer = "left"
+                        question.checkAnswer()
+                    }
+                    Button("Se queda nivelado") {
+                        question.selectedAnswer = "leveled"
+                        question.checkAnswer()
+                    }
+                    Button("Se inclina a la derecha") {
+                        question.selectedAnswer = "right"
+                        question.checkAnswer()
+                    }
+                }
+                switch question.answerStatus {
+                case AnswerStatus.correct:
+                    Text("Answer status: Correct")
+                case AnswerStatus.incorrect:
+                    Text("Answer status: Incorrect")
+                case AnswerStatus.unanswered:
+                    Text("Answer status: Unanswered")
+                }
+                
+            }
+        }
+        
+        
+        
     }
 }
 
 struct PredictionQuestionView_Previews: PreviewProvider {
     static var previews: some View {
         Landscape {
-            PredictionQuestionView()
+            PredictionQuestionView(question: PredictionQuestion(level: 1), quiz: .constant(Quiz(level: 1)))
         }
     }
 }

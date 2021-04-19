@@ -17,7 +17,7 @@ struct QuizView: View {
             Text("This is a quiz")
             switch quiz.questions[quiz.currentQuestion] {
             case is PredictionQuestion:
-                PredictionQuestionView()
+                PredictionQuestionView(question: quiz.questions[quiz.currentQuestion] as! PredictionQuestion, quiz: $quiz)
             case is PlacingQuestion:
                 PlacingQuestionView()
             case is MassEstimationQuestion:
