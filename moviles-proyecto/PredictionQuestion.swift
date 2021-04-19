@@ -9,16 +9,35 @@ struct PredictionQuestion: QuizQuestion {
     var level: Int
     var simulator: Simulator
     var answerStatus: AnswerStatus
-    var selectedAnswer: String
+    var selectedAnswer: Swivel?
     
     init(level: Int) {
         self.level = level
         simulator = Simulator()
         answerStatus = .unanswered
-        selectedAnswer = ""
+        selectedAnswer = nil
         
     }
     
-    func checkAnswer() {
+    mutating func checkAnswer() {
+        if simulator.potentialTorque > 0 {
+            if selectedAnswer == Swivel.right {
+                answerStatus = AnswerStatus.correct
+            } else {
+                answerStatus = AnswerStatus.incorrect
+            }
+        } else if simulator.potentialTorque < 0 {
+            if selectedAnswer == Swivel.left {
+                answerStatus = AnswerStatus.correct
+            } else {
+                answerStatus = AnswerStatus.incorrect
+            }
+        } else {
+            if selectedAnswer == Swivel.equilibrium {
+                answerStatus = AnswerStatus.correct
+            } else {
+                answerStatus = AnswerStatus.incorrect
+            }
+        }
     }
 }

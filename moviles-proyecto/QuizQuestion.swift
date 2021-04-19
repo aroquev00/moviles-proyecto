@@ -10,5 +10,5 @@ protocol QuizQuestion {
     var simulator: Simulator { get set }
     var answerStatus: AnswerStatus { get set }
     
-    func checkAnswer()
+    mutating func checkAnswer()
 }

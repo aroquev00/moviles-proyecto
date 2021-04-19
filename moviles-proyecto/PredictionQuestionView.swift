@@ -23,15 +23,15 @@ struct PredictionQuestionView: View {
                 // Answer options
                 HStack {
                     Button("Se inclina a la izquierda") {
-                        question.selectedAnswer = "left"
+                        question.selectedAnswer = Swivel.left
                         question.checkAnswer()
                     }
                     Button("Se queda nivelado") {
-                        question.selectedAnswer = "leveled"
+                        question.selectedAnswer = Swivel.equilibrium
                         question.checkAnswer()
                     }
                     Button("Se inclina a la derecha") {
-                        question.selectedAnswer = "right"
+                        question.selectedAnswer = Swivel.right
                         question.checkAnswer()
                     }
                 }

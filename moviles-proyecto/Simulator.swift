@@ -12,23 +12,27 @@ struct Simulator {
     var rulerEnabled: Bool
     var selectedSprite: Sprite?
     
+    var potentialTorque: Float {
+        var torque: Float = 0.0
+        for spot in spots {
+            if let sprite = spot.sprite {
+                let selfTorque = sprite.weight * spot.distance
+                if spot.side {
+                    torque += selfTorque
+                } else {
+                    torque -= selfTorque
+                }
+            }
+        }
+        return torque
+    }
+    
     var totalTorque: Float {
         if columnsEnabled {
             return 0.0
         }
         else {
-            var torque: Float = 0.0
-            for spot in spots {
-                if let sprite = spot.sprite {
-                    let selfTorque = sprite.weight * spot.distance
-                    if spot.side {
-                        torque += selfTorque
-                    } else {
-                        torque -= selfTorque
-                    }
-                }
-            }
-            return torque
+            return potentialTorque
         }
     }
     
