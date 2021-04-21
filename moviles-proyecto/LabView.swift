@@ -32,7 +32,9 @@ struct LabView: View {
     var body: some View {
         ZStack {
             // Aquí va el fondo del juego
-            // Image(...)
+            Image("Background2")
+                .resizable()
+                        .edgesIgnoringSafeArea(.all)
             
             GeometryReader { geo in
                 VStack {
