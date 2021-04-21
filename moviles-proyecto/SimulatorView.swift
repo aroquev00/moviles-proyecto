@@ -18,12 +18,14 @@ struct SimulatorView: View {
                     Text("Nivel izquierdo")
                         .frame(width: mainGeo.size.width * 0.05)
                     ZStack {
-                        Image("tabla")
+                        let barWidth = mainGeo.size.width * 0.75
+                        
+                        Image(simulator.rulerEnabled ?  "reglaborde" : "tablaborde"
+                        )
                             .resizable()
                             .scaledToFit()
                         
                         
-                        let barWidth = mainGeo.size.width * 0.75
                         ZStack { // Sprites
                             
                             ForEach(simulator.spots, id: \.self) { spot in
@@ -49,7 +51,7 @@ struct SimulatorView: View {
                                 Button {
                                     simulator.spots[spot.index].sprite = simulator.selectedSprite
                                 } label: {
-                                    Text(simulator.rulerEnabled ?  String(spot.distance) : "|"
+                                    Text( "|"
                                         )
                                         .font(.system(size: 15))
                                 }
