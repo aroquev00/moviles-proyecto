@@ -40,4 +40,8 @@ struct PredictionQuestion: QuizQuestion {
             }
         }
     }
+    
+    mutating func generateQuestion() {
+        
+    }
 }

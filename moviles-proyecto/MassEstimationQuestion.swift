@@ -19,4 +19,7 @@ struct MassEstimationQuestion: QuizQuestion {
     func checkAnswer() {
     }
     
+    mutating func generateQuestion() {
+        
+    }
 }
