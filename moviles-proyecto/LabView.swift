@@ -81,7 +81,7 @@ struct LabView: View {
                             } label: {
                                 Text("Ver cálculos ⚙️")
                             }
-                            .sheet(isPresented: $showCalculations, content: {
+                            .fullScreenCover(isPresented: $showCalculations, content: {
                                 CalculationsView(simulator: $simulator)
                             })
                         }

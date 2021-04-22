@@ -38,7 +38,7 @@ struct MainMenuView: View {
                                 .padding()
                                 .frame(width: 102, height: 102)
                         }
-                        .sheet(isPresented: $showCredits, content: {
+                        .fullScreenCover(isPresented: $showCredits, content: {
                             CreditsView()
                         })
                     }
@@ -59,7 +59,7 @@ struct MainMenuView: View {
                         .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 153/255, blue: 20/255, opacity: 1.0))
                         .foregroundColor(.white)
                         .font(Font.custom("Open Sans Hebrew", size: 36))
-                        .sheet(isPresented: $showLab, content: {
+                        .fullScreenCover(isPresented: $showLab, content: {
                             LabView()
                         })
                         
@@ -75,7 +75,7 @@ struct MainMenuView: View {
                         .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 153/255, blue: 20/255, opacity: 1.0))
                         .foregroundColor(.white)
                         .font(Font.custom("Open Sans Hebrew", size: 36))
-                        .sheet(isPresented: $showQuizMenu, content: {
+                        .fullScreenCover(isPresented: $showQuizMenu, content: {
                             QuizMenuView()
                         })
                         
