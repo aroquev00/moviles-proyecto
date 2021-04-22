@@ -30,7 +30,7 @@ struct SimulatorView: View {
                             
                             ForEach(simulator.spots, id: \.self) { spot in
                                 if let sprite = spot.sprite {
-                                    Image(uiImage: sprite.image!)
+                                    Image(uiImage: UIImage(named: sprite.imageURL)!)
                                         .resizable()
                                         .scaledToFit()
                                         //.frame(width: barWidth/16, height: mainGeo.size.height / 3, alignment: .center)

@@ -5,7 +5,7 @@
 //  Created by Armando Roque Rodriguez on 02/04/21.
 //
 
-struct SimulatorSpot: Hashable {
+struct SimulatorSpot: Hashable, Codable {
     var index: Int
     var side: Bool // Left is false, right is true
     var distance: Float // Distance from centre

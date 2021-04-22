@@ -168,7 +168,7 @@ struct spriteDataView: View {
                 Text(spriteInfo3(spot: spot))
             }
             Spacer()
-            Image(uiImage: spot.sprite!.image!)
+            Image(uiImage: UIImage(named: spot.sprite!.imageURL)!)
                 .resizable()
                 .scaledToFit()
                 .frame(height: 100)
