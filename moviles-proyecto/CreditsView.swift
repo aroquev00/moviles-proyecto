@@ -13,7 +13,12 @@ struct CreditsView: View {
     var body: some View {
         ZStack {
             VStack {
-                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+                HStack {
+                    Text("Creditos")
+                        .padding()
+                        .font(Font.custom("Open Sans Hebrew", size: 36))
+                }
+                Text("Hello, World!")
                 Button("Dismiss Me") {
                     presentationMode.wrappedValue.dismiss()
                 }
