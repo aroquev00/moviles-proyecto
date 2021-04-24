@@ -23,11 +23,12 @@ struct MainMenuView: View {
                 GeometryReader { geo in
                     HStack {
                         Text("EQUILIBRIUM")
+                            .font(Font.custom("Bangers-Regular", size: 50))
+                            .tracking(10)
                             .padding()
                             .frame(width: 499, height: 84, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                             .background(Color.init(Color.RGBColorSpace.sRGB, red: 59/255, green: 40/255, blue: 204/255, opacity: 1.0))
                             .foregroundColor(.white)
-                            .font(Font.custom("Open Sans Hebrew", size: 36))
                             .border(Color.init(Color.RGBColorSpace.sRGB, red: 169/255, green: 186/255, blue: 204/255, opacity: 1.0), width: 9)
                         Spacer()
                             .frame(width: 100)
@@ -53,15 +54,17 @@ struct MainMenuView: View {
                             showLab = true
                         }) {
                             Text("Lab")
+                                .font(Font.custom("Bangers-Regular", size: 50))
+                                .tracking(5)
+                                //.padding()
+                                .frame(width: 185, height: 65, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 153/255, blue: 20/255, opacity: 1.0))
+                                .foregroundColor(.white)
+                                .fullScreenCover(isPresented: $showLab, content: {
+                                    LabView()
+                                })
                         }
-                        .padding()
-                        .frame(width: 185, height: 65, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 153/255, blue: 20/255, opacity: 1.0))
-                        .foregroundColor(.white)
-                        .font(Font.custom("Open Sans Hebrew", size: 36))
-                        .fullScreenCover(isPresented: $showLab, content: {
-                            LabView()
-                        })
+                        
                         
                         Spacer()
                         
@@ -69,15 +72,17 @@ struct MainMenuView: View {
                             showQuizMenu = true
                         }) {
                             Text("Quiz")
+                                .font(Font.custom("Bangers-Regular", size: 50))
+                                .tracking(5)
+                                //.padding()
+                                .frame(width: 185, height: 65, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 153/255, blue: 20/255, opacity: 1.0))
+                                .foregroundColor(.white)
+                                .fullScreenCover(isPresented: $showQuizMenu, content: {
+                                    QuizMenuView()
+                                })
                         }
-                        .padding()
-                        .frame(width: 185, height: 65, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 153/255, blue: 20/255, opacity: 1.0))
-                        .foregroundColor(.white)
-                        .font(Font.custom("Open Sans Hebrew", size: 36))
-                        .fullScreenCover(isPresented: $showQuizMenu, content: {
-                            QuizMenuView()
-                        })
+                        
                         
                         
                         Spacer()
