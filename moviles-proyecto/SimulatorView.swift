@@ -15,8 +15,9 @@ struct SimulatorView: View {
         VStack {
             GeometryReader { mainGeo in
                 HStack(spacing: 0.0) {
-                    Text("Nivel izquierdo")
-                        .frame(width: mainGeo.size.width * 0.05)
+                    // Left level indicator
+                    getLevelView(symbolName: "arrowtriangle.right.fill", width: mainGeo.size.width * 0.05)
+                        
                     ZStack {
                         let barWidth = mainGeo.size.width * 0.75
                         
@@ -67,9 +68,8 @@ struct SimulatorView: View {
                         )
                         .animation(.easeIn)
                     
-                    
-                    Text("Nivel derecho")
-                        .frame(width: mainGeo.size.width * 0.05)
+                    // Right level indicator
+                    getLevelView(symbolName: "arrowtriangle.left.fill", width: mainGeo.size.width * 0.05)
                 }
                 .frame(width: mainGeo.size.width, height: mainGeo.size.height)
                 
@@ -79,6 +79,14 @@ struct SimulatorView: View {
             
         }
         
+    }
+    
+    // Function to return a View containing the triangle for the balance level
+    func getLevelView(symbolName: String, width: CGFloat) -> some View {
+        return Image(systemName: symbolName)
+            .foregroundColor(simulator.totalTorque == 0 ? .green : .gray)
+            .font(.largeTitle)
+            .frame(width: width)
     }
 }
 
