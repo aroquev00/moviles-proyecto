@@ -10,16 +10,31 @@ import SwiftUI
 struct QuizView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    var quiz: Quiz
+    @State var quiz: Quiz
     
     var body: some View {
         VStack {
             Text("This is a quiz")
-            
+            switch quiz.questions[quiz.currentQuestion] {
+            case is PredictionQuestion:
+                PredictionQuestionView(question: quiz.questions[quiz.currentQuestion] as! PredictionQuestion, quiz: $quiz)
+            case is PlacingQuestion:
+                PlacingQuestionView()
+            case is MassEstimationQuestion:
+                MassEstimationQuestionView()
+            default:
+                Text("Bruh, error!")
+            }
             HStack {
                 Text("Nivel: \(quiz.level)")
-                Text("Pregunta 1 de 6")
+                Text("Pregunta \(quiz.currentQuestion + 1) de \(quiz.questions.count)")
                 Text("Puntos: \(quiz.points)")
+                Button("Pregunta anterior") {
+                    quiz.previousQuestion()
+                }
+                Button("Siguiente pregunta") {
+                    quiz.nextQuestion()
+                }
                 Button("Regresar") {
                     presentationMode.wrappedValue.dismiss()
                 }
@@ -33,7 +48,7 @@ struct QuizView: View {
 struct QuizView_Previews: PreviewProvider {
     static var previews: some View {
         Landscape {
-            QuizView(quiz: Quiz(level: 1, points: 0, questions: [QuizQuestion]()))
+            QuizView(quiz: Quiz(level: 1))
         }
     }
 }
