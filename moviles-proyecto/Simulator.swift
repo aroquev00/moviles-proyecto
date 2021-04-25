@@ -5,7 +5,7 @@
 //  Created by Armando Roque Rodriguez on 02/04/21.
 //
 
-struct Simulator {
+struct Simulator: Codable {
     
     var spots: [SimulatorSpot]
     var columnsEnabled: Bool

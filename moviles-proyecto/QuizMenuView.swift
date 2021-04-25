@@ -20,7 +20,7 @@ struct QuizMenuView: View {
             }) {
                 Text("Nivel 1")
             }
-            .sheet(isPresented: $showQuiz, content: {
+            .fullScreenCover(isPresented: $showQuiz, content: {
                 QuizView(quiz: Quiz(level: 1))
             })
             Button("Dismiss Me") {

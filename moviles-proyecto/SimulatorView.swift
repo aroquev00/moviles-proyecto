@@ -15,20 +15,23 @@ struct SimulatorView: View {
         VStack {
             GeometryReader { mainGeo in
                 HStack(spacing: 0.0) {
-                    Text("Nivel izquierdo")
-                        .frame(width: mainGeo.size.width * 0.05)
+                    // Left level indicator
+                    getLevelView(symbolName: "arrowtriangle.right.fill", width: mainGeo.size.width * 0.05)
+                        
                     ZStack {
-                        Image("line")
+                        let barWidth = mainGeo.size.width * 0.75
+                        
+                        Image(simulator.rulerEnabled ?  "reglaborde" : "tablaborde"
+                        )
                             .resizable()
                             .scaledToFit()
                         
                         
-                        let barWidth = mainGeo.size.width * 0.75
                         ZStack { // Sprites
                             
                             ForEach(simulator.spots, id: \.self) { spot in
                                 if let sprite = spot.sprite {
-                                    Image(uiImage: sprite.image!)
+                                    Image(uiImage: UIImage(named: sprite.imageURL)!)
                                         .resizable()
                                         .scaledToFit()
                                         //.frame(width: barWidth/16, height: mainGeo.size.height / 3, alignment: .center)
@@ -49,7 +52,7 @@ struct SimulatorView: View {
                                 Button {
                                     simulator.spots[spot.index].sprite = simulator.selectedSprite
                                 } label: {
-                                    Text(simulator.rulerEnabled ?  String(spot.distance) : "|"
+                                    Text( "|"
                                         )
                                         .font(.system(size: 15))
                                 }
@@ -65,9 +68,8 @@ struct SimulatorView: View {
                         )
                         .animation(.easeIn)
                     
-                    
-                    Text("Nivel derecho")
-                        .frame(width: mainGeo.size.width * 0.05)
+                    // Right level indicator
+                    getLevelView(symbolName: "arrowtriangle.left.fill", width: mainGeo.size.width * 0.05)
                 }
                 .frame(width: mainGeo.size.width, height: mainGeo.size.height)
                 
@@ -77,6 +79,14 @@ struct SimulatorView: View {
             
         }
         
+    }
+    
+    // Function to return a View containing the triangle for the balance level
+    func getLevelView(symbolName: String, width: CGFloat) -> some View {
+        return Image(systemName: symbolName)
+            .foregroundColor(simulator.totalTorque == 0 ? .green : .gray)
+            .font(.largeTitle)
+            .frame(width: width)
     }
 }
 

@@ -14,14 +14,14 @@ struct LabView: View {
     
 //    Sprite array
     let spritesRow = [
-        Sprite(name: "Mario", weight: 20, height: 1, image: UIImage(named: "mario")),
-        Sprite(name: "Kirby", weight: 10, height: 1, image: UIImage(named: "kirby")),
-        Sprite(name: "Steve", weight: 30, height: 1, image: UIImage(named: "steve")),
-        Sprite(name: "Master Chief", weight: 80, height: 1, image: UIImage(named: "masterchief")),
-        Sprite(name: "Plankton", weight: 5, height: 1, image: UIImage(named: "plankton")),
-        Sprite(name: "Sonic", weight: 15, height: 1, image: UIImage(named: "sonic")),
-        Sprite(name: "Link", weight: 60, height: 1, image: UIImage(named: "link")),
-        Sprite(name: "Megaman", weight: 20, height: 1, image: UIImage(named: "megaman"))
+        Sprite(name: "Mario", weight: 20, height: 1, imageURL: "mario"),
+        Sprite(name: "Kirby", weight: 10, height: 1, imageURL: "kirby"),
+        Sprite(name: "Steve", weight: 30, height: 1, imageURL: "steve"),
+        Sprite(name: "Master Chief", weight: 80, height: 1, imageURL: "masterchief"),
+        Sprite(name: "Plankton", weight: 5, height: 1, imageURL: "plankton"),
+        Sprite(name: "Sonic", weight: 15, height: 1, imageURL: "sonic"),
+        Sprite(name: "Link", weight: 60, height: 1, imageURL: "link"),
+        Sprite(name: "Megaman", weight: 20, height: 1, imageURL: "megaman")
     ]
     
     // Data structure to store placed characters
@@ -32,7 +32,9 @@ struct LabView: View {
     var body: some View {
         ZStack {
             // Aquí va el fondo del juego
-            // Image(...)
+            Image("Background2")
+                .resizable()
+                        .edgesIgnoringSafeArea(.all)
             
             GeometryReader { geo in
                 VStack {
@@ -79,7 +81,7 @@ struct LabView: View {
                             } label: {
                                 Text("Ver cálculos ⚙️")
                             }
-                            .sheet(isPresented: $showCalculations, content: {
+                            .fullScreenCover(isPresented: $showCalculations, content: {
                                 CalculationsView(simulator: $simulator)
                             })
                         }
@@ -104,7 +106,7 @@ struct LabView: View {
                                     }
                                 } label: {
                                     VStack {
-                                        Image(uiImage: spritesRow[i].image!)
+                                        Image(uiImage: UIImage(named: spritesRow[i].imageURL)!)
                                             .resizable()
                                             .scaledToFit()
                                         Text(String(spritesRow[i].weight) + " kg")
@@ -117,6 +119,71 @@ struct LabView: View {
                 }
             }
         }
+        //When the view changes
+        .onDisappear {
+            saveData("SimulatorData.json")
+        }
+        //When this view appears. Executed AFTER init so var simulator is usable
+        .onAppear {
+            simulator = loadData("SimulatorData.json")
+        }
+        //When user exits the app. (Presses home button)
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) {
+            _ in
+            saveData("SimulatorData.json")
+        }
+    }
+    
+    //Loads simulator data stored in a JSON file on init
+    func loadData(_ filename: String) -> Simulator{
+        let data: Data
+        
+        let fileManager = FileManager.default
+        let localPath = getDocumentsDirectory().appendingPathComponent(filename)
+        
+        //Checking if file exists is DocumentsDirectory
+        if fileManager.fileExists(atPath: localPath.path) {
+            //The file exists. Load its data into the view
+            //print("Si hay json")
+            do {
+                data = try Data(contentsOf: localPath)
+                
+                //Initialize simulator with data content
+                let decoder = JSONDecoder()
+                let s = try decoder.decode(Simulator.self, from: data)
+                return s
+            }
+            catch {
+                print("Error al cargar los datos del archivo")
+            }
+        }
+        else {
+            //File does not exist. Load default data in simulator
+            //print("No habia json")
+            let s = Simulator()
+            return s
+        }
+        return Simulator()
+    }
+    
+    //Saves simulator data when current view disappears
+    func saveData(_ filename: String) {
+        let encoder = JSONEncoder()
+        do {
+            let localPath = getDocumentsDirectory().appendingPathComponent(filename)
+            let encodedData = try encoder.encode(simulator)
+            let jsonString = String(data: encodedData, encoding: .utf8)
+            try jsonString?.write(to: localPath, atomically: true, encoding: .utf8)
+            print(jsonString!)
+        }
+        catch {
+            print("Error al guardar los datos")
+        }
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        return path
     }
 }
 

@@ -7,17 +7,17 @@
 
 import UIKit
 
-class Sprite: NSObject {
+class Sprite: NSObject, Codable {
 
     var name: String
     var weight: Float
     var height: Float
-    var image: UIImage?
+    var imageURL: String
     
-    init(name: String, weight: Float, height: Float, image: UIImage?) {
+    init(name: String, weight: Float, height: Float, imageURL: String) {
         self.name = name
         self.weight = weight
         self.height = height
-        self.image = image
+        self.imageURL = imageURL
     }
 }
