@@ -10,7 +10,8 @@ import SwiftUI
 struct QuizView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @State var quiz: Quiz
+    @Binding var level: Int
+    @State var quiz: Quiz = Quiz(level: 1) // This is a placeholder
     
     var body: some View {
         VStack {
@@ -41,6 +42,9 @@ struct QuizView: View {
             }
             
         }
+        .onAppear(perform: {
+            quiz = Quiz(level: level)
+        })
         
     }
 }
@@ -48,7 +52,7 @@ struct QuizView: View {
 struct QuizView_Previews: PreviewProvider {
     static var previews: some View {
         Landscape {
-            QuizView(quiz: Quiz(level: 1))
+            QuizView(level: .constant(1))
         }
     }
 }
