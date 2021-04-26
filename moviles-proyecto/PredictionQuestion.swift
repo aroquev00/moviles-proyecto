@@ -54,14 +54,20 @@ struct PredictionQuestion: QuizQuestion {
             Sprite(name: "Megaman", weight: 20, height: 1, imageURL: "megaman")
         ]
         
-        switch self.level {
-        case 1:
-            // add sprite to left side
-            let spotIndex = Int.random(in: 0...7)
-            self.simulator.spots[spotIndex].sprite = spritesRow[Int.random(in: 0..<(spritesRow.count))]
+        func placeSprite(range: ClosedRange<Int>) {
+            var spotIndex: Int
+            repeat {
+                 spotIndex = Int.random(in: range)
+            } while usedSpots.contains(spotIndex)
             
-        default:
-            print("Default")
+            usedSpots.insert(spotIndex)
+            self.simulator.spots[spotIndex].sprite = spritesRow[Int.random(in: 0..<(spritesRow.count))]
+        }
+        
+        var usedSpots = Set<Int>()
+        for _ in 0..<level {
+            placeSprite(range: 0...7) // Left side
+            placeSprite(range: 8...15) // Right side
         }
     }
 }

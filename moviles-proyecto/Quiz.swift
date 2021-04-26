@@ -17,7 +17,12 @@ struct Quiz {
         self.questions = []
         self.currentQuestion = 0
         
-        generateQuestions()
+        if level >  0 {
+            generateQuestions()
+        } else {
+            // level = 0 is an empty Quiz
+            questions.append(PredictionQuestion(level: 0)) // Just a placeholder
+        }
     }
     
     mutating func nextQuestion() {

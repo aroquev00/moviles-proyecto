@@ -11,7 +11,7 @@ struct QuizView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @Binding var level: Int
-    @State var quiz: Quiz = Quiz(level: 1) // This is a placeholder
+    @State var quiz: Quiz = Quiz(level: 0) // Placeholder value at start
     
     var body: some View {
         VStack {
@@ -43,7 +43,7 @@ struct QuizView: View {
             
         }
         .onAppear(perform: {
-            quiz = Quiz(level: level)
+            quiz = Quiz(level: level) // To use actual level selected in QuizMenuView
         })
         
     }

@@ -11,13 +11,13 @@ struct QuizMenuView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State var showQuiz: Bool = false
-    @State var selectedLevelNumber = 1
+    @State var selectedLevelNumber = 0 // Placeholder value at start
     
     var body: some View {
         VStack {
             Text("¡Elige un nivel!")
             HStack {
-                ForEach(1..<5, id: \.self) { i in
+                ForEach(1..<5) { i in
                     getLevelButton(level: i)
                 }
             }
