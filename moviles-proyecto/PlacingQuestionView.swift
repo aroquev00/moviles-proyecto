@@ -13,10 +13,14 @@ struct PlacingQuestionView: View {
     
     var body: some View {
         GeometryReader { geo in
-            
+            VStack {
+                Text("This is a placing question!")
+                Text("Equilibra la tabla!")
+                SimulatorView(simulator: $question.simulator)
+            }
             
         }
-        Text("This is a placing question!")
+        
     }
 }
 
