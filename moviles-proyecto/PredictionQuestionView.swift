@@ -22,21 +22,9 @@ struct PredictionQuestionView: View {
                 
                 // Answer options
                 HStack {
-                    Button("Se inclina a la izquierda") {
-                        question.selectedAnswer = Swivel.left
-                        question.checkAnswer()
-                        addPoints()
-                    }
-                    Button("Se queda nivelado") {
-                        question.selectedAnswer = Swivel.equilibrium
-                        question.checkAnswer()
-                        addPoints()
-                    }
-                    Button("Se inclina a la derecha") {
-                        question.selectedAnswer = Swivel.right
-                        question.checkAnswer()
-                        addPoints()
-                    }
+                    getPredictionButton(text: "Se inclina a la izquierda", swivel: .left)
+                    getPredictionButton(text: "Se queda nivelado", swivel: .equilibrium)
+                    getPredictionButton(text: "Se inclina a la derecha", swivel: .right)
                 }
                 switch question.answerStatus {
                 case AnswerStatus.correct:
@@ -48,6 +36,14 @@ struct PredictionQuestionView: View {
                 }
                 
             }
+        }
+    }
+    
+    func getPredictionButton(text: String, swivel: Swivel) -> some View {
+        return Button(text) {
+            question.selectedAnswer = swivel
+            question.checkAnswer()
+            addPoints()
         }
     }
     
