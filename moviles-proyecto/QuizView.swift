@@ -20,7 +20,7 @@ struct QuizView: View {
             case is PredictionQuestion:
                 PredictionQuestionView(question: quiz.questions[quiz.currentQuestion] as! PredictionQuestion, quiz: $quiz)
             case is PlacingQuestion:
-                PlacingQuestionView()
+                PlacingQuestionView(question: quiz.questions[quiz.currentQuestion] as! PlacingQuestion, quiz: $quiz)
             case is MassEstimationQuestion:
                 MassEstimationQuestionView()
             default:

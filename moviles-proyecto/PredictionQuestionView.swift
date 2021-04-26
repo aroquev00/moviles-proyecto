@@ -18,21 +18,24 @@ struct PredictionQuestionView: View {
             VStack {
                 Text("This is a prediction question!")
                 Text("¿Qué pasará?")
-                SimulatorView(simulator: $quiz.questions[quiz.currentQuestion].simulator)
+                SimulatorView(simulator: $question.simulator)
                 
                 // Answer options
                 HStack {
                     Button("Se inclina a la izquierda") {
                         question.selectedAnswer = Swivel.left
                         question.checkAnswer()
+                        addPoints()
                     }
                     Button("Se queda nivelado") {
                         question.selectedAnswer = Swivel.equilibrium
                         question.checkAnswer()
+                        addPoints()
                     }
                     Button("Se inclina a la derecha") {
                         question.selectedAnswer = Swivel.right
                         question.checkAnswer()
+                        addPoints()
                     }
                 }
                 switch question.answerStatus {
@@ -46,9 +49,12 @@ struct PredictionQuestionView: View {
                 
             }
         }
-        
-        
-        
+    }
+    
+    func addPoints() {
+        if question.answerStatus == .correct {
+            quiz.points += 1
+        }
     }
 }
 
