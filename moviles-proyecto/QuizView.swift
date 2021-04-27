@@ -10,20 +10,23 @@ import SwiftUI
 struct QuizView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @State var quiz: Quiz
+    @Binding var level: Int
+    @State var quiz: Quiz = Quiz(level: 0) // Placeholder value at start
     
     var body: some View {
         VStack {
             Text("This is a quiz")
-            switch quiz.questions[quiz.currentQuestion] {
-            case is PredictionQuestion:
-                PredictionQuestionView(question: quiz.questions[quiz.currentQuestion] as! PredictionQuestion, quiz: $quiz)
-            case is PlacingQuestion:
-                PlacingQuestionView()
-            case is MassEstimationQuestion:
-                MassEstimationQuestionView()
-            default:
-                Text("Bruh, error!")
+            if quiz.questions.count > 0 { // To wait for real quiz to be assigned
+                switch quiz.questions[quiz.currentQuestion] {
+                case is PredictionQuestion:
+                    PredictionQuestionView(question: quiz.questions[quiz.currentQuestion] as! PredictionQuestion, quiz: $quiz)
+                case is PlacingQuestion:
+                    PlacingQuestionView(question: quiz.questions[quiz.currentQuestion] as! PlacingQuestion, quiz: $quiz)
+                case is MassEstimationQuestion:
+                    MassEstimationQuestionView()
+                default:
+                    Text("Bruh, error!")
+                }
             }
             HStack {
                 Text("Nivel: \(quiz.level)")
@@ -41,6 +44,9 @@ struct QuizView: View {
             }
             
         }
+        .onAppear(perform: {
+            quiz = Quiz(level: level) // To use actual level selected in QuizMenuView
+        })
         
     }
 }
@@ -48,7 +54,7 @@ struct QuizView: View {
 struct QuizView_Previews: PreviewProvider {
     static var previews: some View {
         Landscape {
-            QuizView(quiz: Quiz(level: 1))
+            QuizView(level: .constant(1))
         }
     }
 }

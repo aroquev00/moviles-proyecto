@@ -11,21 +11,32 @@ struct QuizMenuView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State var showQuiz: Bool = false
+    @State var selectedLevelNumber = 0 // Placeholder value at start
     
     var body: some View {
         VStack {
             Text("¡Elige un nivel!")
-            Button(action: {
-                showQuiz = true
-            }) {
-                Text("Nivel 1")
+            HStack {
+                ForEach(1..<5) { i in
+                    getLevelButton(level: i)
+                }
             }
             .fullScreenCover(isPresented: $showQuiz, content: {
-                QuizView(quiz: Quiz(level: 1))
+                QuizView(level: $selectedLevelNumber)
             })
             Button("Dismiss Me") {
                 presentationMode.wrappedValue.dismiss()
             }
+        }
+    }
+    
+    // Function to return a View containing the button for the level
+    func getLevelButton(level: Int) -> some View {
+        return Button(action: {
+            selectedLevelNumber = level
+            showQuiz = true
+        }) {
+            Text("Nivel \(level)")
         }
     }
 }
