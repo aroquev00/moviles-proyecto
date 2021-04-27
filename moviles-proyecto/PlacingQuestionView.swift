@@ -26,6 +26,8 @@ struct PlacingQuestionView: View {
 
 struct PlacingQuestionView_Previews: PreviewProvider {
     static var previews: some View {
-        PlacingQuestionView(question: PlacingQuestion(level: 1), quiz: .constant(Quiz(level: 1)))
+        Landscape {
+            PlacingQuestionView(question: PlacingQuestion(level: 1), quiz: .constant(Quiz(level: 1)))
+        }
     }
 }
