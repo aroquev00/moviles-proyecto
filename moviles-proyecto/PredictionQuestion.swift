@@ -54,20 +54,24 @@ struct PredictionQuestion: QuizQuestion {
             Sprite(name: "Megaman", weight: 20, height: 1, imageURL: "megaman")
         ]
         
-        func placeSprite(range: ClosedRange<Int>) {
-            var spotIndex: Int
-            repeat {
-                 spotIndex = Int.random(in: range)
-            } while usedSpots.contains(spotIndex)
+        func placeRandomSprite(availableSpots: Set<Int>) -> Set<Int> {
+            var spots = availableSpots
             
-            usedSpots.insert(spotIndex)
+            let spotIndex = spots.randomElement()!
+            spots.remove(spotIndex)
+            
             self.simulator.spots[spotIndex].sprite = spritesRow[Int.random(in: 0..<(spritesRow.count))]
+            
+            return spots
         }
         
-        var usedSpots = Set<Int>()
+        var leftAvailableSpots = Set(0...7)
+        var rightAvailableSpots = Set(8...15)
         for _ in 0..<level {
-            placeSprite(range: 0...7) // Left side
-            placeSprite(range: 8...15) // Right side
+            leftAvailableSpots = placeRandomSprite(availableSpots: leftAvailableSpots) // Left side
+            rightAvailableSpots = placeRandomSprite(availableSpots: rightAvailableSpots) // Right side
         }
     }
+    
+    
 }

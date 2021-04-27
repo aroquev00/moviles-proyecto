@@ -16,15 +16,17 @@ struct QuizView: View {
     var body: some View {
         VStack {
             Text("This is a quiz")
-            switch quiz.questions[quiz.currentQuestion] {
-            case is PredictionQuestion:
-                PredictionQuestionView(question: quiz.questions[quiz.currentQuestion] as! PredictionQuestion, quiz: $quiz)
-            case is PlacingQuestion:
-                PlacingQuestionView(question: quiz.questions[quiz.currentQuestion] as! PlacingQuestion, quiz: $quiz)
-            case is MassEstimationQuestion:
-                MassEstimationQuestionView()
-            default:
-                Text("Bruh, error!")
+            if quiz.questions.count > 0 { // To wait for real quiz to be assigned
+                switch quiz.questions[quiz.currentQuestion] {
+                case is PredictionQuestion:
+                    PredictionQuestionView(question: quiz.questions[quiz.currentQuestion] as! PredictionQuestion, quiz: $quiz)
+                case is PlacingQuestion:
+                    PlacingQuestionView(question: quiz.questions[quiz.currentQuestion] as! PlacingQuestion, quiz: $quiz)
+                case is MassEstimationQuestion:
+                    MassEstimationQuestionView()
+                default:
+                    Text("Bruh, error!")
+                }
             }
             HStack {
                 Text("Nivel: \(quiz.level)")
