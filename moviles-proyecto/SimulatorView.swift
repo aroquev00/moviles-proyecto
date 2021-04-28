@@ -21,6 +21,23 @@ struct SimulatorView: View {
                     ZStack {
                         let barWidth = mainGeo.size.width * 0.75
                         
+                        HStack {
+                            Image("columna2")
+                                .resizable()
+                                .scaledToFit()
+                                .opacity(simulator.columnsEnabled ? 1.0 : 0.0)
+                                .animation(.none)
+                            Spacer()
+                            Image("columna2")
+                                .resizable()
+                                .scaledToFit()
+                                .opacity(simulator.columnsEnabled ? 1.0 : 0.0)
+                                .animation(.none)
+                                
+                        }
+                        .frame(width: mainGeo.size.width * 0.5, height: mainGeo.size.height / 2, alignment: .center)
+                        //.offset(x: 0.0, y: mainGeo.size.height * 0.23)
+                        
                         Image(simulator.rulerEnabled ?  "reglaborde" : "tablaborde"
                         )
                             .resizable()
@@ -62,25 +79,11 @@ struct SimulatorView: View {
                             .frame(width: mainGeo.size.width * 0.75)
                         
                         HStack {
-                            Image("columna")
+                            Image("base2")
                                 .resizable()
                                 .scaledToFit()
-                                .opacity(simulator.columnsEnabled ? 1.0 : 0.0)
-                                .animation(.none)
-                            Spacer()
-                            Image("base")
-                                .resizable()
-                                .scaledToFit()
-                            Spacer()
-                            Image("columna")
-                                .resizable()
-                                .scaledToFit()
-                                .opacity(simulator.columnsEnabled ? 1.0 : 0.0)
-                                .animation(.none)
-                                
                         }
-                        .frame(width: barWidth * 0.75, height: mainGeo.size.height / 3, alignment: .center)
-                        .offset(x: 0.0, y: mainGeo.size.height * 0.23)
+                        .frame(width: mainGeo.size.width * 0.75, height: mainGeo.size.height / 2, alignment: .center)
                         
                     }
                         .frame(width: mainGeo.size.width * 0.9)
