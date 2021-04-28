@@ -8,13 +8,20 @@
 import SwiftUI
 
 struct PlacingQuestionView: View {
+    @State var question: PlacingQuestion
+    @Binding var quiz: Quiz
+    
     var body: some View {
+        GeometryReader { geo in
+            
+            
+        }
         Text("This is a placing question!")
     }
 }
 
 struct PlacingQuestionView_Previews: PreviewProvider {
     static var previews: some View {
-        PlacingQuestionView()
+        PlacingQuestionView(question: PlacingQuestion(level: 1), quiz: .constant(Quiz(level: 1)))
     }
 }
