@@ -21,7 +21,7 @@ struct SimulatorView: View {
                     ZStack {
                         let barWidth = mainGeo.size.width * 0.75
                         
-                        Image(simulator.rulerEnabled ?  "reglaborde" : "tablaborde"
+                        Image(simulator.rulerEnabled ?  "tablaRegla" : "tabla"
                         )
                             .resizable()
                             .scaledToFit()
