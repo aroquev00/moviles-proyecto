@@ -38,8 +38,7 @@ struct SimulatorView: View {
                         .frame(width: mainGeo.size.width * 0.5, height: mainGeo.size.height / 2, alignment: .center)
                         //.offset(x: 0.0, y: mainGeo.size.height * 0.23)
                         
-                        Image(simulator.rulerEnabled ?  "reglaborde" : "tablaborde"
-                        )
+                        Image(simulator.rulerEnabled ?  "tablaRegla" : "tabla")
                             .resizable()
                             .scaledToFit()
                         
