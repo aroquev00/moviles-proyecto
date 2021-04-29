@@ -23,7 +23,7 @@ struct QuizView: View {
                 case is PlacingQuestion:
                     PlacingQuestionView(question: quiz.questions[quiz.currentQuestion] as! PlacingQuestion, quiz: $quiz)
                 case is MassEstimationQuestion:
-                    MassEstimationQuestionView()
+                    MassEstimationQuestionView(question: quiz.questions[quiz.currentQuestion] as! MassEstimationQuestion, quiz: $quiz)
                 default:
                     Text("Bruh, error!")
                 }
