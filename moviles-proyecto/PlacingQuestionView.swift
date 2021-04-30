@@ -13,15 +13,21 @@ struct PlacingQuestionView: View {
     
     var body: some View {
         GeometryReader { geo in
-            
+            VStack {
+                Text("This is a placing question!")
+                Text("Equilibra la tabla!")
+                SimulatorView(simulator: $question.simulator)
+            }
             
         }
-        Text("This is a placing question!")
+        
     }
 }
 
 struct PlacingQuestionView_Previews: PreviewProvider {
     static var previews: some View {
-        PlacingQuestionView(question: PlacingQuestion(level: 1), quiz: .constant(Quiz(level: 1)))
+        Landscape {
+            PlacingQuestionView(question: PlacingQuestion(level: 1), quiz: .constant(Quiz(level: 1)))
+        }
     }
 }
