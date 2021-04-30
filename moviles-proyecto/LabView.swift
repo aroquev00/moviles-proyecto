@@ -12,7 +12,7 @@ struct LabView: View {
     
     @State var showCalculations: Bool = false
     
-//    Sprite array
+    //    Sprite array
     let spritesRow = [
         Sprite(name: "Mario", weight: 20, height: 1, imageURL: "mario"),
         Sprite(name: "Kirby", weight: 10, height: 1, imageURL: "kirby"),
@@ -34,7 +34,7 @@ struct LabView: View {
             // Aquí va el fondo del juego
             Image("Background2")
                 .resizable()
-                        .edgesIgnoringSafeArea(.all)
+                .edgesIgnoringSafeArea(.all)
             
             GeometryReader { geo in
                 VStack {
@@ -43,6 +43,7 @@ struct LabView: View {
                             .frame(width: geo.size.width * 0.8)
                         
                         GeometryReader { sideGeo in
+                            let switchesVerticalPadding: CGFloat = sideGeo.size.height * 0.03
                             VStack {
                                 Spacer()
                                 HStack {
@@ -70,7 +71,7 @@ struct LabView: View {
                                 Spacer()
                                 HStack {
                                     Spacer()
-                                    Image("columna")
+                                    Image("columnaSwitch")
                                         .resizable()
                                         .scaledToFit()
                                     Spacer()
@@ -78,21 +79,32 @@ struct LabView: View {
                                             get: {return !self.simulator.columnsEnabled},
                                             set: {noColumns in self.simulator.columnsEnabled = !noColumns})
                                     )
-                                        .labelsHidden()
+                                    .labelsHidden()
                                     Spacer()
-                                    Image("columnaCrossed")
+                                    Image("columnaSwitchCrossed")
                                         .resizable()
                                         .scaledToFit()
                                     Spacer()
                                 }
-                                    .frame(height: geo.size.height * 0.1)
-                                    .padding()
-                                    .background(Color.init(Color.RGBColorSpace.sRGB, red: 59/255, green: 40/255, blue: 204/255, opacity: 1.0))
-                                    
+                                .frame(width: sideGeo.size.width, height: sideGeo.size.height * 0.1)
+                                .padding(EdgeInsets(top: switchesVerticalPadding, leading: 0, bottom: switchesVerticalPadding, trailing: 0))
+                                .background(Color.init(Color.RGBColorSpace.sRGB, red: 59/255, green: 40/255, blue: 204/255, opacity: 1.0))
+                                
                                 Spacer()
-                                Toggle(isOn: $simulator.rulerEnabled) {
-                                    Text("Regla")
+                                HStack {
+                                    Spacer()
+                                    Toggle("",isOn: $simulator.rulerEnabled)
+                                        .labelsHidden()
+                                    Spacer()
+                                    Image(systemName: "ruler.fill")
+                                        .foregroundColor(Color.orange)
+                                        .font(.largeTitle)
+                                    Spacer()
                                 }
+                                .frame(width: sideGeo.size.width)
+                                .padding(EdgeInsets(top: switchesVerticalPadding, leading: 0, bottom: switchesVerticalPadding, trailing: 0))
+                                .background(Color.init(Color.RGBColorSpace.sRGB, red: 59/255, green: 40/255, blue: 204/255, opacity: 1.0))
+                                
                                 Spacer()
                                 Button {
                                     // Show calc screen
@@ -101,14 +113,15 @@ struct LabView: View {
                                 } label: {
                                     Text("Ver cálculos ⚙️")
                                 }
-                                    .fullScreenCover(isPresented: $showCalculations, content: {
-                                        CalculationsView(simulator: $simulator)
-                                    })
+                                .fullScreenCover(isPresented: $showCalculations, content: {
+                                    CalculationsView(simulator: $simulator)
+                                })
+                                Spacer()
                             }
                         }
-                            .frame(width: geo.size.width * 0.19)
+                        .frame(width: geo.size.width * 0.19, alignment: .center)
                     }
-                        .frame(height: geo.size.height / 1.5)
+                    .frame(height: geo.size.height / 1.5)
                     
                     ScrollView(.horizontal) {
                         HStack(spacing: 20) {
