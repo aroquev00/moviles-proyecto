@@ -13,11 +13,23 @@ struct PlacingQuestionView: View {
     
     var body: some View {
         GeometryReader { geo in
-            VStack {
-                Text("This is a placing question!")
-                Text("Equilibra la tabla!")
-                SimulatorView(simulator: $question.simulator)
+            HStack {
+                VStack {
+                    Text("This is a placing question!")
+                    Text("¡Coloca a \(question.simulator.selectedSprite!.name) en la posición adecuada para equilibrar la tabla!")
+                    SimulatorView(simulator: $question.simulator)
+                }
+                .frame(width: geo.size.width * 0.8)
+                
+                VStack {
+                    Image(uiImage: UIImage(named: question.simulator.selectedSprite!.imageURL)!)
+                        .resizable()
+                        .scaledToFit()
+                    Text(String(question.simulator.selectedSprite!.weight) + " kg")
+                }
+                .frame(width: geo.size.width * 0.2)
             }
+            
             
         }
         
