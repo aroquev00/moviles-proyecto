@@ -174,7 +174,7 @@ struct LabView: View {
             let encodedData = try encoder.encode(simulator)
             let jsonString = String(data: encodedData, encoding: .utf8)
             try jsonString?.write(to: localPath, atomically: true, encoding: .utf8)
-            print(jsonString!)
+            //print(jsonString!)
         }
         catch {
             print("Error al guardar los datos")

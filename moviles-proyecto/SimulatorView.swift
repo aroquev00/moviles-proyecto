@@ -21,8 +21,24 @@ struct SimulatorView: View {
                     ZStack {
                         let barWidth = mainGeo.size.width * 0.75
                         
-                        Image(simulator.rulerEnabled ?  "tablaRegla" : "tabla"
-                        )
+                        HStack {
+                            Image("columna2")
+                                .resizable()
+                                .scaledToFit()
+                                .opacity(simulator.columnsEnabled ? 1.0 : 0.0)
+                                .animation(.none)
+                            Spacer()
+                            Image("columna2")
+                                .resizable()
+                                .scaledToFit()
+                                .opacity(simulator.columnsEnabled ? 1.0 : 0.0)
+                                .animation(.none)
+                                
+                        }
+                        .frame(width: mainGeo.size.width * 0.5, height: mainGeo.size.height / 2, alignment: .center)
+                        //.offset(x: 0.0, y: mainGeo.size.height * 0.23)
+                        
+                        Image(simulator.rulerEnabled ?  "tablaRegla" : "tabla")
                             .resizable()
                             .scaledToFit()
                         
@@ -60,6 +76,13 @@ struct SimulatorView: View {
                             }
                         }
                             .frame(width: mainGeo.size.width * 0.75)
+                        
+                        HStack {
+                            Image("base2")
+                                .resizable()
+                                .scaledToFit()
+                        }
+                        .frame(width: mainGeo.size.width * 0.75, height: mainGeo.size.height / 2, alignment: .center)
                         
                     }
                         .frame(width: mainGeo.size.width * 0.9)
