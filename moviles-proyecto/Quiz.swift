@@ -17,7 +17,9 @@ struct Quiz {
         self.questions = []
         self.currentQuestion = 0
         
-        generateQuestions()
+        if level != 0 {
+            generateQuestions()
+        }
     }
     
     mutating func nextQuestion() {
@@ -34,12 +36,10 @@ struct Quiz {
     
     mutating func generateQuestions() {
         questions.append(PredictionQuestion(level: self.level))
+        questions.append(MassEstimationQuestion(level: self.level))
+        questions.append(PlacingQuestion(level: self.level))
+        questions.append(MassEstimationQuestion(level: self.level))
         questions.append(PredictionQuestion(level: self.level))
-        questions.append(MassEstimationQuestion(level: self.level))
-        questions.append(MassEstimationQuestion(level: self.level))
         questions.append(PlacingQuestion(level: self.level))
-        questions.append(PlacingQuestion(level: self.level))
-        
-        questions.shuffle()
     }
 }
