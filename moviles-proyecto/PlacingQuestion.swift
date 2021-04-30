@@ -56,7 +56,6 @@ struct PlacingQuestion: QuizQuestion {
             self.simulator.spots[spotIndex].sprite = spritesRow[Int.random(in: 0..<(spritesRow.count))]
         }
         
-        // left side
         var availableSpots = Set(0...15)
         
         for _ in 0..<level {
