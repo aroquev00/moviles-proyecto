@@ -38,58 +38,77 @@ struct LabView: View {
             
             GeometryReader { geo in
                 VStack {
-                    HStack {
+                    HStack(spacing: 0.0) {
                         SimulatorView(simulator: $simulator)
                             .frame(width: geo.size.width * 0.8)
-                        VStack {
-                            Spacer()
-                            HStack {
-                                // Buttons
-                                Spacer()
-                                Button {
-                                    // Return to home
-                                    presentationMode.wrappedValue.dismiss()
-                                } label: {
-                                    Image(systemName: "house.fill")
-                                        .foregroundColor(.blue)
-                                        .font(.title)
-                                }
-                                Spacer()
-                                Button {
-                                    // Reset simulator
-                                    simulator.reset()
-                                } label: {
-                                    Image(systemName: "trash")
-                                        .foregroundColor(Color.red)
-                                        .font(.title)
-                                }
-                                Spacer()
-                            }
-                            Spacer()
-                            Toggle(isOn: $simulator.columnsEnabled) {
-                                Text("Columnas")
-                            }
-                            Spacer()
-                            Toggle(isOn: $simulator.rulerEnabled) {
-                                Text("Regla")
-                            }
-                            Spacer()
-                            Button {
-                                // Show calc screen
-                                showCalculations = true
-                                
-                            } label: {
-                                Text("Ver cálculos ⚙️")
-                            }
-                            .fullScreenCover(isPresented: $showCalculations, content: {
-                                CalculationsView(simulator: $simulator)
-                            })
-                        }
-                            .frame(width: geo.size.width * 0.2)
                         
+                        GeometryReader { sideGeo in
+                            VStack {
+                                Spacer()
+                                HStack {
+                                    // Buttons
+                                    Spacer()
+                                    Button {
+                                        // Return to home
+                                        presentationMode.wrappedValue.dismiss()
+                                    } label: {
+                                        Image(systemName: "house.fill")
+                                            .foregroundColor(.black)
+                                            .font(.largeTitle)
+                                    }
+                                    Spacer()
+                                    Button {
+                                        // Reset simulator
+                                        simulator.reset()
+                                    } label: {
+                                        Image(systemName: "trash")
+                                            .foregroundColor(Color.red)
+                                            .font(.largeTitle)
+                                    }
+                                    Spacer()
+                                }
+                                Spacer()
+                                HStack {
+                                    Spacer()
+                                    Image("columna")
+                                        .resizable()
+                                        .scaledToFit()
+                                    Spacer()
+                                    Toggle("", isOn: Binding<Bool>(
+                                            get: {return !self.simulator.columnsEnabled},
+                                            set: {noColumns in self.simulator.columnsEnabled = !noColumns})
+                                    )
+                                        .labelsHidden()
+                                    Spacer()
+                                    Image("columnaCrossed")
+                                        .resizable()
+                                        .scaledToFit()
+                                    Spacer()
+                                }
+                                    .frame(height: geo.size.height * 0.1)
+                                    .padding()
+                                    .background(Color.init(Color.RGBColorSpace.sRGB, red: 59/255, green: 40/255, blue: 204/255, opacity: 1.0))
+                                    
+                                Spacer()
+                                Toggle(isOn: $simulator.rulerEnabled) {
+                                    Text("Regla")
+                                }
+                                Spacer()
+                                Button {
+                                    // Show calc screen
+                                    showCalculations = true
+                                    
+                                } label: {
+                                    Text("Ver cálculos ⚙️")
+                                }
+                                    .fullScreenCover(isPresented: $showCalculations, content: {
+                                        CalculationsView(simulator: $simulator)
+                                    })
+                            }
+                        }
+                            .frame(width: geo.size.width * 0.19)
                     }
-                    .frame(height: geo.size.height / 1.5)
-                    
+                        .frame(height: geo.size.height / 1.5)
                     
                     ScrollView(.horizontal) {
                         HStack(spacing: 20) {
