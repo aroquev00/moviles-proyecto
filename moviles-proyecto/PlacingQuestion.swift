@@ -18,6 +18,7 @@ struct PlacingQuestion: QuizQuestion {
     }
     
     func checkAnswer() {
+        print("Checking question")
     }
     
     mutating func generateQuestion() {

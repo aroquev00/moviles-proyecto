@@ -42,6 +42,7 @@ struct LabView: View {
                         SimulatorView(simulator: $simulator)
                             .frame(width: geo.size.width * 0.8)
                         
+                        // MARK: - Side menu
                         GeometryReader { sideGeo in
                             let switchesVerticalPadding: CGFloat = sideGeo.size.height * 0.03
                             VStack {
@@ -69,6 +70,7 @@ struct LabView: View {
                                     Spacer()
                                 }
                                 Spacer()
+                                // MARK: Columns switch
                                 HStack {
                                     Spacer()
                                     Image("columnaSwitch")
@@ -91,6 +93,7 @@ struct LabView: View {
                                 .background(Color.init(Color.RGBColorSpace.sRGB, red: 59/255, green: 40/255, blue: 204/255, opacity: 1.0))
                                 
                                 Spacer()
+                                // MARK: Ruler switch
                                 HStack {
                                     Spacer()
                                     Toggle("",isOn: $simulator.rulerEnabled)
