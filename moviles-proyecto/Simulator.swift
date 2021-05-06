@@ -39,7 +39,7 @@ struct Simulator: Codable {
     init() {
         self.spots = []
         self.columnsEnabled = true
-        self.rulerEnabled = true
+        self.rulerEnabled = false
         var index = 0
         for dist in stride(from: 2, to: 0, by: -0.25) {
             self.spots.append(SimulatorSpot(index: index, side: false, distance: Float(dist)))

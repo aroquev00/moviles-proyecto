@@ -12,7 +12,7 @@ struct LabView: View {
     
     @State var showCalculations: Bool = false
     
-//    Sprite array
+    //    Sprite array
     let spritesRow = [
         Sprite(name: "Mario", weight: 20, height: 1, imageURL: "mario"),
         Sprite(name: "Kirby", weight: 10, height: 1, imageURL: "kirby"),
@@ -34,62 +34,97 @@ struct LabView: View {
             // Aquí va el fondo del juego
             Image("Background2")
                 .resizable()
-                        .edgesIgnoringSafeArea(.all)
+                .edgesIgnoringSafeArea(.all)
             
             GeometryReader { geo in
                 VStack {
-                    HStack {
+                    HStack(spacing: 0.0) {
                         SimulatorView(simulator: $simulator)
                             .frame(width: geo.size.width * 0.8)
-                        VStack {
-                            Spacer()
-                            HStack {
-                                // Buttons
-                                Spacer()
-                                Button {
-                                    // Return to home
-                                    presentationMode.wrappedValue.dismiss()
-                                } label: {
-                                    Image(systemName: "house.fill")
-                                        .foregroundColor(.blue)
-                                        .font(.title)
-                                }
-                                Spacer()
-                                Button {
-                                    // Reset simulator
-                                    simulator.reset()
-                                } label: {
-                                    Image(systemName: "trash")
-                                        .foregroundColor(Color.red)
-                                        .font(.title)
-                                }
-                                Spacer()
-                            }
-                            Spacer()
-                            Toggle(isOn: $simulator.columnsEnabled) {
-                                Text("Columnas")
-                            }
-                            Spacer()
-                            Toggle(isOn: $simulator.rulerEnabled) {
-                                Text("Regla")
-                            }
-                            Spacer()
-                            Button {
-                                // Show calc screen
-                                showCalculations = true
-                                
-                            } label: {
-                                Text("Ver cálculos ⚙️")
-                            }
-                            .fullScreenCover(isPresented: $showCalculations, content: {
-                                CalculationsView(simulator: $simulator)
-                            })
-                        }
-                            .frame(width: geo.size.width * 0.2)
                         
+                        // MARK: - Side menu
+                        GeometryReader { sideGeo in
+                            let switchesVerticalPadding: CGFloat = sideGeo.size.height * 0.03
+                            VStack {
+                                Spacer()
+                                HStack {
+                                    // Buttons
+                                    Spacer()
+                                    Button {
+                                        // Return to home
+                                        presentationMode.wrappedValue.dismiss()
+                                    } label: {
+                                        Image(systemName: "house.fill")
+                                            .foregroundColor(.black)
+                                            .font(.largeTitle)
+                                    }
+                                    Spacer()
+                                    Button {
+                                        // Reset simulator
+                                        simulator.reset()
+                                    } label: {
+                                        Image(systemName: "trash")
+                                            .foregroundColor(Color.red)
+                                            .font(.largeTitle)
+                                    }
+                                    Spacer()
+                                }
+                                Spacer()
+                                // MARK: Columns switch
+                                HStack {
+                                    Spacer()
+                                    Image("columnaSwitch")
+                                        .resizable()
+                                        .scaledToFit()
+                                    Spacer()
+                                    Toggle("", isOn: Binding<Bool>(
+                                            get: {return !self.simulator.columnsEnabled},
+                                            set: {noColumns in self.simulator.columnsEnabled = !noColumns})
+                                    )
+                                    .labelsHidden()
+                                    Spacer()
+                                    Image("columnaSwitchCrossed")
+                                        .resizable()
+                                        .scaledToFit()
+                                    Spacer()
+                                }
+                                .frame(width: sideGeo.size.width, height: sideGeo.size.height * 0.15)
+                                .padding(EdgeInsets(top: switchesVerticalPadding, leading: 0, bottom: switchesVerticalPadding, trailing: 0))
+                                .background(Color.init(Color.RGBColorSpace.sRGB, red: 59/255, green: 40/255, blue: 204/255, opacity: 1.0))
+                                
+                                Spacer()
+                                // MARK: Ruler switch
+                                HStack {
+                                    Spacer()
+                                    Toggle("",isOn: $simulator.rulerEnabled)
+                                        .labelsHidden()
+                                    Spacer()
+                                    Image(systemName: "ruler.fill")
+                                        .foregroundColor(Color.orange)
+                                        .font(.largeTitle)
+                                    Spacer()
+                                }
+                                .frame(width: sideGeo.size.width)
+                                .padding(EdgeInsets(top: switchesVerticalPadding, leading: 0, bottom: switchesVerticalPadding, trailing: 0))
+                                .background(Color.init(Color.RGBColorSpace.sRGB, red: 59/255, green: 40/255, blue: 204/255, opacity: 1.0))
+                                
+                                Spacer()
+                                Button {
+                                    // Show calc screen
+                                    showCalculations = true
+                                    
+                                } label: {
+                                    Text("Ver cálculos ⚙️")
+                                }
+                                .fullScreenCover(isPresented: $showCalculations, content: {
+                                    CalculationsView(simulator: $simulator)
+                                })
+                                Spacer()
+                            }
+                        }
+                        .frame(width: geo.size.width * 0.19, alignment: .center)
                     }
                     .frame(height: geo.size.height / 1.5)
-                    
                     
                     ScrollView(.horizontal) {
                         HStack(spacing: 20) {
