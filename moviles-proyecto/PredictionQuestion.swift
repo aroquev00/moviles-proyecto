@@ -61,6 +61,7 @@ struct PredictionQuestion: QuizQuestion {
             spots.remove(spotIndex)
             
             self.simulator.spots[spotIndex].sprite = spritesRow[Int.random(in: 0..<(spritesRow.count))]
+            self.simulator.spots[spotIndex].isLocked = true
             
             return spots
         }
