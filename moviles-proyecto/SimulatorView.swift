@@ -47,17 +47,23 @@ struct SimulatorView: View {
                             
                             ForEach(simulator.spots, id: \.self) { spot in
                                 if let sprite = spot.sprite {
-                                    Image(uiImage: UIImage(named: sprite.imageURL)!)
-                                        .resizable()
-                                        .scaledToFit()
-                                        //.frame(width: barWidth/16, height: mainGeo.size.height / 3, alignment: .center)
-                                        .frame(height: mainGeo.size.height / 3, alignment: .center)
-                                        .position(x: barWidth / 16 * CGFloat(spot.index + 1), y: mainGeo.size.height/2 - 45) // Needs work
-                                        
-                                        //.offset(y: -45)
-                                        //.padding(-15)
-                                        //.position(x: 50)
-                                        //.padding(EdgeInsets(top: 0, leading: -barWidth/16 - 1, bottom: 0, trailing: -barWidth/16 - 1))
+                                    VStack {
+                                        Text("\(String(format: "%.2f", sprite.weight))\n kg")
+                                            .foregroundColor(.red)
+                                        Image(uiImage: UIImage(named: sprite.imageURL)!)
+                                            .resizable()
+                                            .scaledToFit()
+                                            //.frame(width: barWidth/16, height: mainGeo.size.height / 3, alignment: .center)
+                                            
+                                            
+                                            //.offset(y: -45)
+                                            //.padding(-15)
+                                            //.position(x: 50)
+                                            //.padding(EdgeInsets(top: 0, leading: -barWidth/16 - 1, bottom: 0, trailing: -barWidth/16 - 1))
+                                    }
+                                    .frame(height: mainGeo.size.height / 3, alignment: .center)
+                                    .position(x: barWidth / 16 * CGFloat(spot.index + 1), y: mainGeo.size.height/2 - 45) // Needs work
+                                    
                                 }
                             }
                             
