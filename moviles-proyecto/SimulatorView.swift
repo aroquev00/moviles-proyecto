@@ -78,6 +78,12 @@ struct SimulatorView: View {
                             ForEach(simulator.spots, id: \.self) { spot in
                                 Button {
                                     if (!spot.isLocked) {
+                                        if simulator.quizMode {
+                                            if let previousIndex = simulator.placedSpriteIndex {
+                                                simulator.spots[previousIndex].sprite = nil
+                                            }
+                                            simulator.placedSpriteIndex = spot.index
+                                        }
                                         simulator.spots[spot.index].sprite = simulator.selectedSprite
                                     }
                                 } label: {
@@ -129,7 +135,7 @@ struct SimulatorView: View {
 struct SimulatorView_Previews: PreviewProvider {
     static var previews: some View {
         Landscape {
-            SimulatorView(simulator: .constant(Simulator()))
+            SimulatorView(simulator: .constant(Simulator(quizMode: false)))
         }
         
     }

@@ -12,7 +12,7 @@ struct MassEstimationQuestion: QuizQuestion {
     
     init(level: Int) {
         self.level = level
-        simulator = Simulator()
+        simulator = Simulator(quizMode: true)
         answerStatus = .unanswered
         generateQuestion()
     }
@@ -97,7 +97,7 @@ struct MassEstimationQuestion: QuizQuestion {
         // Now choose whose sprite's weight the user must find
         let unknownWeightSpriteIndex = usedSpots.randomElement()!
         
-        // TODO
+        simulator.spots[unknownWeightSpriteIndex].showWeight = false
 
         print("Lugar Incógnita: \(unknownWeightSpriteIndex), Sprite: \(simulator.spots[unknownWeightSpriteIndex].sprite!.name)")
     }

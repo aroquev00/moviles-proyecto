@@ -13,7 +13,7 @@ struct PredictionQuestion: QuizQuestion {
     
     init(level: Int) {
         self.level = level
-        simulator = Simulator()
+        simulator = Simulator(quizMode: true)
         answerStatus = .unanswered
         selectedAnswer = nil
         
