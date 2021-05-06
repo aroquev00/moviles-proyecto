@@ -74,9 +74,8 @@ struct PlacingQuestionView: View {
                             Image(uiImage: UIImage(named: question.simulator.selectedSprite!.imageURL)!)
                                 .resizable()
                                 .scaledToFit()
-                            Text(String(question.simulator.selectedSprite!.weight) + " kg")
+                            Text(String(format: "%.2f", question.simulator.selectedSprite!.weight) + " kg")
                         }
-                        
                     }
                 }
                 .frame(width: geo.size.width * 0.19)
