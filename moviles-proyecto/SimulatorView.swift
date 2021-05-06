@@ -48,8 +48,13 @@ struct SimulatorView: View {
                             ForEach(simulator.spots, id: \.self) { spot in
                                 if let sprite = spot.sprite {
                                     VStack {
-                                        Text("\(String(format: "%.2f", sprite.weight))\n kg")
-                                            .foregroundColor(.red)
+                                        if (spot.showWeight) {
+                                            Text("\(String(format: "%.2f", sprite.weight))\n kg")
+                                                .foregroundColor(.red)
+                                        } else {
+                                            Text("?")
+                                        }
+                                        
                                         Image(uiImage: UIImage(named: sprite.imageURL)!)
                                             .resizable()
                                             .scaledToFit()
@@ -72,7 +77,9 @@ struct SimulatorView: View {
                         HStack() { // Buttons
                             ForEach(simulator.spots, id: \.self) { spot in
                                 Button {
-                                    simulator.spots[spot.index].sprite = simulator.selectedSprite
+                                    if (!spot.isLocked) {
+                                        simulator.spots[spot.index].sprite = simulator.selectedSprite
+                                    }
                                 } label: {
                                     Text( "|"
                                         )
