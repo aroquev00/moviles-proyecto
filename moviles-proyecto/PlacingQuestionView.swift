@@ -22,15 +22,13 @@ struct PlacingQuestionView: View {
                 .frame(width: geo.size.width * 0.8)
                 
                 // MARK: - Side menu
-                QuizSideMenuView(question: $question.asQuizQuestion, quiz: $quiz, resetQuestion: resetQuestion)
+                QuizSideMenuView(question: $question.asQuizQuestion, quiz: $quiz, resetQuestion: {
+                    question = quiz.questions[quiz.currentQuestion] as! PlacingQuestion
+                })
                     .frame(width: geo.size.width * 0.19)
                 
             }
         }
-    }
-    
-    private func resetQuestion() {
-        question = quiz.questions[quiz.currentQuestion] as! PlacingQuestion
     }
 }
 
