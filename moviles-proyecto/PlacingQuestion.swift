@@ -12,7 +12,7 @@ struct PlacingQuestion: QuizQuestion {
     
     init(level: Int) {
         self.level = level
-        simulator = Simulator()
+        simulator = Simulator(quizMode: true)
         answerStatus = .unanswered
         generateQuestion()
     }
@@ -55,6 +55,7 @@ struct PlacingQuestion: QuizQuestion {
             availableSpots.remove(spotIndex)
             
             self.simulator.spots[spotIndex].sprite = spritesRow[Int.random(in: 0..<(spritesRow.count))]
+            self.simulator.spots[spotIndex].isLocked = true
         }
         
         var availableSpots = Set(0...15)

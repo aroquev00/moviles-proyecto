@@ -13,11 +13,20 @@ struct MassEstimationQuestionView: View {
     
     var body: some View {
         GeometryReader { geo in
-            VStack {
-                Text("This is a mass estimation question!")
-                Text("¿Cuál es la masa del objeto?")
-                SimulatorView(simulator: $question.simulator)
-                // Text field or slider to input weight
+            HStack(spacing: 0.0) {
+                VStack {
+                    Text("This is a mass estimation question!")
+                    Text("¿Cuál es la masa de \(question.questionSprite!.name)?")
+                    SimulatorView(simulator: $question.simulator)
+                }
+                .frame(width: geo.size.width * 0.8)
+                
+                // MARK: - Side menu
+                QuizSideMenuView(question: $question.asQuizQuestion, quiz: $quiz, resetQuestion: {
+                    question = quiz.questions[quiz.currentQuestion] as! MassEstimationQuestion
+                })
+                    .frame(width: geo.size.width * 0.19)
+                
             }
         }
     }

@@ -13,7 +13,7 @@ struct PredictionQuestion: QuizQuestion {
     
     init(level: Int) {
         self.level = level
-        simulator = Simulator()
+        simulator = Simulator(quizMode: true)
         answerStatus = .unanswered
         selectedAnswer = nil
         
@@ -61,6 +61,7 @@ struct PredictionQuestion: QuizQuestion {
             spots.remove(spotIndex)
             
             self.simulator.spots[spotIndex].sprite = spritesRow[Int.random(in: 0..<(spritesRow.count))]
+            self.simulator.spots[spotIndex].isLocked = true
             
             return spots
         }

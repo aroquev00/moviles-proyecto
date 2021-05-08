@@ -36,7 +36,10 @@ struct Simulator: Codable {
         }
     }
     
-    init() {
+    var quizMode: Bool
+    var placedSpriteIndex: Int?
+    
+    init(quizMode: Bool) {
         self.spots = []
         self.columnsEnabled = true
         self.rulerEnabled = false
@@ -49,6 +52,8 @@ struct Simulator: Codable {
             self.spots.append(SimulatorSpot(index: index, side: true, distance: Float(dist)))
             index += 1
         }
+        self.quizMode = quizMode
+        self.placedSpriteIndex = nil
     }
     
     mutating func reset() {

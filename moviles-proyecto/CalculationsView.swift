@@ -196,7 +196,7 @@ struct spriteDataView: View {
 struct CalculationsView_Previews: PreviewProvider {
     static var previews: some View {
         Landscape {
-            CalculationsView(simulator: .constant(Simulator()))
+            CalculationsView(simulator: .constant(Simulator(quizMode: false)))
         }
     }
 }

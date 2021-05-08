@@ -10,4 +10,8 @@ struct SimulatorSpot: Hashable, Codable {
     var side: Bool // Left is false, right is true
     var distance: Float // Distance from centre
     var sprite: Sprite? // The sprite placed in it
+    
+    // Quiz/Lab attributes
+    var isLocked = false
+    var showWeight = true
 }

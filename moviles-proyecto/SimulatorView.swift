@@ -48,8 +48,13 @@ struct SimulatorView: View {
                             ForEach(simulator.spots, id: \.self) { spot in
                                 if let sprite = spot.sprite {
                                     VStack {
-                                        Text("\(String(format: "%.2f", sprite.weight))\n kg")
-                                            .foregroundColor(.red)
+                                        if (spot.showWeight) {
+                                            Text("\(String(format: "%.2f", sprite.weight))\n kg")
+                                                .foregroundColor(.red)
+                                        } else {
+                                            Text("?")
+                                        }
+                                        
                                         Image(uiImage: UIImage(named: sprite.imageURL)!)
                                             .resizable()
                                             .scaledToFit()
@@ -72,7 +77,15 @@ struct SimulatorView: View {
                         HStack() { // Buttons
                             ForEach(simulator.spots, id: \.self) { spot in
                                 Button {
-                                    simulator.spots[spot.index].sprite = simulator.selectedSprite
+                                    if (!spot.isLocked) {
+                                        if simulator.quizMode {
+                                            if let previousIndex = simulator.placedSpriteIndex {
+                                                simulator.spots[previousIndex].sprite = nil
+                                            }
+                                            simulator.placedSpriteIndex = spot.index
+                                        }
+                                        simulator.spots[spot.index].sprite = simulator.selectedSprite
+                                    }
                                 } label: {
                                     Text( "|"
                                         )
@@ -122,7 +135,7 @@ struct SimulatorView: View {
 struct SimulatorView_Previews: PreviewProvider {
     static var previews: some View {
         Landscape {
-            SimulatorView(simulator: .constant(Simulator()))
+            SimulatorView(simulator: .constant(Simulator(quizMode: false)))
         }
         
     }

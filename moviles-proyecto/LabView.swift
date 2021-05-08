@@ -25,7 +25,7 @@ struct LabView: View {
     ]
     
     // Data structure to store placed characters
-    @State var simulator: Simulator = Simulator()
+    @State var simulator: Simulator = Simulator(quizMode: false)
     
     @State var indexSelectedSprite: Int? = nil
     
@@ -195,10 +195,10 @@ struct LabView: View {
         else {
             //File does not exist. Load default data in simulator
             //print("No habia json")
-            let s = Simulator()
+            let s = Simulator(quizMode: false)
             return s
         }
-        return Simulator()
+        return Simulator(quizMode: false)
     }
     
     //Saves simulator data when current view disappears
