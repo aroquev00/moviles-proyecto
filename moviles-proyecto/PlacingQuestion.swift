@@ -17,8 +17,15 @@ struct PlacingQuestion: QuizQuestion {
         generateQuestion()
     }
     
-    func checkAnswer() {
+    mutating func checkAnswer() {
         print("Checking question")
+        if simulator.potentialTorque == 0.0 {
+            answerStatus = .correct
+            print("correcto")
+        } else {
+            answerStatus = .incorrect
+            print("incorrecto")
+        }
     }
     
     mutating func generateQuestion() {
@@ -94,8 +101,8 @@ struct PlacingQuestion: QuizQuestion {
         
         simulator.selectedSprite!.weight = spriteWeight
         
-        print(spriteWeight)
-        print(answerSpot)
+        print("---Placing Question---")
+        print("Spot respuesta: ", answerSpot)
         
     }
 }
