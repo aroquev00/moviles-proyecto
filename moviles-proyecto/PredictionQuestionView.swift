@@ -16,7 +16,6 @@ struct PredictionQuestionView: View {
         
         GeometryReader { geo in
             VStack {
-                Text("This is a prediction question!")
                 Text("¿Qué pasará?")
                 SimulatorView(simulator: $question.simulator)
                 
@@ -25,16 +24,8 @@ struct PredictionQuestionView: View {
                     getPredictionButton(text: "Se inclina a la izquierda", swivel: .left)
                     getPredictionButton(text: "Se queda nivelado", swivel: .equilibrium)
                     getPredictionButton(text: "Se inclina a la derecha", swivel: .right)
+                    Button("Revisar") { question.checkAnswer() }
                 }
-                switch question.answerStatus {
-                case AnswerStatus.correct:
-                    Text("Answer status: Correct")
-                case AnswerStatus.incorrect:
-                    Text("Answer status: Incorrect")
-                case AnswerStatus.unanswered:
-                    Text("Answer status: Unanswered")
-                }
-                
             }
         }
     }

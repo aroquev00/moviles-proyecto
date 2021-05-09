@@ -111,6 +111,8 @@ struct MassEstimationQuestion: QuizQuestion {
         
         self.questionSprite = simulator.spots[unknownWeightSpriteIndex].sprite
 
+        simulator.columnsEnabled = false // Start simulation
+        
         print("---Mass Estimation Question---")
         print("Lugar Incógnita: \(unknownWeightSpriteIndex), Sprite: \(simulator.spots[unknownWeightSpriteIndex].sprite!.name), Weight: \(simulator.spots[unknownWeightSpriteIndex].sprite!.weight)")
     }

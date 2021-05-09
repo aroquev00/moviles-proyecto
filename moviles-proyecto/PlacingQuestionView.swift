@@ -15,7 +15,6 @@ struct PlacingQuestionView: View {
         GeometryReader { geo in
             HStack(spacing: 0.0) {
                 VStack {
-                    Text("This is a placing question!")
                     Text("¡Coloca a \(question.simulator.selectedSprite!.name) en la posición adecuada para equilibrar la tabla!")
                     SimulatorView(simulator: $question.simulator)
                 }

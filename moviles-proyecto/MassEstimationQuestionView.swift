@@ -15,7 +15,6 @@ struct MassEstimationQuestionView: View {
         GeometryReader { geo in
             HStack(spacing: 0.0) {
                 VStack {
-                    Text("This is a mass estimation question!")
                     Text("¿Cuál es la masa de \(question.questionSprite!.name)?")
                     SimulatorView(simulator: $question.simulator)
                     Text(String(format: "%.0f", question.answerWeight))
