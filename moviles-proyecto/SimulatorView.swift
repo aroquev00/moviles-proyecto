@@ -10,33 +10,41 @@ import SwiftUI
 struct SimulatorView: View {
     
     @Binding var simulator: Simulator // Data structure to store placed characters
-            
+    
     var body: some View {
-        VStack {
-            GeometryReader { mainGeo in
-                HStack(spacing: 0.0) {
-                    // Left level indicator
-                    getLevelView(symbolName: "arrowtriangle.right.fill", width: mainGeo.size.width * 0.05)
+        GeometryReader { mainGeo in
+            HStack(spacing: 0.0) {
+                // Left level indicator
+                getLevelView(symbolName: "arrowtriangle.right.fill", width: mainGeo.size.width * 0.05)
+                
+                // MARK: - Tabla, base y columnas
+                ZStack {
+                    // MARK: Base de la tabla
+                    Image("base2")
+                        .resizable()
+                        .scaledToFit()
+                    
+                    // MARK: Columnas
+                    HStack {
+                        Image("columna2")
+                            .resizable()
+                            .scaledToFit()
+                            .opacity(simulator.columnsEnabled ? 1.0 : 0.0)
+                            .animation(.easeIn)
+                        Spacer()
+                        Image("columna2")
+                            .resizable()
+                            .scaledToFit()
+                            .opacity(simulator.columnsEnabled ? 1.0 : 0.0)
+                            .animation(.easeIn)
                         
+                    }
+                    .frame(width: mainGeo.size.width * 0.75, height: mainGeo.size.height, alignment: .center)
+                    //.offset(x: 0.0, y: mainGeo.size.height * 0.23)
+                    
                     ZStack {
                         let barWidth = mainGeo.size.width * 0.75
                         
-                        HStack {
-                            Image("columna2")
-                                .resizable()
-                                .scaledToFit()
-                                .opacity(simulator.columnsEnabled ? 1.0 : 0.0)
-                                .animation(.none)
-                            Spacer()
-                            Image("columna2")
-                                .resizable()
-                                .scaledToFit()
-                                .opacity(simulator.columnsEnabled ? 1.0 : 0.0)
-                                .animation(.none)
-                                
-                        }
-                        .frame(width: mainGeo.size.width * 0.5, height: mainGeo.size.height / 2, alignment: .center)
-                        //.offset(x: 0.0, y: mainGeo.size.height * 0.23)
                         
                         Image(simulator.rulerEnabled ?  "tablaRegla" : "tabla")
                             .resizable()
@@ -58,13 +66,13 @@ struct SimulatorView: View {
                                         Image(uiImage: UIImage(named: sprite.imageURL)!)
                                             .resizable()
                                             .scaledToFit()
-                                            //.frame(width: barWidth/16, height: mainGeo.size.height / 3, alignment: .center)
-                                            
-                                            
-                                            //.offset(y: -45)
-                                            //.padding(-15)
-                                            //.position(x: 50)
-                                            //.padding(EdgeInsets(top: 0, leading: -barWidth/16 - 1, bottom: 0, trailing: -barWidth/16 - 1))
+                                        //.frame(width: barWidth/16, height: mainGeo.size.height / 3, alignment: .center)
+                                        
+                                        
+                                        //.offset(y: -45)
+                                        //.padding(-15)
+                                        //.position(x: 50)
+                                        //.padding(EdgeInsets(top: 0, leading: -barWidth/16 - 1, bottom: 0, trailing: -barWidth/16 - 1))
                                     }
                                     .frame(height: mainGeo.size.height / 3, alignment: .center)
                                     .position(x: barWidth / 16 * CGFloat(spot.index + 1), y: mainGeo.size.height/2 - 45) // Needs work
@@ -73,7 +81,7 @@ struct SimulatorView: View {
                             }
                             
                         }
-                            
+                        
                         HStack() { // Buttons
                             ForEach(simulator.spots, id: \.self) { spot in
                                 Button {
@@ -88,39 +96,27 @@ struct SimulatorView: View {
                                     }
                                 } label: {
                                     Text( "|"
-                                        )
-                                        .font(.system(size: 15))
+                                    )
+                                    .font(.system(size: 15))
                                 }
                                 Spacer()
                             }
                         }
-                            .frame(width: mainGeo.size.width * 0.75)
-                        
-                        HStack {
-                            Image("base2")
-                                .resizable()
-                                .scaledToFit()
-                        }
-                        .frame(width: mainGeo.size.width * 0.75, height: mainGeo.size.height / 2, alignment: .center)
+                        .frame(width: mainGeo.size.width * 0.75)
                         
                     }
-                        .frame(width: mainGeo.size.width * 0.9)
-                        .rotationEffect(
-                            simulator.totalTorque > 20 ? .degrees(Double(20)) : (simulator.totalTorque < -20 ? .degrees(Double(-20))  : .degrees(Double(simulator.totalTorque)))
-                        )
-                        .animation(.easeIn)
-                    
-                    // Right level indicator
-                    getLevelView(symbolName: "arrowtriangle.left.fill", width: mainGeo.size.width * 0.05)
+                    .frame(width: mainGeo.size.width * 0.9)
+                    .rotationEffect(
+                        simulator.totalTorque > 20 ? .degrees(Double(20)) : (simulator.totalTorque < -20 ? .degrees(Double(-20))  : .degrees(Double(simulator.totalTorque)))
+                    )
+                    .animation(.easeIn)
                 }
-                .frame(width: mainGeo.size.width, height: mainGeo.size.height)
                 
+                // Right level indicator
+                getLevelView(symbolName: "arrowtriangle.left.fill", width: mainGeo.size.width * 0.05)
             }
-            
-            Text(String(simulator.totalTorque))
-            
+            .frame(width: mainGeo.size.width, height: mainGeo.size.height)
         }
-        
     }
     
     // Function to return a View containing the triangle for the balance level
