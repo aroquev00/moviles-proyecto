@@ -26,18 +26,9 @@ struct SimulatorView: View {
                     
                     // MARK: Columnas
                     HStack {
-                        Image("columna2")
-                            .resizable()
-                            .scaledToFit()
-                            .opacity(simulator.columnsEnabled ? 1.0 : 0.0)
-                            .animation(.easeIn)
+                        getColumnView()
                         Spacer()
-                        Image("columna2")
-                            .resizable()
-                            .scaledToFit()
-                            .opacity(simulator.columnsEnabled ? 1.0 : 0.0)
-                            .animation(.easeIn)
-                        
+                        getColumnView()
                     }
                     .frame(width: mainGeo.size.width * 0.75, height: mainGeo.size.height, alignment: .center)
                     //.offset(x: 0.0, y: mainGeo.size.height * 0.23)
@@ -125,6 +116,14 @@ struct SimulatorView: View {
             .foregroundColor(simulator.totalTorque == 0 ? .green : .gray)
             .font(.largeTitle)
             .frame(width: width)
+    }
+    
+    func getColumnView() -> some View {
+        return Image("columna2")
+            .resizable()
+            .scaledToFit()
+            .opacity(simulator.columnsEnabled ? 1.0 : 0.0)
+            .animation(.easeIn)
     }
 }
 
