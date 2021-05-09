@@ -14,17 +14,17 @@ struct SimulatorView: View {
     var body: some View {
         GeometryReader { mainGeo in
             HStack(spacing: 0.0) {
-                // Left level indicator
+                // MARK: Left level indicator
                 getLevelView(symbolName: "arrowtriangle.right.fill", width: mainGeo.size.width * 0.05)
                 
-                // MARK: - Tabla, base y columnas
+                // MARK: - Tabla, base and columns start
                 ZStack {
-                    // MARK: Base de la tabla
+                    // MARK: Tabla base
                     Image("base2")
                         .resizable()
                         .scaledToFit()
                     
-                    // MARK: Columnas
+                    // MARK: Columns
                     HStack {
                         getColumnView()
                         Spacer()
@@ -41,9 +41,9 @@ struct SimulatorView: View {
                             .resizable()
                             .scaledToFit()
                         
-                        
-                        ZStack { // Sprites
-                            
+                        // MARK: - Simulator spots
+                        ZStack {
+                            // MARK: Sprites
                             ForEach(simulator.spots, id: \.self) { spot in
                                 if let sprite = spot.sprite {
                                     VStack {
@@ -73,7 +73,8 @@ struct SimulatorView: View {
                             
                         }
                         
-                        HStack() { // Buttons
+                        // MARK: Buttons
+                        HStack() {
                             ForEach(simulator.spots, id: \.self) { spot in
                                 Button {
                                     if (!spot.isLocked) {
@@ -102,14 +103,18 @@ struct SimulatorView: View {
                     )
                     .animation(.easeIn)
                 }
+                // MARK: - Tabla, base and columns end
                 
-                // Right level indicator
+                // MARK: Right level indicator
                 getLevelView(symbolName: "arrowtriangle.left.fill", width: mainGeo.size.width * 0.05)
             }
             .frame(width: mainGeo.size.width, height: mainGeo.size.height)
         }
     }
     
+    // MARK: - View helper functions
+    
+    // MARK: getLevelView
     // Function to return a View containing the triangle for the balance level
     func getLevelView(symbolName: String, width: CGFloat) -> some View {
         return Image(systemName: symbolName)
@@ -118,6 +123,7 @@ struct SimulatorView: View {
             .frame(width: width)
     }
     
+    // MARK: getColumnView
     func getColumnView() -> some View {
         return Image("columna2")
             .resizable()
