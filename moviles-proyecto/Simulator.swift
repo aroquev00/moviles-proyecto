@@ -48,6 +48,11 @@ struct Simulator: Codable {
             self.spots.append(SimulatorSpot(index: index, side: false, distance: Float(dist)))
             index += 1
         }
+        
+        // Placeholder spot for tabla middle
+        // self.spots.append(SimulatorSpot(index: -1, side: false, distance: 0.0))
+        //self.spots[self.spots.count - 1].isLocked = true
+        
         for dist in stride(from: 0.25, through: 2, by: 0.25) {
             self.spots.append(SimulatorSpot(index: index, side: true, distance: Float(dist)))
             index += 1

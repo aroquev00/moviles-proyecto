@@ -10,45 +10,45 @@ import SwiftUI
 struct SimulatorView: View {
     
     @Binding var simulator: Simulator // Data structure to store placed characters
-            
+    
     var body: some View {
-        VStack {
-            GeometryReader { mainGeo in
-                HStack(spacing: 0.0) {
-                    // Left level indicator
-                    getLevelView(symbolName: "arrowtriangle.right.fill", width: mainGeo.size.width * 0.05)
-                        
+        GeometryReader { mainGeo in
+            HStack(spacing: 0.0) {
+                // MARK: Left level indicator
+                getLevelView(symbolName: "arrowtriangle.right.fill", width: mainGeo.size.width * 0.05)
+                
+                // MARK: - Tabla, base and columns start
+                let barWidth = mainGeo.size.width * 0.9
+                let barHeight = barWidth * (183 / 3040)
+                ZStack {
+                    // MARK: Tabla base
+                    Image("base2")
+                        .resizable()
+                        .scaledToFit()
+                    
+                    // MARK: Columns
+                    HStack {
+                        getColumnView()
+                        Spacer()
+                        getColumnView()
+                    }
+                    .frame(width: mainGeo.size.width * 0.75)
+                    //.offset(x: 0.0, y: mainGeo.size.height * 0.23)
+                    
                     ZStack {
-                        let barWidth = mainGeo.size.width * 0.75
-                        
-                        HStack {
-                            Image("columna2")
-                                .resizable()
-                                .scaledToFit()
-                                .opacity(simulator.columnsEnabled ? 1.0 : 0.0)
-                                .animation(.none)
-                            Spacer()
-                            Image("columna2")
-                                .resizable()
-                                .scaledToFit()
-                                .opacity(simulator.columnsEnabled ? 1.0 : 0.0)
-                                .animation(.none)
-                                
-                        }
-                        .frame(width: mainGeo.size.width * 0.5, height: mainGeo.size.height / 2, alignment: .center)
-                        //.offset(x: 0.0, y: mainGeo.size.height * 0.23)
-                        
+                        // MARK: Tabla
                         Image(simulator.rulerEnabled ?  "tablaRegla" : "tabla")
                             .resizable()
                             .scaledToFit()
                         
-                        
-                        ZStack { // Sprites
-                            
+                        // MARK: - Simulator spots
+                        ZStack {
+                            // MARK: Sprites
                             ForEach(simulator.spots, id: \.self) { spot in
                                 if let sprite = spot.sprite {
                                     VStack {
                                         if (spot.showWeight) {
+                                            //Text(String(spot.index))
                                             Text("\(String(format: "%.2f", sprite.weight))\n kg")
                                                 .foregroundColor(.red)
                                         } else {
@@ -58,77 +58,93 @@ struct SimulatorView: View {
                                         Image(uiImage: UIImage(named: sprite.imageURL)!)
                                             .resizable()
                                             .scaledToFit()
-                                            //.frame(width: barWidth/16, height: mainGeo.size.height / 3, alignment: .center)
-                                            
-                                            
-                                            //.offset(y: -45)
-                                            //.padding(-15)
-                                            //.position(x: 50)
-                                            //.padding(EdgeInsets(top: 0, leading: -barWidth/16 - 1, bottom: 0, trailing: -barWidth/16 - 1))
+                                        //.frame(width: barWidth/16, height: mainGeo.size.height / 3, alignment: .center)
+                                        
+                                        
+                                        //.offset(y: -45)
+                                        //.padding(-15)
+                                        //.position(x: 50)
+                                        //.padding(EdgeInsets(top: 0, leading: -barWidth/16 - 1, bottom: 0, trailing: -barWidth/16 - 1))
                                     }
                                     .frame(height: mainGeo.size.height / 3, alignment: .center)
-                                    .position(x: barWidth / 16 * CGFloat(spot.index + 1), y: mainGeo.size.height/2 - 45) // Needs work
+                                    .position(x: barWidth / 18 * CGFloat(spot.index + (spot.index >= 8 ? 2 : 1)), y: mainGeo.size.height/2 - 45) // Needs work
                                     
                                 }
                             }
                             
                         }
-                            
-                        HStack() { // Buttons
-                            ForEach(simulator.spots, id: \.self) { spot in
-                                Button {
-                                    if (!spot.isLocked) {
-                                        if simulator.quizMode {
-                                            if let previousIndex = simulator.placedSpriteIndex {
-                                                simulator.spots[previousIndex].sprite = nil
-                                            }
-                                            simulator.placedSpriteIndex = spot.index
-                                        }
-                                        simulator.spots[spot.index].sprite = simulator.selectedSprite
-                                    }
-                                } label: {
-                                    Text( "|"
-                                        )
-                                        .font(.system(size: 15))
-                                }
-                                Spacer()
-                            }
-                        }
-                            .frame(width: mainGeo.size.width * 0.75)
                         
-                        HStack {
-                            Image("base2")
-                                .resizable()
-                                .scaledToFit()
+                        // MARK: Buttons
+                        HStack(spacing: 0.0) {
+                            getSpotButtonsView(side: .left, barWidth: barWidth, barHeight: barHeight)
+                            Spacer()
+                                .frame(width: barWidth / 18)
+                            getSpotButtonsView(side: .right, barWidth: barWidth, barHeight: barHeight)
                         }
-                        .frame(width: mainGeo.size.width * 0.75, height: mainGeo.size.height / 2, alignment: .center)
+                        .frame(width: barWidth)
                         
                     }
-                        .frame(width: mainGeo.size.width * 0.9)
-                        .rotationEffect(
-                            simulator.totalTorque > 20 ? .degrees(Double(20)) : (simulator.totalTorque < -20 ? .degrees(Double(-20))  : .degrees(Double(simulator.totalTorque)))
-                        )
-                        .animation(.easeIn)
-                    
-                    // Right level indicator
-                    getLevelView(symbolName: "arrowtriangle.left.fill", width: mainGeo.size.width * 0.05)
+                    .frame(width: mainGeo.size.width * 0.9)
+                    .rotationEffect(
+                        simulator.totalTorque > 20 ? .degrees(Double(20)) : (simulator.totalTorque < -20 ? .degrees(Double(-20))  : .degrees(Double(simulator.totalTorque)))
+                    )
+                    .animation(.easeIn)
                 }
-                .frame(width: mainGeo.size.width, height: mainGeo.size.height)
+                // MARK: - Tabla, base and columns end
                 
+                // MARK: Right level indicator
+                getLevelView(symbolName: "arrowtriangle.left.fill", width: mainGeo.size.width * 0.05)
             }
-            
-            Text(String(simulator.totalTorque))
-            
+            .frame(width: mainGeo.size.width, height: mainGeo.size.height)
         }
-        
     }
     
+    // MARK: - View helper functions
+    
+    // MARK: getLevelView
     // Function to return a View containing the triangle for the balance level
     func getLevelView(symbolName: String, width: CGFloat) -> some View {
         return Image(systemName: symbolName)
             .foregroundColor(simulator.totalTorque == 0 ? .green : .gray)
             .font(.largeTitle)
             .frame(width: width)
+    }
+    
+    // MARK: getColumnView
+    func getColumnView() -> some View {
+        return Image("columna2")
+            .resizable()
+            .scaledToFit()
+            .opacity(simulator.columnsEnabled ? 1.0 : 0.0)
+            .animation(.easeIn)
+    }
+    
+    // MARK: getSpotButtonsView
+    func getSpotButtonsView(side: Side, barWidth: CGFloat, barHeight: CGFloat) -> some View {
+        ForEach(simulator.spots, id: \.self) { spot in
+            if (side == .left ? { spot.index <= 7 } : { spot.index >= 8 })() {
+                Button {
+                    if (!spot.isLocked) {
+                        if simulator.quizMode {
+                            if let previousIndex = simulator.placedSpriteIndex {
+                                simulator.spots[previousIndex].sprite = nil
+                            }
+                            simulator.placedSpriteIndex = spot.index
+                        }
+                        simulator.spots[spot.index].sprite = simulator.selectedSprite
+                        //print(spot.index)
+                    }
+                } label: {
+                    //Text(String(spot.index))
+                    Rectangle()
+                        .fill(Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 0))
+                        //.border(Color.black)
+                        .frame(width: barWidth / 18, height: barHeight)
+                    
+                }
+            }
+            
+        }
     }
 }
 
