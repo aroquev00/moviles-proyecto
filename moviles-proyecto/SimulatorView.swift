@@ -33,7 +33,6 @@ struct SimulatorView: View {
                         getColumnView()
                     }
                     .frame(width: mainGeo.size.width * 0.75)
-                    //.offset(x: 0.0, y: mainGeo.size.height * 0.23)
                     
                     ZStack {
                         // MARK: Tabla
@@ -42,11 +41,12 @@ struct SimulatorView: View {
                             .scaledToFit()
                         
                         // MARK: - Simulator spots
-                        ZStack {
+                        let spriteAreaHeight = (mainGeo.size.height / 2) - (barHeight / 2)
+                        ZStack() {
                             // MARK: Sprites
                             ForEach(simulator.spots, id: \.self) { spot in
                                 if let sprite = spot.sprite {
-                                    VStack {
+                                    VStack(spacing: 0.0) {
                                         if (spot.showWeight) {
                                             //Text(String(spot.index))
                                             Text("\(String(format: "%.2f", sprite.weight))\n kg")
@@ -58,21 +58,17 @@ struct SimulatorView: View {
                                         Image(uiImage: UIImage(named: sprite.imageURL)!)
                                             .resizable()
                                             .scaledToFit()
-                                        //.frame(width: barWidth/16, height: mainGeo.size.height / 3, alignment: .center)
-                                        
-                                        
-                                        //.offset(y: -45)
-                                        //.padding(-15)
-                                        //.position(x: 50)
-                                        //.padding(EdgeInsets(top: 0, leading: -barWidth/16 - 1, bottom: 0, trailing: -barWidth/16 - 1))
                                     }
-                                    .frame(height: mainGeo.size.height / 3, alignment: .center)
-                                    .position(x: barWidth / 18 * CGFloat(spot.index + (spot.index >= 8 ? 2 : 1)), y: mainGeo.size.height/2 - 45) // Needs work
+                                    .frame(height: spriteAreaHeight)
+                                    .border(Color.black)
+                                    .position(x: barWidth / 18 * CGFloat(spot.index + (spot.index >= 8 ? 2 : 1)), y: mainGeo.size.height / 2) // Needs work
+                                    .offset(y: -(spriteAreaHeight / 2 + barHeight / 2))
                                     
                                 }
                             }
                             
                         }
+                        .border(Color.red)
                         
                         // MARK: Buttons
                         HStack(spacing: 0.0) {
@@ -81,10 +77,9 @@ struct SimulatorView: View {
                                 .frame(width: barWidth / 18)
                             getSpotButtonsView(side: .right, barWidth: barWidth, barHeight: barHeight)
                         }
-                        .frame(width: barWidth)
                         
                     }
-                    .frame(width: mainGeo.size.width * 0.9)
+                    .border(Color.orange)
                     .rotationEffect(
                         simulator.totalTorque > 20 ? .degrees(Double(20)) : (simulator.totalTorque < -20 ? .degrees(Double(-20))  : .degrees(Double(simulator.totalTorque)))
                     )
