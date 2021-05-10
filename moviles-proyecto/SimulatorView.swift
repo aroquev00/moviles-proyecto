@@ -18,6 +18,8 @@ struct SimulatorView: View {
                 getLevelView(symbolName: "arrowtriangle.right.fill", width: mainGeo.size.width * 0.05)
                 
                 // MARK: - Tabla, base and columns start
+                let barWidth = mainGeo.size.width * 0.9
+                let barHeight = barWidth * (183 / 3040)
                 ZStack {
                     // MARK: Tabla base
                     Image("base2")
@@ -30,13 +32,11 @@ struct SimulatorView: View {
                         Spacer()
                         getColumnView()
                     }
-                    .frame(width: mainGeo.size.width * 0.75, height: mainGeo.size.height, alignment: .center)
+                    .frame(width: mainGeo.size.width * 0.75)
                     //.offset(x: 0.0, y: mainGeo.size.height * 0.23)
                     
                     ZStack {
-                        let barWidth = mainGeo.size.width * 0.75
-                        
-                        
+                        // MARK: Tabla
                         Image(simulator.rulerEnabled ?  "tablaRegla" : "tabla")
                             .resizable()
                             .scaledToFit()
@@ -66,7 +66,7 @@ struct SimulatorView: View {
                                         //.padding(EdgeInsets(top: 0, leading: -barWidth/16 - 1, bottom: 0, trailing: -barWidth/16 - 1))
                                     }
                                     .frame(height: mainGeo.size.height / 3, alignment: .center)
-                                    .position(x: barWidth / 16 * CGFloat(spot.index + 1), y: mainGeo.size.height/2 - 45) // Needs work
+                                    .position(x: barWidth / 16 * CGFloat(spot.index + (spot.index >= 8 ? 1 : 2)), y: mainGeo.size.height/2 - 45) // Needs work
                                     
                                 }
                             }
@@ -74,27 +74,66 @@ struct SimulatorView: View {
                         }
                         
                         // MARK: Buttons
-                        HStack() {
+                        HStack(spacing: 0.0) {
                             ForEach(simulator.spots, id: \.self) { spot in
-                                Button {
-                                    if (!spot.isLocked) {
-                                        if simulator.quizMode {
-                                            if let previousIndex = simulator.placedSpriteIndex {
-                                                simulator.spots[previousIndex].sprite = nil
+                                if (spot.index <= 7) {
+                                    Button {
+                                        if (!spot.isLocked) {
+                                            if simulator.quizMode {
+                                                if let previousIndex = simulator.placedSpriteIndex {
+                                                    simulator.spots[previousIndex].sprite = nil
+                                                }
+                                                simulator.placedSpriteIndex = spot.index
                                             }
-                                            simulator.placedSpriteIndex = spot.index
+                                            simulator.spots[spot.index].sprite = simulator.selectedSprite
+                                            print(spot.index)
                                         }
-                                        simulator.spots[spot.index].sprite = simulator.selectedSprite
+                                    } label: {
+                                        Text(String(spot.index))
+                                        //Rectangle()
+                                            //.fill(Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 0))
+                                            //.border(Color.black)
+                                            .frame(width: barWidth / 18, height: barHeight)
+                                        
                                     }
-                                } label: {
-                                    Text( "|"
-                                    )
-                                    .font(.system(size: 15))
                                 }
-                                Spacer()
+                                
+                            }
+                            
+                            Rectangle()
+                                .fill(Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 0))
+                                //.border(Color.black)
+                                .frame(width: barWidth / 18, height: barHeight)
+                            
+                            ForEach(simulator.spots, id: \.self) { spot in
+                                if (spot.index >= 8) {
+                                    Button {
+                                        if (!spot.isLocked) {
+                                            if simulator.quizMode {
+                                                if let previousIndex = simulator.placedSpriteIndex {
+                                                    simulator.spots[previousIndex].sprite = nil
+                                                }
+                                                simulator.placedSpriteIndex = spot.index
+                                            }
+                                            simulator.spots[spot.index].sprite = simulator.selectedSprite
+                                            print(spot.index)
+                                        }
+                                    } label: {
+                                        Text(String(spot.index))
+                                        //Rectangle()
+                                            //.fill(Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 0))
+                                            //.border(Color.black)
+                                            .frame(width: barWidth / 18, height: barHeight)
+                                        
+                                    }
+                                }
+                                
                             }
                         }
-                        .frame(width: mainGeo.size.width * 0.75)
+                        .frame(width: barWidth)
+                        
+                        
+                        
                         
                     }
                     .frame(width: mainGeo.size.width * 0.9)
