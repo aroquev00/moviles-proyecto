@@ -48,6 +48,7 @@ struct SimulatorView: View {
                                 if let sprite = spot.sprite {
                                     VStack {
                                         if (spot.showWeight) {
+                                            //Text(String(spot.index))
                                             Text("\(String(format: "%.2f", sprite.weight))\n kg")
                                                 .foregroundColor(.red)
                                         } else {
@@ -66,7 +67,7 @@ struct SimulatorView: View {
                                         //.padding(EdgeInsets(top: 0, leading: -barWidth/16 - 1, bottom: 0, trailing: -barWidth/16 - 1))
                                     }
                                     .frame(height: mainGeo.size.height / 3, alignment: .center)
-                                    .position(x: barWidth / 16 * CGFloat(spot.index + (spot.index >= 8 ? 1 : 2)), y: mainGeo.size.height/2 - 45) // Needs work
+                                    .position(x: barWidth / 18 * CGFloat(spot.index + (spot.index >= 8 ? 2 : 1)), y: mainGeo.size.height/2 - 45) // Needs work
                                     
                                 }
                             }
@@ -75,64 +76,16 @@ struct SimulatorView: View {
                         
                         // MARK: Buttons
                         HStack(spacing: 0.0) {
-                            ForEach(simulator.spots, id: \.self) { spot in
-                                if (spot.index <= 7) {
-                                    Button {
-                                        if (!spot.isLocked) {
-                                            if simulator.quizMode {
-                                                if let previousIndex = simulator.placedSpriteIndex {
-                                                    simulator.spots[previousIndex].sprite = nil
-                                                }
-                                                simulator.placedSpriteIndex = spot.index
-                                            }
-                                            simulator.spots[spot.index].sprite = simulator.selectedSprite
-                                            print(spot.index)
-                                        }
-                                    } label: {
-                                        Text(String(spot.index))
-                                        //Rectangle()
-                                            //.fill(Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 0))
-                                            //.border(Color.black)
-                                            .frame(width: barWidth / 18, height: barHeight)
-                                        
-                                    }
-                                }
-                                
-                            }
+                            getSpotButtonsView(side: .left, barWidth: barWidth, barHeight: barHeight)
                             
                             Rectangle()
                                 .fill(Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 0))
                                 //.border(Color.black)
                                 .frame(width: barWidth / 18, height: barHeight)
                             
-                            ForEach(simulator.spots, id: \.self) { spot in
-                                if (spot.index >= 8) {
-                                    Button {
-                                        if (!spot.isLocked) {
-                                            if simulator.quizMode {
-                                                if let previousIndex = simulator.placedSpriteIndex {
-                                                    simulator.spots[previousIndex].sprite = nil
-                                                }
-                                                simulator.placedSpriteIndex = spot.index
-                                            }
-                                            simulator.spots[spot.index].sprite = simulator.selectedSprite
-                                            print(spot.index)
-                                        }
-                                    } label: {
-                                        Text(String(spot.index))
-                                        //Rectangle()
-                                            //.fill(Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 0))
-                                            //.border(Color.black)
-                                            .frame(width: barWidth / 18, height: barHeight)
-                                        
-                                    }
-                                }
-                                
-                            }
+                            getSpotButtonsView(side: .right, barWidth: barWidth, barHeight: barHeight)
                         }
                         .frame(width: barWidth)
-                        
-                        
                         
                         
                     }
@@ -169,6 +122,34 @@ struct SimulatorView: View {
             .scaledToFit()
             .opacity(simulator.columnsEnabled ? 1.0 : 0.0)
             .animation(.easeIn)
+    }
+    
+    // MARK: getSpotButtonsView
+    func getSpotButtonsView(side: Side, barWidth: CGFloat, barHeight: CGFloat) -> some View {
+        ForEach(simulator.spots, id: \.self) { spot in
+            if (side == .left ? { spot.index <= 7 } : { spot.index >= 8 })() {
+                Button {
+                    if (!spot.isLocked) {
+                        if simulator.quizMode {
+                            if let previousIndex = simulator.placedSpriteIndex {
+                                simulator.spots[previousIndex].sprite = nil
+                            }
+                            simulator.placedSpriteIndex = spot.index
+                        }
+                        simulator.spots[spot.index].sprite = simulator.selectedSprite
+                        //print(spot.index)
+                    }
+                } label: {
+                    //Text(String(spot.index))
+                    Rectangle()
+                        .fill(Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 0))
+                        //.border(Color.black)
+                        .frame(width: barWidth / 18, height: barHeight)
+                    
+                }
+            }
+            
+        }
     }
 }
 
