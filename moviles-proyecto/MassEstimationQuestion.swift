@@ -10,15 +10,24 @@ struct MassEstimationQuestion: QuizQuestion {
     var simulator: Simulator
     var answerStatus: AnswerStatus
     var questionSprite: Sprite?
+    var answerWeight: Float
     
     init(level: Int) {
         self.level = level
         simulator = Simulator(quizMode: true)
         answerStatus = .unanswered
+        answerWeight = 0 // Placeholder value
         generateQuestion()
     }
     
-    func checkAnswer() {
+    mutating func checkAnswer() {
+        if answerWeight == questionSprite?.weight {
+            answerStatus = .correct
+            print("correcto")
+        } else {
+            answerStatus = .incorrect
+            print("incorrecto")
+        }
     }
     
     mutating func generateQuestion() {
@@ -102,6 +111,9 @@ struct MassEstimationQuestion: QuizQuestion {
         
         self.questionSprite = simulator.spots[unknownWeightSpriteIndex].sprite
 
-        print("Lugar Incógnita: \(unknownWeightSpriteIndex), Sprite: \(simulator.spots[unknownWeightSpriteIndex].sprite!.name)")
+        simulator.columnsEnabled = false // Start simulation
+        
+        print("---Mass Estimation Question---")
+        print("Lugar Incógnita: \(unknownWeightSpriteIndex), Sprite: \(simulator.spots[unknownWeightSpriteIndex].sprite!.name), Weight: \(simulator.spots[unknownWeightSpriteIndex].sprite!.weight)")
     }
 }
