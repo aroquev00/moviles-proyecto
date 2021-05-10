@@ -77,16 +77,11 @@ struct SimulatorView: View {
                         // MARK: Buttons
                         HStack(spacing: 0.0) {
                             getSpotButtonsView(side: .left, barWidth: barWidth, barHeight: barHeight)
-                            
-                            Rectangle()
-                                .fill(Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 0))
-                                //.border(Color.black)
-                                .frame(width: barWidth / 18, height: barHeight)
-                            
+                            Spacer()
+                                .frame(width: barWidth / 18)
                             getSpotButtonsView(side: .right, barWidth: barWidth, barHeight: barHeight)
                         }
                         .frame(width: barWidth)
-                        
                         
                     }
                     .frame(width: mainGeo.size.width * 0.9)
