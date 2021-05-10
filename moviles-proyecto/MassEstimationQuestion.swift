@@ -65,6 +65,7 @@ struct MassEstimationQuestion: QuizQuestion {
             usedSpots.insert(spotIndex)
             
             self.simulator.spots[spotIndex].sprite = spritesRow[Int.random(in: 0..<(spritesRow.count))]
+            self.simulator.spots[spotIndex].isLocked = true
         }
 
         var availableSpots = Set(0...15)

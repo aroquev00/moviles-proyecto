@@ -41,34 +41,47 @@ struct SimulatorView: View {
                             .scaledToFit()
                         
                         // MARK: - Simulator spots
-                        let spriteAreaHeight = (mainGeo.size.height / 2) - (barHeight / 2)
                         ZStack() {
                             // MARK: Sprites
+                            let spriteAreaHeight = (mainGeo.size.height / 2) - (barHeight / 2)
                             ForEach(simulator.spots, id: \.self) { spot in
                                 if let sprite = spot.sprite {
-                                    VStack(spacing: 0.0) {
+                                    VStack(spacing: 0) {
+                                        Spacer()
                                         if (spot.showWeight) {
                                             //Text(String(spot.index))
-                                            Text("\(String(format: "%.2f", sprite.weight))\n kg")
-                                                .foregroundColor(.red)
+                                            Text(String(format: (floor(sprite.weight) == sprite.weight ? "%.0f" : "%.2f"), sprite.weight))
+                                                .font(Font.custom("Bangers-Regular", size: spriteAreaHeight * 0.15))
+                                                .foregroundColor(.white)
                                         } else {
                                             Text("?")
+                                                .font(Font.custom("Bangers-Regular", size: spriteAreaHeight * 0.15))
+                                                .foregroundColor(.white)
                                         }
-                                        
-                                        Image(uiImage: UIImage(named: sprite.imageURL)!)
-                                            .resizable()
-                                            .scaledToFit()
+                                        Button {
+                                            if (!spot.isLocked) {
+                                                if simulator.quizMode {
+                                                    if let previousIndex = simulator.placedSpriteIndex {
+                                                        simulator.spots[previousIndex].sprite = nil
+                                                    }
+                                                    simulator.placedSpriteIndex = spot.index
+                                                }
+                                                simulator.spots[spot.index].sprite = simulator.selectedSprite
+                                            }
+                                        } label: {
+                                            Image(uiImage: UIImage(named: sprite.imageURL)!)
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(height: (spriteAreaHeight * 0.85 * getSpriteHeight(spot: spot)))
+                                        }
                                     }
                                     .frame(height: spriteAreaHeight)
-                                    .border(Color.black)
+                                    //.border(Color.black)
                                     .position(x: barWidth / 18 * CGFloat(spot.index + (spot.index >= 8 ? 2 : 1)), y: mainGeo.size.height / 2) // Needs work
                                     .offset(y: -(spriteAreaHeight / 2 + barHeight / 2))
-                                    
                                 }
                             }
-                            
                         }
-                        .border(Color.red)
                         
                         // MARK: Buttons
                         HStack(spacing: 0.0) {
@@ -79,7 +92,6 @@ struct SimulatorView: View {
                         }
                         
                     }
-                    .border(Color.orange)
                     .rotationEffect(
                         simulator.totalTorque > 20 ? .degrees(Double(20)) : (simulator.totalTorque < -20 ? .degrees(Double(-20))  : .degrees(Double(simulator.totalTorque)))
                     )
@@ -96,7 +108,6 @@ struct SimulatorView: View {
     
     // MARK: - View helper functions
     
-    // MARK: getLevelView
     // Function to return a View containing the triangle for the balance level
     func getLevelView(symbolName: String, width: CGFloat) -> some View {
         return Image(systemName: symbolName)
@@ -105,7 +116,6 @@ struct SimulatorView: View {
             .frame(width: width)
     }
     
-    // MARK: getColumnView
     func getColumnView() -> some View {
         return Image("columna2")
             .resizable()
@@ -114,7 +124,6 @@ struct SimulatorView: View {
             .animation(.easeIn)
     }
     
-    // MARK: getSpotButtonsView
     func getSpotButtonsView(side: Side, barWidth: CGFloat, barHeight: CGFloat) -> some View {
         ForEach(simulator.spots, id: \.self) { spot in
             if (side == .left ? { spot.index <= 7 } : { spot.index >= 8 })() {
@@ -127,19 +136,24 @@ struct SimulatorView: View {
                             simulator.placedSpriteIndex = spot.index
                         }
                         simulator.spots[spot.index].sprite = simulator.selectedSprite
-                        //print(spot.index)
+                        print(spot.index)
                     }
                 } label: {
                     //Text(String(spot.index))
                     Rectangle()
                         .fill(Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 0))
-                        //.border(Color.black)
+                        .border(Color.black)
                         .frame(width: barWidth / 18, height: barHeight)
                     
                 }
             }
-            
         }
+    }
+    
+    // MARK: - Additional helper functions
+    
+    func getSpriteHeight(spot: SimulatorSpot) -> CGFloat {
+        return CGFloat((spot.sprite?.height)!)
     }
 }
 
