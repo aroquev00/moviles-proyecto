@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct PlacingQuestionView: View {
     @State var question: PlacingQuestion
     @Binding var quiz: Quiz
@@ -24,8 +25,7 @@ struct PlacingQuestionView: View {
                 QuizSideMenuView(question: $question.asQuizQuestion, quiz: $quiz, resetQuestion: {
                     question = quiz.questions[quiz.currentQuestion] as! PlacingQuestion
                 })
-                    .frame(width: geo.size.width * 0.19)
-                
+                    .frame(width: geo.size.width * 0.19)         
             }
         }
     }
