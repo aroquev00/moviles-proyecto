@@ -17,7 +17,7 @@ struct Simulator: Codable {
         for spot in spots {
             if let sprite = spot.sprite {
                 let selfTorque = sprite.weight * spot.distance
-                if spot.side {
+                if spot.side == .right {
                     torque += selfTorque
                 } else {
                     torque -= selfTorque
@@ -44,18 +44,11 @@ struct Simulator: Codable {
         self.columnsEnabled = true
         self.rulerEnabled = false
         var index = 0
-        for dist in stride(from: 2, to: 0, by: -0.25) {
-            self.spots.append(SimulatorSpot(index: index, side: false, distance: Float(dist)))
-            index += 1
-        }
-        
-        // Placeholder spot for tabla middle
-        // self.spots.append(SimulatorSpot(index: -1, side: false, distance: 0.0))
-        //self.spots[self.spots.count - 1].isLocked = true
-        
-        for dist in stride(from: 0.25, through: 2, by: 0.25) {
-            self.spots.append(SimulatorSpot(index: index, side: true, distance: Float(dist)))
-            index += 1
+        for dist in stride(from: -2, to: 2, by: 0.25) {
+            if (dist != 0) {
+                self.spots.append(SimulatorSpot(index: index, side: (dist < 0 ? .left : .right), distance: Float(abs(dist))))
+                index += 1
+            }   
         }
         self.quizMode = quizMode
         self.placedSpriteIndex = nil
