@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct PlacingQuestionView: View {
     @State var question: PlacingQuestion
     @Binding var quiz: Quiz
@@ -31,9 +32,13 @@ struct PlacingQuestionView: View {
                             HStack {
                                 Image(systemName: "arrow.counterclockwise")
                                     .font(.largeTitle)
+                                    .foregroundColor(.white)
                                 Text("Reiniciar")
-                                    .font(Font.custom("Bangers-Regular", size: sideGeo.size.width * 0.15))
+                                    .font(Font.custom("Bangers-Regular", size: sideGeo.size.width * 0.17))
                                     .tracking(2)
+                                    .foregroundColor(.white)
+                                    .fixedSize(horizontal: true, vertical: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                                    
                             }
                             .frame(width: sideGeo.size.width)
                             .padding(EdgeInsets(top: switchesVerticalPadding, leading: 0, bottom: switchesVerticalPadding, trailing: 0))
@@ -49,6 +54,10 @@ struct PlacingQuestionView: View {
                             Spacer()
                             Image(systemName: "ruler.fill")
                                 .foregroundColor(Color.orange)
+                                .background(
+                                    Color.white
+                                        .scaleEffect(CGSize(width: 0.7, height: 0.6)))
+                                
                                 .font(.largeTitle)
                             Spacer()
                         }
