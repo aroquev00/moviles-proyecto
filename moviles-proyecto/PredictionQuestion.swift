@@ -43,6 +43,8 @@ struct PredictionQuestion: QuizQuestion {
     }
     
     mutating func generateQuestion() {
+        simulator.rulerEnabled = true
+        
         let spritesRow = [
             Sprite(name: "Mario", weight: 20, height: 1, imageURL: "mario"),
             Sprite(name: "Kirby", weight: 10, height: 1, imageURL: "kirby"),

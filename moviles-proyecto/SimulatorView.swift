@@ -136,13 +136,13 @@ struct SimulatorView: View {
                             simulator.placedSpriteIndex = spot.index
                         }
                         simulator.spots[spot.index].sprite = simulator.selectedSprite
-                        print(spot.index)
+                        //print(spot.index)
                     }
                 } label: {
                     //Text(String(spot.index))
                     Rectangle()
                         .fill(Color(.sRGB, red: 1, green: 1, blue: 1, opacity: 0))
-                        .border(Color.black)
+                        //.border(Color.black) // for debug
                         .frame(width: barWidth / 18, height: barHeight)
                     
                 }

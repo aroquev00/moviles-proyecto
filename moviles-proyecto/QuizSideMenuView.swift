@@ -64,7 +64,10 @@ struct QuizSideMenuView: View {
                     Image(uiImage: UIImage(named: question.simulator.selectedSprite!.imageURL)!)
                         .resizable()
                         .scaledToFit()
-                    Text(String(format: "%.2f", question.simulator.selectedSprite!.weight) + " kg")
+                    //Text(String(format: "%.2f", question.simulator.selectedSprite!.weight) + " kg")
+                    Text(String(format: (floor(question.simulator.selectedSprite!.weight) == question.simulator.selectedSprite!.weight ? "%.0f" : "%.2f"), question.simulator.selectedSprite!.weight) + " kg")
+                        .font(Font.custom("Bangers-Regular", size: sideGeo.size.width * 0.2))
+                        .foregroundColor(.orange)
                 }
             }
         }

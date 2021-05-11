@@ -37,7 +37,7 @@ struct LabView: View {
                 .edgesIgnoringSafeArea(.all)
             
             GeometryReader { geo in
-                VStack {
+                VStack() {
                     HStack(spacing: 0.0) {
                         SimulatorView(simulator: $simulator)
                             .frame(width: geo.size.width * 0.8)
@@ -125,32 +125,37 @@ struct LabView: View {
                         .frame(width: geo.size.width * 0.19, alignment: .center)
                     }
                     .frame(height: geo.size.height / 1.5)
-                    
-                    ScrollView(.horizontal) {
-                        HStack(spacing: 20) {
-                            ForEach(0..<spritesRow.count) { i in
-                                Button {
-                                    if indexSelectedSprite != i {
-                                        // User just selected this sprite
-                                        simulator.selectedSprite = spritesRow[i]
-                                        indexSelectedSprite = i
-                                    } else {
-                                        // User is toggling this sprite
-                                        indexSelectedSprite = nil
-                                        simulator.selectedSprite = nil
+                    GeometryReader { spriteRowGeo in
+                        ScrollView(.horizontal) {
+                            HStack(alignment: .bottom, spacing: 20) {
+                                ForEach(0..<spritesRow.count) { i in
+                                    Button {
+                                        if indexSelectedSprite != i {
+                                            // User just selected this sprite
+                                            simulator.selectedSprite = spritesRow[i]
+                                            indexSelectedSprite = i
+                                        } else {
+                                            // User is toggling this sprite
+                                            indexSelectedSprite = nil
+                                            simulator.selectedSprite = nil
+                                        }
+                                    } label: {
+                                        VStack(spacing: 0.0) {
+                                            Image(uiImage: UIImage(named: spritesRow[i].imageURL)!)
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(height: spriteRowGeo.size.height * 0.9 * getSpriteHeight(sprite: spritesRow[i]))
+                                            Text(String(format: (floor(spritesRow[i].weight) == spritesRow[i].weight ? "%.0f" : "%.2f"), spritesRow[i].weight) + " kg")
+                                                .font(Font.custom("Bangers-Regular", size: spriteRowGeo.size.height * 0.10))
+                                                .foregroundColor(.orange)
+                                        }
+                                        .background(Color.red.opacity(indexSelectedSprite == i ? 1.0 : 0.0)) // Background is red if sprite is selected to be placed in simulator
                                     }
-                                } label: {
-                                    VStack {
-                                        Image(uiImage: UIImage(named: spritesRow[i].imageURL)!)
-                                            .resizable()
-                                            .scaledToFit()
-                                        Text(String(spritesRow[i].weight) + " kg")
-                                    }
-                                    .background(Color.red.opacity(indexSelectedSprite == i ? 1.0 : 0.0)) // Background is red if sprite is selected to be placed in simulator
                                 }
                             }
                         }
                     }
+                    
                 }
             }
         }
@@ -220,6 +225,12 @@ struct LabView: View {
     func getDocumentsDirectory() -> URL {
         let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         return path
+    }
+    
+    // MARK: - Additional helper functions
+    
+    func getSpriteHeight(sprite: Sprite) -> CGFloat {
+        return CGFloat((sprite.height))
     }
 }
 
