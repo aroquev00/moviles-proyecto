@@ -26,8 +26,8 @@ struct CalculationsView: View {
     
     var body: some View {
         GeometryReader { mainGeo in
-            ScrollView {
-                ZStack {
+            ZStack {
+                ScrollView {
                     VStack {
                         GeometryReader { geo in
                             HStack(spacing: 10) {
