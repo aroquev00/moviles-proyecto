@@ -12,13 +12,20 @@ struct PlacingQuestion: QuizQuestion {
     
     init(level: Int) {
         self.level = level
-        simulator = Simulator()
+        simulator = Simulator(quizMode: true)
         answerStatus = .unanswered
         generateQuestion()
     }
     
-    func checkAnswer() {
+    mutating func checkAnswer() {
         print("Checking question")
+        if simulator.potentialTorque == 0.0 {
+            answerStatus = .correct
+            print("correcto")
+        } else {
+            answerStatus = .incorrect
+            print("incorrecto")
+        }
     }
     
     mutating func generateQuestion() {
@@ -55,6 +62,7 @@ struct PlacingQuestion: QuizQuestion {
             availableSpots.remove(spotIndex)
             
             self.simulator.spots[spotIndex].sprite = spritesRow[Int.random(in: 0..<(spritesRow.count))]
+            self.simulator.spots[spotIndex].isLocked = true
         }
         
         var availableSpots = Set(0...15)
@@ -70,16 +78,16 @@ struct PlacingQuestion: QuizQuestion {
         
         
         // Choose place that will be correct answer
-        var answerSpot: Int
+        var answerSpotIndex: Int
         if simulator.potentialTorque > 0 {
             // Must be one of the left
-            answerSpot = (availableSpots.filter { $0 <= 7 }).randomElement()!
+            answerSpotIndex = (availableSpots.filter { $0 <= 7 }).randomElement()!
         } else {
-            answerSpot = (availableSpots.filter { $0 > 7 }).randomElement()!
+            answerSpotIndex = (availableSpots.filter { $0 > 7 }).randomElement()!
         }
         
         // Calculate the necessary weight that the sprite must have to balance tabla in that spot
-        let spriteWeight = abs(simulator.potentialTorque) / simulator.spots[answerSpot].distance
+        let spriteWeight = abs(simulator.potentialTorque) / simulator.spots[answerSpotIndex].distance
         
         // Now calculate random sprite to place
         switch spriteWeight {
@@ -93,8 +101,8 @@ struct PlacingQuestion: QuizQuestion {
         
         simulator.selectedSprite!.weight = spriteWeight
         
-        print(spriteWeight)
-        print(answerSpot)
+        print("---Placing Question---")
+        print("Spot respuesta: ", answerSpotIndex)
         
     }
 }

@@ -14,13 +14,13 @@ struct CalculationsView: View {
     
     var leftSpots: [SimulatorSpot] {
         return simulator.spots.filter {
-            $0.sprite != nil && !$0.side
+            $0.sprite != nil && $0.side == .left
         }
     }
     
     var rightSpots: [SimulatorSpot] {
         return simulator.spots.filter {
-            $0.sprite != nil && $0.side
+            $0.sprite != nil && $0.side == .right
         }
     }
     
@@ -196,7 +196,7 @@ struct spriteDataView: View {
 struct CalculationsView_Previews: PreviewProvider {
     static var previews: some View {
         Landscape {
-            CalculationsView(simulator: .constant(Simulator()))
+            CalculationsView(simulator: .constant(Simulator(quizMode: false)))
         }
     }
 }
