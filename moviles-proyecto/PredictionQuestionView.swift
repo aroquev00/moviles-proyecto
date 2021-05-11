@@ -15,18 +15,29 @@ struct PredictionQuestionView: View {
         
         
         GeometryReader { geo in
-            VStack {
-                Text("¿Qué pasará?")
-                SimulatorView(simulator: $question.simulator)
-                
-                // Answer options
-                HStack {
-                    getPredictionButton(text: "Se inclina a la izquierda", swivel: .left)
-                    getPredictionButton(text: "Se queda nivelado", swivel: .equilibrium)
-                    getPredictionButton(text: "Se inclina a la derecha", swivel: .right)
-                    Button("Revisar") { question.checkAnswer() }
+            HStack(spacing: 0.0) {
+                VStack {
+                    Text("¿Qué pasará?")
+                    SimulatorView(simulator: $question.simulator)
+                    
+                    // Answer options
+                    HStack {
+                        getPredictionButton3(text: "Se inclina a la izquierda", swivel: .left)
+                        getPredictionButton(text: "Se queda nivelado", swivel: .equilibrium)
+                        getPredictionButton(text: "Se inclina a la derecha", swivel: .right)
+                        Button("Revisar") { question.checkAnswer() }
+                    }
                 }
+                .frame(width: geo.size.width * 0.8)
+                
+                // MARK: - Side menu
+                QuizPredSideMenuView(question: $question.asQuizQuestion, quiz: $quiz, resetQuestion: {
+                    question = quiz.questions[quiz.currentQuestion] as! PredictionQuestion
+                })
+                    .frame(width: geo.size.width * 0.19)
+                
             }
+            
         }
     }
     
@@ -37,6 +48,20 @@ struct PredictionQuestionView: View {
             addPoints()
         }
     }
+    
+    func getPredictionButton3(text: String, swivel: Swivel) -> some View {
+            return Button(action: {
+                question.selectedAnswer = swivel
+                question.checkAnswer()
+                addPoints()
+            }, label: {
+                HStack {
+                    Image(systemName: "arrow.counterclockwise")
+                        .font(.largeTitle)
+                    Text("Reiniciar")
+                }
+            })
+        }
     
     func addPoints() {
         if question.answerStatus == .correct {
