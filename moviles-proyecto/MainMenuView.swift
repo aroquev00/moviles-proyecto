@@ -25,9 +25,9 @@ struct MainMenuView: View {
                         HStack {
                             Text("EQUILIBRIUM")
                                 .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.065))
-                                .tracking(10)
+                                .tracking(5)
                                 .frame(width: geo.size.width * 0.6, height: geo.size.height * 0.7, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                                .background(Color.init(Color.RGBColorSpace.sRGB, red: 59/255, green: 40/255, blue: 204/255, opacity: 1.0))
+                                .background(Color(#colorLiteral(red: 0.231372549, green: 0.1568627451, blue: 0.8, alpha: 1)))
                                 .foregroundColor(.white)
                                 .border(Color.init(Color.RGBColorSpace.sRGB, red: 169/255, green: 186/255, blue: 204/255, opacity: 1.0), width: 9)
                             
@@ -35,19 +35,20 @@ struct MainMenuView: View {
                         .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
                     }
                     .frame(width: mainGeo.size.width, height: mainGeo.size.height * 0.3, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    Spacer().frame(height: mainGeo.size.height * 0.3)
+                    Spacer().frame(height: mainGeo.size.height * 0.35)
                     GeometryReader { geo in
-                        HStack(spacing: mainGeo.size.width * 0.1428) {
+                        HStack(spacing: 75) {
                             Button(action: {
                                 showLab = true
                             }) {
                                 Text("Lab")
-                                    .font(Font.custom("Bangers-Regular", size: (geo.size.width * 0.065) - 10))
+                                    .font(Font.custom("Bangers-Regular", size: (geo.size.width * 0.05) - 3))
                                     .tracking(5)
                                     //.padding()
-                                    .frame(width: geo.size.width * 0.2064, height: geo.size.height * 0.785, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                    .frame(width: geo.size.width * 0.18, height: geo.size.height * 0.785, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                                     .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 153/255, blue: 20/255, opacity: 1.0))
                                     .foregroundColor(.white)
+                                    .cornerRadius(20)
                                     .fullScreenCover(isPresented: $showLab, content: {
                                         LabView()
                                     })
@@ -56,33 +57,32 @@ struct MainMenuView: View {
                                 showQuizMenu = true
                             }) {
                                 Text("Quiz")
-                                    .font(Font.custom("Bangers-Regular", size: (geo.size.width * 0.065) - 10))
+                                    .font(Font.custom("Bangers-Regular", size: (geo.size.width * 0.05) - 3))
                                     .tracking(5)
-                                    //.padding()
-                                    .frame(width: geo.size.width * 0.2064, height: geo.size.height * 0.785, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                    .frame(width: geo.size.width * 0.18, height: geo.size.height * 0.785, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                                     .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 153/255, blue: 20/255, opacity: 1.0))
                                     .foregroundColor(.white)
+                                    .cornerRadius(20)
                                     .fullScreenCover(isPresented: $showQuizMenu, content: {
                                         QuizMenuView()
                                     })
                             }
-                            
                             Button(action: {
                                 showCredits = true
                             }) {
                                 Text("Creditos")
-                                    .font(Font.custom("Bangers-Regular", size: (geo.size.width * 0.06) - 15))
-                                    .tracking(5)
-                                    //.padding()
-                                    .frame(width: geo.size.width * 0.2064, height: geo.size.height * 0.785, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                    .font(Font.custom("Bangers-Regular", size: (geo.size.width * 0.05) - 6))
+                                    .tracking(3)
+                                    .frame(width: geo.size.width * 0.18, height: geo.size.height * 0.785, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                                     .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 153/255, blue: 20/255, opacity: 1.0))
                                     .foregroundColor(.white)
+                                    .cornerRadius(20)
                                     .fullScreenCover(isPresented: $showCredits, content: {
                                         CreditsView()
                                     })
                             }
                         }
-                        .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
+                        .frame(maxWidth: geo.size.width, maxHeight: geo.size.height, alignment: .center)
                     }
                     .frame(width: mainGeo.size.width, height: mainGeo.size.height * 0.2, alignment: .center)
                 }

@@ -60,7 +60,7 @@ struct CreditsView: View {
                     GeometryReader { geo in
                         HStack {
                             Button(action: {
-                                showMenu = true
+                                presentationMode.wrappedValue.dismiss()
                             }) {
                                 Text("Menu")
                                     .font(Font.custom("Bangers-Regular", size: 50))

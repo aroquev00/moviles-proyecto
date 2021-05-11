@@ -25,101 +25,129 @@ struct CalculationsView: View {
     }
     
     var body: some View {
-        ScrollView {
-            VStack {
-                HStack {
-                    Button {
-                        // Return to lab view
-                        print(simulator.spots)
-                        presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        Image(systemName: "arrowshape.turn.up.left.fill")
-                            .foregroundColor(.black)
-                            .font(.title)
-                    }
-                    Spacer()
-                    Text("Cálculos para el problema")
-                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                        .foregroundColor(.white)
-                    Spacer()
-                }
-                    .background(Color(.red))
-                
-                // Monitos
-                // Lado Izquierdo
-                VStack {
-                    Text("Lado izquierdo")
-                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                        .foregroundColor(.red)
-                    if leftSpots.count > 0 {
-                        ForEach(leftSpots, id: \.self) { spot in
-                            
-                            spriteDataView(spot: spot)
-                            
+        GeometryReader { mainGeo in
+            ScrollView {
+                ZStack {
+                    VStack {
+                        GeometryReader { geo in
+                            HStack(spacing: 10) {
+                                Button {
+                                    // Return to lab view
+                                    print(simulator.spots)
+                                    presentationMode.wrappedValue.dismiss()
+                                } label: {
+                                    Image(systemName: "arrowshape.turn.up.left.fill")
+                                        .resizable()
+                                        .frame(width: geo.size.width * 0.05, height: geo.size.height * 0.4, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                        .foregroundColor(Color(#colorLiteral(red: 1, green: 0.6, blue: 0.07843137255, alpha: 1)))
+                                }
+                                Text("Cálculos para el problema")
+                                    .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.06))
+                                    .tracking(5)
+                                    .frame(width: geo.size.width * 0.9, height: geo.size.height, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                    .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                            }
+                            .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
+                            .background(Color(#colorLiteral(red: 0.231372549, green: 0.1568627451, blue: 0.8, alpha: 1)))
                         }
-                    } else {
-                        Text("No se pusieron personajes del lado izquierdo")
-                    }
-                }
-                
-                // Lado Derecho
-                VStack {
-                    Text("Lado derecho")
-                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                        .foregroundColor(.blue)
-                    if rightSpots.count > 0 {
-                        ForEach(rightSpots, id: \.self) { spot in
-                            
-                            spriteDataView(spot: spot)
-                            
+                        .frame(width: mainGeo.size.width, height: mainGeo.size.height * 0.2, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        
+                        // Monitos
+                        // Lado Izquierdo
+                        GeometryReader { geo in
+                            VStack {
+                                Text("Lado izquierdo")
+                                    .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.04))
+                                    .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.7, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                    .background(Color(#colorLiteral(red: 0.6196078431, green: 0.4431372549, blue: 0.3254901961, alpha: 1)))
+                                    .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                                    .cornerRadius(10)
+                                if leftSpots.count > 0 {
+                                    ForEach(leftSpots, id: \.self) { spot in
+                                        
+                                        spriteDataView(spot: spot)
+                                        
+                                    }
+                                } else {
+                                    Text("No se pusieron personajes del lado izquierdo")
+                                }
+                            }
+                            .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
                         }
-                    } else {
-                        Text("No se pusieron personajes del lado derecho")
-                    }
-                    
-                }
-                
-                // Resultado final
-                VStack {
-                    Text("Cálculo final")
-                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                        .foregroundColor(.green)
-                    
-                    // Left torque
-                    let leftData = sideTorqueTotal(spots: leftSpots)
-                    if leftSpots.count != 0 {
-                        Text("Torca izquierda = \(leftData.names!)")
-                        if leftSpots.count > 1 {
-                            Text("Torca izquierda = \(leftData.torques!)")
+                        .frame(width: mainGeo.size.width, height: mainGeo.size.height * 0.15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        
+                        // Lado Derecho
+                        GeometryReader { geo in
+                            VStack {
+                                Text("Lado derecho")
+                                    .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.04))
+                                    .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.7, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                    .background(Color(#colorLiteral(red: 0.2666666667, green: 0.6862745098, blue: 0.4117647059, alpha: 1)))
+                                    .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                                    .cornerRadius(10)
+                                if rightSpots.count > 0 {
+                                    ForEach(rightSpots, id: \.self) { spot in
+                                        
+                                        spriteDataView(spot: spot)
+                                        
+                                    }
+                                } else {
+                                    Text("No se pusieron personajes del lado derecho")
+                                }
+                                
+                            }
+                            .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
                         }
-                    }
-                    Text("Torca izquierda = \(leftData.totalTorque)")
-                        .foregroundColor(.red)
-                    
-                    Spacer()
-                    
-                    // Right torque
-                    let rightData = sideTorqueTotal(spots: rightSpots)
-                    if rightSpots.count != 0 {
-                        Text("Torca derecha = \(rightData.names!)")
-                        if rightSpots.count > 1 {
-                            Text("Torca derecha = \(rightData.torques!)")
+                        .frame(width: mainGeo.size.width, height: mainGeo.size.height * 0.15, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        
+                        // Resultado final
+                        GeometryReader { geo in
+                            VStack(spacing: 5) {
+                                Text("Cálculo final")
+                                    .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.04))
+                                    .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.4, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                    .background(Color(#colorLiteral(red: 0.9294117647, green: 0.1450980392, blue: 0.3058823529, alpha: 1)))
+                                    .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                                    .cornerRadius(10)
+
+                                
+                                // Left torque
+                                let leftData = sideTorqueTotal(spots: leftSpots)
+                                if leftSpots.count != 0 {
+                                    Text("Torca izquierda = \(leftData.names!)")
+                                    if leftSpots.count > 1 {
+                                        Text("Torca izquierda = \(leftData.torques!)")
+                                    }
+                                }
+                                Text("Torca izquierda = \(leftData.totalTorque)")
+                                    .foregroundColor(.red)
+                                
+                                
+                                // Right torque
+                                let rightData = sideTorqueTotal(spots: rightSpots)
+                                if rightSpots.count != 0 {
+                                    Text("Torca derecha = \(rightData.names!)")
+                                    if rightSpots.count > 1 {
+                                        Text("Torca derecha = \(rightData.torques!)")
+                                    }
+                                }
+                                Text("Torca derecha = \(rightData.totalTorque)")
+                                    .foregroundColor(.blue)
+            
+                                // Final result
+                                if simulator.totalTorque == 0 {
+                                    Text("Como las torcas izquierda y derecha son iguales, la tabla se mantiene en equilibrio.")
+                                } else if (simulator.totalTorque > 0) {
+                                    Text("Como la torca derecha es mayor, se ladea hacia la derecha.")
+                                } else {
+                                    Text("Como la torca izquierda es mayor, se ladea hacia la izquierda.")
+                                }
+                                
+                            }
+                            .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
                         }
+                        .frame(width: mainGeo.size.width, height: mainGeo.size.height * 0.3, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     }
-                    Text("Torca derecha = \(rightData.totalTorque)")
-                        .foregroundColor(.blue)
-                    
-                    Spacer()
-                    
-                    // Final result
-                    if simulator.totalTorque == 0 {
-                        Text("Como las torcas izquierda y derecha son iguales, la tabla se mantiene en equilibrio.")
-                    } else if (simulator.totalTorque > 0) {
-                        Text("Como la torca derecha es mayor, se ladea hacia la derecha.")
-                    } else {
-                        Text("Como la torca izquierda es mayor, se ladea hacia la izquierda.")
-                    }
-                    
                 }
             }
         }
