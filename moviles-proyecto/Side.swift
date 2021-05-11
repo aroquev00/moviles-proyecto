@@ -5,7 +5,7 @@
 //  Created by Armando Roque Rodriguez on 09/05/21.
 //
 
-enum Side {
+enum Side: Int, Codable {
     case left
     case right
 }
