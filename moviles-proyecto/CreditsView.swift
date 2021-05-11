@@ -13,73 +13,65 @@ struct CreditsView: View {
     
     
     var body: some View {
-        ZStack {
-            GeometryReader { mainGeo in
-                VStack {
-                    Spacer().frame(height: 20)
-                    GeometryReader { geo in
-                        HStack {
-                            Text("Notice")
-                                .foregroundColor(.black)
-                                .fontWeight(.bold)
-                                .font(.system(size: 70))
-                                .fixedSize()
-                        }
-                        .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
-                    }
-                    .frame(height: 41.5)
-                    
-                    Spacer().frame(height: 25)
-                    GeometryReader { geo in
-                        HStack {
-                            Text("Halo © Microsoft Corporation. Equilibrium was created under Microsoft's \"Game Content Usage Rules\" using assets from Halo, and it is not endorsed by or affiliated with Microsoft.")
-                                .font(Font.custom("Open Sans Hebrew", size: 30))
-                                .foregroundColor(.black)
-                                .multilineTextAlignment(.leading)
-                                .fixedSize(horizontal: false, vertical: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-
-                        }
-                        .frame(width: geo.size.width, height: geo.size.height, alignment: .leading)
-                    }
-                    .frame(height: 103.5)
-                    Spacer().frame(height: 50)
-                    GeometryReader { geo in
-                        HStack {
-                            Text("Team members: Armando Roque, Eduardo Pineda, Guillermo García, Marco Brown")
-                                .font(Font.custom("Open Sans Hebrew", size: 30))
-                                .foregroundColor(.black)
-                                .multilineTextAlignment(.leading)
-                                .fixedSize(horizontal: false, vertical: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-
-                        }
-                        .frame(width: geo.size.width, height: geo.size.height, alignment: .leading)
-                    }
-                    .frame(height: 69)
-
-                    Spacer().frame(height: 25)
-                    GeometryReader { geo in
-                        HStack {
-                            Button(action: {
-                                presentationMode.wrappedValue.dismiss()
-                            }) {
-                                Text("Menu")
-                                    .font(Font.custom("Bangers-Regular", size: 50))
-                                    .tracking(5)
-                                    .frame(width: 185, height: 65, alignment: .center)
-                                    .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 153/255, blue: 20/255, opacity: 1.0))
-                                    .foregroundColor(.white)
-                                    .fullScreenCover(isPresented: $showMenu, content: {
-                                        MainMenuView()
-                                    })
+        GeometryReader { mainGeo in
+            ScrollView {
+                ZStack {
+                        VStack {
+                            GeometryReader { geo in
+                                HStack {
+                                    Text("Notice")
+                                        .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
+                                        .fontWeight(.bold)
+                                        .font(.system(size: geo.size.width * 0.07))
+                                }
+                                .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
                             }
-                        }
-                        .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
+                            .frame(width: mainGeo.size.width, height: mainGeo.size.height * 0.2, alignment: .center)
+                            
+                            GeometryReader { geo in
+                                HStack {
+                                    Text("Halo © Microsoft Corporation. Equilibrium was created under Microsoft's \"Game Content Usage Rules\" using assets from Halo, and it is not endorsed by or affiliated with Microsoft.")
+                                        .font(.system(size: geo.size.width * 0.03))
+                                        .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
+                                }
+                                .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
+                            }
+                            .frame(width: mainGeo.size.width, height: mainGeo.size.height * 0.2, alignment: .center)
+                            
+                            GeometryReader { geo in
+                                HStack {
+                                    Text("Team members: Armando Roque, Eduardo Pineda, Guillermo García, Marco Brown")
+                                        .font(.system(size: geo.size.width * 0.03))
+                                        .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
+                                }
+                                .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
+                            }
+                            .frame(width: mainGeo.size.width, height: mainGeo.size.height * 0.2, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+
+                            GeometryReader { geo in
+                                HStack {
+                                    Button(action: {
+                                        presentationMode.wrappedValue.dismiss()
+                                    }) {
+                                        Text("Menu")
+                                            .font(Font.custom("Bangers-Regular", size: (geo.size.width * 0.05) + 10))
+                                            .tracking(5)
+                                            .frame(width: geo.size.width * 0.28, height: geo.size.height * 0.885, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                            .background(Color(#colorLiteral(red: 1, green: 0.6, blue: 0.07843137255, alpha: 1)))
+                                            .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                                            .cornerRadius(20)
+                                            .fullScreenCover(isPresented: $showMenu, content: {
+                                                MainMenuView()
+                                            })
+                                    }
+                                }
+                                .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
+                            }
+                            .frame(width: mainGeo.size.width, height: mainGeo.size.height * 0.2, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            
                     }
-                    .frame(height: 65)
-                    
                 }
             }
-            
         }
     }
 }

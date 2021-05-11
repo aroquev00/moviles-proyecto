@@ -59,7 +59,7 @@ struct CalculationsView: View {
                                 Text("Lado izquierdo")
                                     .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.04))
                                     .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.7, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                                    .background(Color(#colorLiteral(red: 0.6196078431, green: 0.4431372549, blue: 0.3254901961, alpha: 1)))
+                                    .background(Color(#colorLiteral(red: 0.01960784314, green: 0.4039215686, blue: 0.9098039216, alpha: 1)))
                                     .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
                                     .cornerRadius(10)
                                 if leftSpots.count > 0 {
@@ -70,6 +70,8 @@ struct CalculationsView: View {
                                     }
                                 } else {
                                     Text("No se pusieron personajes del lado izquierdo")
+                                        .font(.system(size: geo.size.width * 0.025))
+                                        .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
                                 }
                             }
                             .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
@@ -82,7 +84,7 @@ struct CalculationsView: View {
                                 Text("Lado derecho")
                                     .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.04))
                                     .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.7, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                                    .background(Color(#colorLiteral(red: 0.2666666667, green: 0.6862745098, blue: 0.4117647059, alpha: 1)))
+                                    .background(Color(#colorLiteral(red: 0.1490196078, green: 0.6784313725, blue: 0.6784313725, alpha: 1)))
                                     .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
                                     .cornerRadius(10)
                                 if rightSpots.count > 0 {
@@ -93,6 +95,8 @@ struct CalculationsView: View {
                                     }
                                 } else {
                                     Text("No se pusieron personajes del lado derecho")
+                                        .font(.system(size: geo.size.width * 0.025))
+                                        .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
                                 }
                                 
                             }
@@ -106,7 +110,7 @@ struct CalculationsView: View {
                                 Text("Cálculo final")
                                     .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.04))
                                     .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.4, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                                    .background(Color(#colorLiteral(red: 0.9294117647, green: 0.1450980392, blue: 0.3058823529, alpha: 1)))
+                                    .background(Color(#colorLiteral(red: 0.8509803922, green: 0.007843137255, blue: 0.007843137255, alpha: 1)))
                                     .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
                                     .cornerRadius(10)
 
@@ -115,38 +119,61 @@ struct CalculationsView: View {
                                 let leftData = sideTorqueTotal(spots: leftSpots)
                                 if leftSpots.count != 0 {
                                     Text("Torca izquierda = \(leftData.names!)")
+                                        .font(.system(size: geo.size.width * 0.025))
+                                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                        .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
                                     if leftSpots.count > 1 {
                                         Text("Torca izquierda = \(leftData.torques!)")
+                                            .font(.system(size: geo.size.width * 0.025))
+                                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                            .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
                                     }
                                 }
                                 Text("Torca izquierda = \(leftData.totalTorque)")
-                                    .foregroundColor(.red)
+                                    .font(.system(size: geo.size.width * 0.025))
+                                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                    .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
                                 
                                 
                                 // Right torque
                                 let rightData = sideTorqueTotal(spots: rightSpots)
                                 if rightSpots.count != 0 {
                                     Text("Torca derecha = \(rightData.names!)")
+                                        .font(.system(size: geo.size.width * 0.025))
+                                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                        .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
                                     if rightSpots.count > 1 {
                                         Text("Torca derecha = \(rightData.torques!)")
+                                            .font(.system(size: geo.size.width * 0.025))
+                                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                            .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
+                                        
                                     }
                                 }
                                 Text("Torca derecha = \(rightData.totalTorque)")
-                                    .foregroundColor(.blue)
+                                    .font(.system(size: geo.size.width * 0.025))
+                                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                    .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
             
                                 // Final result
                                 if simulator.totalTorque == 0 {
                                     Text("Como las torcas izquierda y derecha son iguales, la tabla se mantiene en equilibrio.")
+                                        .font(.system(size: geo.size.width * 0.025))
+                                        .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
                                 } else if (simulator.totalTorque > 0) {
                                     Text("Como la torca derecha es mayor, se ladea hacia la derecha.")
+                                        .font(.system(size: geo.size.width * 0.025))
+                                        .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
                                 } else {
                                     Text("Como la torca izquierda es mayor, se ladea hacia la izquierda.")
+                                        .font(.system(size: geo.size.width * 0.025))
+                                        .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
                                 }
                                 
                             }
                             .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
                         }
-                        .frame(width: mainGeo.size.width, height: mainGeo.size.height * 0.3, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .frame(width: mainGeo.size.width, height: mainGeo.size.height * 0.35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     }
                 }
             }
