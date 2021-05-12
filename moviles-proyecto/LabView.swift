@@ -13,7 +13,7 @@ struct LabView: View {
     @State var showCalculations: Bool = false
     
     //    Sprite array
-    let spritesRow = SpriteFactory.labRowSprites
+    let spritesRow = SpriteFactory.all
     
     // Data structure to store placed characters
     @State var simulator: Simulator = Simulator(quizMode: false)
