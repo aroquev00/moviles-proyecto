@@ -60,7 +60,7 @@ struct PredictionQuestion: QuizQuestion {
                 rightAvailableSpots.remove(spotIndex)
             }
             
-            let sprite = availableSprites.randomElement()!
+            var sprite = availableSprites.randomElement()!
             availableSprites.remove(sprite)
             sprite.weight = SpriteFactory.getRandomWeightForSprite(sprite: sprite)
             

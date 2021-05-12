@@ -5,9 +5,7 @@
 //  Created by Armando Roque Rodriguez on 25/03/21.
 //
 
-import UIKit
-
-class Sprite: NSObject, Codable {
+struct Sprite: Codable, Hashable {
 
     var name: String
     var weight: Float

@@ -35,7 +35,7 @@ struct PlacingQuestion: QuizQuestion {
             let spotIndex = availableSpots.randomElement()!
             availableSpots.remove(spotIndex)
             
-            let sprite = availableSprites.randomElement()!
+            var sprite = availableSprites.randomElement()!
             availableSprites.remove(sprite)
             sprite.weight = SpriteFactory.getRandomWeightForSprite(sprite: sprite)
             
