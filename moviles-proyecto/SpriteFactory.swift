@@ -32,4 +32,25 @@ struct SpriteFactory {
     static func getRandomWeightForSprite(sprite: Sprite) -> Float {
         return 20
     }
+    
+    static func getRandomUnusedSpriteForWeightCategory(availableSprites: Set<Sprite>, weightCategory: WeightCategory) -> Sprite {
+        let candidateSprites = availableSprites.filter { sprite in
+            sprite.weightCategory == weightCategory
+        }
+        if candidateSprites.isEmpty {
+            switch weightCategory {
+            case .lightweight:
+                return lightweights.randomElement()!
+            case .middleweight:
+                return middleweights.randomElement()!
+            case .heavyweight:
+                return heavyweights.randomElement()!
+            default:
+                return all.randomElement()!
+            }
+        }
+        else {
+            return candidateSprites.randomElement()!
+        }
+    }
 }
