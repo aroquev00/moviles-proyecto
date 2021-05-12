@@ -86,7 +86,7 @@ struct PredictionQuestionView: View {
             }, label: {
                 HStack {
                     image
-                    Text(text)
+                    //Text(text)
                 }
             })
         }
