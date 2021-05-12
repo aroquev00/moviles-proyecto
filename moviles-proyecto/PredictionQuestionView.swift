@@ -57,9 +57,9 @@ struct PredictionQuestionView: View {
                     
                     
                     VStack {
-                        getPredictionButton3(text: "Se inclina a la izquierda", swivel: .left)
-                        getPredictionButton(text: "Se queda nivelado", swivel: .equilibrium)
-                        getPredictionButton(text: "Se inclina a la derecha", swivel: .right)
+                        getPredictionButton3(text: "Se inclina a la izquierda", swivel: .left, image: Image("izquierda"))
+                        getPredictionButton3(text: "Se queda nivelado", swivel: .equilibrium , image: Image("equilibrium"))
+                        getPredictionButton3(text: "Se inclina a la derecha", swivel: .right, image: Image("derecha"))
                     }
                     
                 }.frame(width: geo.size.width * 0.19)
@@ -78,15 +78,15 @@ struct PredictionQuestionView: View {
         }
     }
     
-    func getPredictionButton3(text: String, swivel: Swivel) -> some View {
+    func getPredictionButton3(text: String, swivel: Swivel, image: Image) -> some View {
             return Button(action: {
                 question.selectedAnswer = swivel
                 question.checkAnswer()
                 addPoints()
             }, label: {
                 HStack {
-                    Image("columna")
-                    Text("Reiniciar")
+                    image
+                    Text(text)
                 }
             })
         }
