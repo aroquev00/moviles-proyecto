@@ -43,6 +43,7 @@ struct PredictionQuestionView: View {
                     .background(Color.init(Color.RGBColorSpace.sRGB, red: 59/255, green: 40/255, blue: 204/255, opacity: 1.0))
                     
                     // MARK: Check button
+                    /*
                     Button(action: {
                         question.checkAnswer()
                     }) {
@@ -54,12 +55,12 @@ struct PredictionQuestionView: View {
                             .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 153/255, blue: 20/255, opacity: 1.0))
                             .foregroundColor(.white)
                     }
-                    
+                    */
                     
                     VStack {
-                        getPredictionButton3(text: "Se inclina a la izquierda", swivel: .left, image: Image("izquierda"))
-                        getPredictionButton3(text: "Se queda nivelado", swivel: .equilibrium , image: Image("equilibrium"))
-                        getPredictionButton3(text: "Se inclina a la derecha", swivel: .right, image: Image("derecha"))
+                        getPredictionButton3(text: "Se inclina a la izquierda", swivel: .left, image: Image("izquierda"), size: geo.size.width * 0.19)
+                        getPredictionButton3(text: "Se queda nivelado", swivel: .equilibrium , image: Image("equilibrium"), size: geo.size.width * 0.19)
+                        getPredictionButton3(text: "Se inclina a la derecha", swivel: .right, image: Image("derecha"), size: geo.size.width * 0.19)
                     }
                     
                 }.frame(width: geo.size.width * 0.19)
@@ -78,15 +79,15 @@ struct PredictionQuestionView: View {
         }
     }
     
-    func getPredictionButton3(text: String, swivel: Swivel, image: Image) -> some View {
+    func getPredictionButton3(text: String, swivel: Swivel, image: Image, size: CGFloat) -> some View {
             return Button(action: {
                 question.selectedAnswer = swivel
                 question.checkAnswer()
                 addPoints()
             }, label: {
                 HStack {
-                    image
-                    //Text(text)
+                    image.resizable()
+                        .scaledToFit().frame(width: size)
                 }
             })
         }
