@@ -19,75 +19,72 @@ struct MainMenuView: View {
                 .resizable()
                         .scaledToFill()
                         .edgesIgnoringSafeArea(.all)
-            VStack {
-                GeometryReader { geo in
-                    HStack {
-                        Text("EQUILIBRIUM")
-                            .font(Font.custom("Bangers-Regular", size: 50))
-                            .tracking(10)
-                            .padding()
-                            .frame(width: 499, height: 84, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                            .background(Color.init(Color.RGBColorSpace.sRGB, red: 59/255, green: 40/255, blue: 204/255, opacity: 1.0))
-                            .foregroundColor(.white)
-                            .border(Color.init(Color.RGBColorSpace.sRGB, red: 169/255, green: 186/255, blue: 204/255, opacity: 1.0), width: 9)
-                        Spacer()
-                            .frame(width: 100)
-                        Button(action: {
-                            showCredits = true
-                        }) {
-                            Image("Zelda Logo")
-                                .padding()
-                                .frame(width: 102, height: 102)
-                        }
-                        .fullScreenCover(isPresented: $showCredits, content: {
-                            CreditsView()
-                        })
-                    }
-                    .position(x: geo.size.width * 0.5, y: geo.size.height * 0.9)
-                }
-                .frame(height: 84)
-                GeometryReader { geo in
-                    HStack {
-                        Spacer()
-                        
-                        Button(action: {
-                            showLab = true
-                        }) {
-                            Text("Lab")
-                                .font(Font.custom("Bangers-Regular", size: 50))
-                                .tracking(5)
-                                //.padding()
-                                .frame(width: 185, height: 65, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                                .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 153/255, blue: 20/255, opacity: 1.0))
+            GeometryReader { mainGeo in
+                VStack {
+                    GeometryReader { geo in
+                        HStack {
+                            Text("EQUILIBRIUM")
+                                .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.065))
+                                .tracking(10)
+                                .frame(width: geo.size.width * 0.6, height: geo.size.height * 0.7, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                .background(Color.init(Color.RGBColorSpace.sRGB, red: 59/255, green: 40/255, blue: 204/255, opacity: 1.0))
                                 .foregroundColor(.white)
-                                .fullScreenCover(isPresented: $showLab, content: {
-                                    LabView()
-                                })
+                                .border(Color.init(Color.RGBColorSpace.sRGB, red: 169/255, green: 186/255, blue: 204/255, opacity: 1.0), width: 9)
+                            
                         }
-                        
-                        
-                        Spacer()
-                        
-                        Button(action: {
-                            showQuizMenu = true
-                        }) {
-                            Text("Quiz")
-                                .font(Font.custom("Bangers-Regular", size: 50))
-                                .tracking(5)
-                                //.padding()
-                                .frame(width: 185, height: 65, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                                .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 153/255, blue: 20/255, opacity: 1.0))
-                                .foregroundColor(.white)
-                                .fullScreenCover(isPresented: $showQuizMenu, content: {
-                                    QuizMenuView()
-                                })
-                        }
-                        
-                        
-                        
-                        Spacer()
+                        .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
                     }
-                    .position(x: geo.size.width * 0.5, y: geo.size.height * 0.7)
+                    .frame(width: mainGeo.size.width, height: mainGeo.size.height * 0.3, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    Spacer().frame(height: mainGeo.size.height * 0.3)
+                    GeometryReader { geo in
+                        HStack(spacing: mainGeo.size.width * 0.1428) {
+                            Button(action: {
+                                showLab = true
+                            }) {
+                                Text("Lab")
+                                    .font(Font.custom("Bangers-Regular", size: (geo.size.width * 0.065) - 10))
+                                    .tracking(5)
+                                    //.padding()
+                                    .frame(width: geo.size.width * 0.2064, height: geo.size.height * 0.785, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                    .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 153/255, blue: 20/255, opacity: 1.0))
+                                    .foregroundColor(.white)
+                                    .fullScreenCover(isPresented: $showLab, content: {
+                                        LabView()
+                                    })
+                            }
+                            Button(action: {
+                                showQuizMenu = true
+                            }) {
+                                Text("Quiz")
+                                    .font(Font.custom("Bangers-Regular", size: (geo.size.width * 0.065) - 10))
+                                    .tracking(5)
+                                    //.padding()
+                                    .frame(width: geo.size.width * 0.2064, height: geo.size.height * 0.785, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                    .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 153/255, blue: 20/255, opacity: 1.0))
+                                    .foregroundColor(.white)
+                                    .fullScreenCover(isPresented: $showQuizMenu, content: {
+                                        QuizMenuView()
+                                    })
+                            }
+                            
+                            Button(action: {
+                                showCredits = true
+                            }) {
+                                Text("Creditos")
+                                    .font(Font.custom("Bangers-Regular", size: (geo.size.width * 0.06) - 15))
+                                    .tracking(5)
+                                    //.padding()
+                                    .frame(width: geo.size.width * 0.2064, height: geo.size.height * 0.785, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                    .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 153/255, blue: 20/255, opacity: 1.0))
+                                    .foregroundColor(.white)
+                                    .fullScreenCover(isPresented: $showCredits, content: {
+                                        CreditsView()
+                                    })
+                            }
+                        }
+                        .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
+                    }
+                    .frame(width: mainGeo.size.width, height: mainGeo.size.height * 0.2, alignment: .center)
                 }
             }
         }

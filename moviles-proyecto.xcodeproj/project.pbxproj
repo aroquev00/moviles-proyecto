@@ -21,6 +21,8 @@
 		914704C1260BAE8B009F1DC2 /* LabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914704C0260BAE8B009F1DC2 /* LabView.swift */; };
 		9158DD09262D06B8008AFC02 /* AnswerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9158DD08262D06B8008AFC02 /* AnswerStatus.swift */; };
 		9158DD0C262D0E1C008AFC02 /* Swivel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9158DD0B262D0E1C008AFC02 /* Swivel.swift */; };
+		9179380B2644B57F0072E2A9 /* QuizSideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9179380A2644B57F0072E2A9 /* QuizSideMenuView.swift */; };
+		918050BE2648CCF70093D913 /* Side.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918050BD2648CCF70093D913 /* Side.swift */; };
 		9190D92726053F2500C099A3 /* moviles_proyectoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9190D92626053F2500C099A3 /* moviles_proyectoApp.swift */; };
 		9190D92926053F2500C099A3 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9190D92826053F2500C099A3 /* MainMenuView.swift */; };
 		9190D92B26053F2600C099A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9190D92A26053F2600C099A3 /* Assets.xcassets */; };
@@ -48,6 +50,8 @@
 		914704C0260BAE8B009F1DC2 /* LabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabView.swift; sourceTree = "<group>"; };
 		9158DD08262D06B8008AFC02 /* AnswerStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerStatus.swift; sourceTree = "<group>"; };
 		9158DD0B262D0E1C008AFC02 /* Swivel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swivel.swift; sourceTree = "<group>"; };
+		9179380A2644B57F0072E2A9 /* QuizSideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSideMenuView.swift; sourceTree = "<group>"; };
+		918050BD2648CCF70093D913 /* Side.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Side.swift; sourceTree = "<group>"; };
 		9190D92326053F2500C099A3 /* moviles-proyecto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "moviles-proyecto.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9190D92626053F2500C099A3 /* moviles_proyectoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moviles_proyectoApp.swift; sourceTree = "<group>"; };
 		9190D92826053F2500C099A3 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
@@ -102,12 +106,14 @@
 				9107F1F6262CEB040009EA14 /* PlacingQuestion.swift */,
 				9107F202262CEE120009EA14 /* MassEstimationQuestionView.swift */,
 				9107F1F9262CEB3B0009EA14 /* MassEstimationQuestion.swift */,
+				9179380A2644B57F0072E2A9 /* QuizSideMenuView.swift */,
 				9107F1FC262CEC3E0009EA14 /* PredictionQuestionView.swift */,
 				9107F1F3262CDE0A0009EA14 /* PredictionQuestion.swift */,
 				9158DD0B262D0E1C008AFC02 /* Swivel.swift */,
 				9158DD08262D06B8008AFC02 /* AnswerStatus.swift */,
 				914704C0260BAE8B009F1DC2 /* LabView.swift */,
 				91D97EA1260EF36C008EABB7 /* SimulatorView.swift */,
+				918050BD2648CCF70093D913 /* Side.swift */,
 				9126C2182617AC5600240F36 /* Simulator.swift */,
 				9126C21B2617AD4600240F36 /* SimulatorSpot.swift */,
 				91ACD8A7260D9C0100888CBF /* Sprite.swift */,
@@ -199,6 +205,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				918050BE2648CCF70093D913 /* Side.swift in Sources */,
 				9107F1FA262CEB3B0009EA14 /* MassEstimationQuestion.swift in Sources */,
 				9107F1F7262CEB040009EA14 /* PlacingQuestion.swift in Sources */,
 				9100844D261E8D8000BDC5AD /* CalculationsView.swift in Sources */,
@@ -206,6 +213,7 @@
 				91ACD8A8260D9C0100888CBF /* Sprite.swift in Sources */,
 				91F54E26262CC52F00D1FF8A /* Quiz.swift in Sources */,
 				9107F203262CEE120009EA14 /* MassEstimationQuestionView.swift in Sources */,
+				9179380B2644B57F0072E2A9 /* QuizSideMenuView.swift in Sources */,
 				91F54E23262C9ED600D1FF8A /* QuizView.swift in Sources */,
 				9107F1F4262CDE0A0009EA14 /* PredictionQuestion.swift in Sources */,
 				9158DD0C262D0E1C008AFC02 /* Swivel.swift in Sources */,

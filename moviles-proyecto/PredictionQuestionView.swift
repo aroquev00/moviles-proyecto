@@ -22,7 +22,6 @@ struct PredictionQuestionView: View {
         
         GeometryReader { geo in
             VStack {
-                Text("This is a prediction question!")
                 Text("¿Qué pasará?")
                 SimulatorView(simulator: $question.simulator)
                 
@@ -47,6 +46,7 @@ struct PredictionQuestionView: View {
                     Text("Answer status: Unanswered")
                 }
                 
+                }
             }
         }
     }

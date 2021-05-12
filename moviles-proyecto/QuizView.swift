@@ -15,7 +15,6 @@ struct QuizView: View {
     
     var body: some View {
         VStack {
-            Text("This is a quiz")
             if quiz.questions.count > 0 { // To wait for real quiz to be assigned
                 switch quiz.questions[quiz.currentQuestion] {
                 case is PredictionQuestion:
@@ -23,7 +22,7 @@ struct QuizView: View {
                 case is PlacingQuestion:
                     PlacingQuestionView(question: quiz.questions[quiz.currentQuestion] as! PlacingQuestion, quiz: $quiz)
                 case is MassEstimationQuestion:
-                    MassEstimationQuestionView()
+                    MassEstimationQuestionView(question: quiz.questions[quiz.currentQuestion] as! MassEstimationQuestion, quiz: $quiz)
                 default:
                     Text("Bruh, error!")
                 }
