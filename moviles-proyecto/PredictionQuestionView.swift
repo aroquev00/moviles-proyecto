@@ -45,8 +45,6 @@ struct PredictionQuestionView: View {
                 case AnswerStatus.unanswered:
                     Text("Answer status: Unanswered")
                 }
-                
-                }
             }
         }
     }
