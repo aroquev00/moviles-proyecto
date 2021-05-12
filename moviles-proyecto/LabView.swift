@@ -92,6 +92,9 @@ struct LabView: View {
                                     Spacer()
                                     Image(systemName: "ruler.fill")
                                         .foregroundColor(Color.orange)
+                                        .background(
+                                            Color.white
+                                                .scaleEffect(CGSize(width: 0.7, height: 0.6)))
                                         .font(.largeTitle)
                                     Spacer()
                                 }
