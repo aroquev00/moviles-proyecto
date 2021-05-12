@@ -15,28 +15,57 @@ struct PredictionQuestionView: View {
         
         
         GeometryReader { geo in
+            let switchesVerticalPadding: CGFloat = geo.size.height * 0.003
             HStack(spacing: 0.0) {
                 VStack {
                     Text("¿Qué pasará?")
                     SimulatorView(simulator: $question.simulator)
                     
-                    // Answer options
-                    HStack {
-                        getPredictionButton3(text: "Se inclina a la izquierda", swivel: .left)
-                        getPredictionButton(text: "Se queda nivelado", swivel: .equilibrium)
-                        getPredictionButton(text: "Se inclina a la derecha", swivel: .right)
-                        Button("Revisar") { question.checkAnswer() }
-                    }
                 }
                 .frame(width: geo.size.width * 0.8)
                 
                 // MARK: - Side menu
-                QuizPredSideMenuView(question: $question.asQuizQuestion, quiz: $quiz, resetQuestion: {
-                    question = quiz.questions[quiz.currentQuestion] as! PredictionQuestion
-                })
+                VStack {
+
+                    // MARK: Ruler switch
+                    HStack {
+                        Spacer()
+                        Toggle("",isOn: $question.simulator.rulerEnabled)
+                            .labelsHidden()
+                        Spacer()
+                        Image(systemName: "ruler.fill")
+                            .foregroundColor(Color.orange)
+                            .font(.largeTitle)
+                        Spacer()
+                    }
                     .frame(width: geo.size.width * 0.19)
+                    .padding(EdgeInsets(top: switchesVerticalPadding, leading: 0, bottom: switchesVerticalPadding, trailing: 0))
+                    .background(Color.init(Color.RGBColorSpace.sRGB, red: 59/255, green: 40/255, blue: 204/255, opacity: 1.0))
+                    
+                    // MARK: Check button
+                    Button(action: {
+                        question.checkAnswer()
+                    }) {
+                        Text("Revisar")
+                            .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.05))
+                            .tracking(2)
+                            .frame(width: geo.size.width * 0.19)
+                            .padding(EdgeInsets(top: switchesVerticalPadding, leading: 0, bottom: switchesVerticalPadding, trailing: 0))
+                            .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 153/255, blue: 20/255, opacity: 1.0))
+                            .foregroundColor(.white)
+                    }
+                    
+                    
+                    VStack {
+                        getPredictionButton3(text: "Se inclina a la izquierda", swivel: .left)
+                        getPredictionButton(text: "Se queda nivelado", swivel: .equilibrium)
+                        getPredictionButton(text: "Se inclina a la derecha", swivel: .right)
+                    }
+                    
+                }.frame(width: geo.size.width * 0.19)
                 
             }
+                
             
         }
     }
@@ -56,8 +85,7 @@ struct PredictionQuestionView: View {
                 addPoints()
             }, label: {
                 HStack {
-                    Image(systemName: "arrow.counterclockwise")
-                        .font(.largeTitle)
+                    Image("columna")
                     Text("Reiniciar")
                 }
             })

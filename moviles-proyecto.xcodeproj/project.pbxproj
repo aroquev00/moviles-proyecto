@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		426C6C57264B362C00E0D599 /* QuizPredSideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426C6C56264B362C00E0D599 /* QuizPredSideMenuView.swift */; };
 		9100844D261E8D8000BDC5AD /* CalculationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9100844C261E8D8000BDC5AD /* CalculationsView.swift */; };
 		9107F1F1262CCAB70009EA14 /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9107F1F0262CCAB70009EA14 /* QuizQuestion.swift */; };
 		9107F1F4262CDE0A0009EA14 /* PredictionQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9107F1F3262CDE0A0009EA14 /* PredictionQuestion.swift */; };
@@ -37,7 +36,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		426C6C56264B362C00E0D599 /* QuizPredSideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizPredSideMenuView.swift; sourceTree = "<group>"; };
 		9100844C261E8D8000BDC5AD /* CalculationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationsView.swift; sourceTree = "<group>"; };
 		9107F1F0262CCAB70009EA14 /* QuizQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
 		9107F1F3262CDE0A0009EA14 /* PredictionQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionQuestion.swift; sourceTree = "<group>"; };
@@ -109,7 +107,6 @@
 				9107F202262CEE120009EA14 /* MassEstimationQuestionView.swift */,
 				9107F1F9262CEB3B0009EA14 /* MassEstimationQuestion.swift */,
 				9179380A2644B57F0072E2A9 /* QuizSideMenuView.swift */,
-				426C6C56264B362C00E0D599 /* QuizPredSideMenuView.swift */,
 				9107F1FC262CEC3E0009EA14 /* PredictionQuestionView.swift */,
 				9107F1F3262CDE0A0009EA14 /* PredictionQuestion.swift */,
 				9158DD0B262D0E1C008AFC02 /* Swivel.swift */,
@@ -226,7 +223,6 @@
 				9126C21C2617AD4600240F36 /* SimulatorSpot.swift in Sources */,
 				91F54E20262C9D9A00D1FF8A /* QuizMenuView.swift in Sources */,
 				91D97EA2260EF36C008EABB7 /* SimulatorView.swift in Sources */,
-				426C6C57264B362C00E0D599 /* QuizPredSideMenuView.swift in Sources */,
 				9107F1F1262CCAB70009EA14 /* QuizQuestion.swift in Sources */,
 				914704C1260BAE8B009F1DC2 /* LabView.swift in Sources */,
 				9158DD09262D06B8008AFC02 /* AnswerStatus.swift in Sources */,
