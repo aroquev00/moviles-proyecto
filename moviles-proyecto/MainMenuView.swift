@@ -79,6 +79,7 @@ struct MainMenuView: View {
         }
     }
     
+    // Function to get the Text for each button
     func getButtonText(text: String, geo: GeometryProxy) -> some View {
         return Text(text)
             .font(Font.custom("Bangers-Regular", size: geo.size.height * 0.5))
