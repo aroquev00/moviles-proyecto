@@ -209,7 +209,7 @@ struct spriteDataView: View {
             Image(uiImage: UIImage(named: spot.sprite!.imageURL)!)
                 .resizable()
                 .scaledToFit()
-                .frame(height: 100)
+                .frame(height: geo.size.height * 0.25)
             Spacer()
         }
     }
