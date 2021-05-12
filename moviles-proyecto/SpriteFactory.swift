@@ -6,7 +6,7 @@
 //
 
 struct SpriteFactory {
-    static let all = [
+    static let all: Set = [
         Sprite(name: "Mario", weight: 20, height: 1, weightCategory: .middleweight, imageURL: "mario"),
         Sprite(name: "Kirby", weight: 10, height: 0.4, weightCategory: .lightweight, imageURL: "kirby"),
         Sprite(name: "Steve", weight: 30, height: 1, weightCategory: .middleweight, imageURL: "steve"),
@@ -27,5 +27,9 @@ struct SpriteFactory {
             sprite.weightCategory == weightCategory
         }
         return Set(filteredArray)
+    }
+    
+    static func getRandomWeightForSprite(sprite: Sprite) -> Float {
+        return 20
     }
 }
