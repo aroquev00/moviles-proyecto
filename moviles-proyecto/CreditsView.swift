@@ -13,7 +13,7 @@ struct CreditsView: View {
     var body: some View {
         GeometryReader { mainGeo in
             ZStack {
-                Color.blue
+                Color.white
                     //.resizable()
                     .edgesIgnoringSafeArea(.all)
                 ScrollView {
@@ -25,6 +25,10 @@ struct CreditsView: View {
                             
                             Spacer()
                                 .frame(height: mainGeo.size.height * 0.1)
+                            Text("Notice")
+                                .foregroundColor(Color.black)
+                                .fontWeight(.bold)
+                                .font(.system(size: mainGeo.size.width * 0.05))
                             Text("Halo © Microsoft Corporation. Equilibrium was created under Microsoft's \"Game Content Usage Rules\" using assets from Halo, and it is not endorsed by or affiliated with Microsoft.")
                                 .font(.system(size: mainGeo.size.width * 0.03))
                                 .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
