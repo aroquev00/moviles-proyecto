@@ -12,8 +12,6 @@ struct PredictionQuestionView: View {
     @Binding var quiz: Quiz
     
     var body: some View {
-        
-        
         GeometryReader { geo in
             VStack {
                 Text("¿Qué pasará?")

@@ -9,65 +9,51 @@ import SwiftUI
 
 struct CreditsView: View {
     @Environment(\.presentationMode) var presentationMode
-    @State var showMenu: Bool = false
-    
     
     var body: some View {
         GeometryReader { mainGeo in
             ZStack {
+                Color.white
+                    //.resizable()
+                    .edgesIgnoringSafeArea(.all)
                 ScrollView {
                         VStack {
-                            GeometryReader { geo in
-                                HStack {
-                                    Text("Notice")
-                                        .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
-                                        .fontWeight(.bold)
-                                        .font(.system(size: geo.size.width * 0.07))
-                                }
-                                .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
-                            }
-                            .frame(width: mainGeo.size.width, height: mainGeo.size.height * 0.2, alignment: .center)
+                            Text("Créditos")
+                                .foregroundColor(Color.orange)
+                                .fontWeight(.bold)
+                                .font(.system(size: mainGeo.size.width * 0.07))
                             
-                            GeometryReader { geo in
-                                HStack {
-                                    Text("Halo © Microsoft Corporation. Equilibrium was created under Microsoft's \"Game Content Usage Rules\" using assets from Halo, and it is not endorsed by or affiliated with Microsoft.")
-                                        .font(.system(size: geo.size.width * 0.03))
-                                        .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
-                                }
-                                .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
-                            }
-                            .frame(width: mainGeo.size.width, height: mainGeo.size.height * 0.2, alignment: .center)
+                            Spacer()
+                                .frame(height: mainGeo.size.height * 0.1)
+                            Text("Notice")
+                                .foregroundColor(Color.black)
+                                .fontWeight(.bold)
+                                .font(.system(size: mainGeo.size.width * 0.05))
+                            Text("Halo © Microsoft Corporation. Equilibrium was created under Microsoft's \"Game Content Usage Rules\" using assets from Halo, and it is not endorsed by or affiliated with Microsoft.")
+                                .font(.system(size: mainGeo.size.width * 0.03))
+                                .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
                             
-                            GeometryReader { geo in
-                                HStack {
-                                    Text("Team members: Armando Roque, Eduardo Pineda, Guillermo García, Marco Brown")
-                                        .font(.system(size: geo.size.width * 0.03))
-                                        .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
-                                }
-                                .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
-                            }
-                            .frame(width: mainGeo.size.width, height: mainGeo.size.height * 0.2, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            Spacer()
+                                .frame(height: mainGeo.size.height * 0.05)
+                            
+                            Text("Team members: Armando Roque, Eduardo Pineda, Guillermo García, Marco Brown")
+                                .font(.system(size: mainGeo.size.width * 0.03))
+                                .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
 
-                            GeometryReader { geo in
-                                HStack {
-                                    Button(action: {
-                                        presentationMode.wrappedValue.dismiss()
-                                    }) {
-                                        Text("Menu")
-                                            .font(Font.custom("Bangers-Regular", size: (geo.size.width * 0.05) + 10))
-                                            .tracking(5)
-                                            .frame(width: geo.size.width * 0.28, height: geo.size.height * 0.885, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                                            .background(Color(#colorLiteral(red: 1, green: 0.6, blue: 0.07843137255, alpha: 1)))
-                                            .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
-                                            .cornerRadius(20)
-                                            .fullScreenCover(isPresented: $showMenu, content: {
-                                                MainMenuView()
-                                            })
-                                    }
-                                }
-                                .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
+                            Spacer()
+                                .frame(height: mainGeo.size.height * 0.05)
+                            
+                            Button(action: {
+                                presentationMode.wrappedValue.dismiss()
+                            }) {
+                                Text("Menu")
+                                    .font(Font.custom("Bangers-Regular", size: (mainGeo.size.width * 0.05) + 10))
+                                    .tracking(5)
+                                    .frame(width: mainGeo.size.width * 0.28, height: mainGeo.size.height * 0.177)
+                                    .background(Color(#colorLiteral(red: 1, green: 0.6, blue: 0.07843137255, alpha: 1)))
+                                    .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                                    .cornerRadius(20)
                             }
-                            .frame(width: mainGeo.size.width, height: mainGeo.size.height * 0.2, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                             
                     }
                 }
