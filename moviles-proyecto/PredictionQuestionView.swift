@@ -12,8 +12,6 @@ struct PredictionQuestionView: View {
     @Binding var quiz: Quiz
     
     var body: some View {
-        
-        
         GeometryReader { geo in
             let switchesVerticalPadding: CGFloat = geo.size.height * 0.003
             HStack(spacing: 0.0) {

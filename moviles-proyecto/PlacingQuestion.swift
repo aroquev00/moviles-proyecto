@@ -29,39 +29,17 @@ struct PlacingQuestion: QuizQuestion {
     }
     
     mutating func generateQuestion() {
-        let spritesRow = [
-            Sprite(name: "Mario", weight: 20, height: 1, imageURL: "mario"),
-            Sprite(name: "Kirby", weight: 10, height: 1, imageURL: "kirby"),
-            Sprite(name: "Steve", weight: 30, height: 1, imageURL: "steve"),
-            Sprite(name: "Master Chief", weight: 80, height: 1, imageURL: "masterchief"),
-            Sprite(name: "Plankton", weight: 5, height: 1, imageURL: "plankton"),
-            Sprite(name: "Sonic", weight: 15, height: 1, imageURL: "sonic"),
-            Sprite(name: "Link", weight: 60, height: 1, imageURL: "link"),
-            Sprite(name: "Megaman", weight: 20, height: 1, imageURL: "megaman")
-        ]
-        
-        let heavySprites = [
-            Sprite(name: "Master Chief", weight: 80, height: 1, imageURL: "masterchief"),
-            Sprite(name: "Link", weight: 60, height: 1, imageURL: "link"),
-        ]
-        
-        let mediumSprites = [
-            Sprite(name: "Mario", weight: 20, height: 1, imageURL: "mario"),
-            Sprite(name: "Megaman", weight: 20, height: 1, imageURL: "megaman"),
-            Sprite(name: "Steve", weight: 30, height: 1, imageURL: "steve"),
-        ]
-        
-        let lightSprites = [
-            Sprite(name: "Plankton", weight: 0, height: 1, imageURL: "plankton"),
-            Sprite(name: "Kirby", weight: 10, height: 1, imageURL: "kirby"),
-            Sprite(name: "Sonic", weight: 15, height: 1, imageURL: "sonic"),
-        ]
+        var availableSprites = SpriteFactory.all
         
         func placeRandomSprite() {
             let spotIndex = availableSpots.randomElement()!
             availableSpots.remove(spotIndex)
             
-            self.simulator.spots[spotIndex].sprite = spritesRow[Int.random(in: 0..<(spritesRow.count))]
+            var sprite = availableSprites.randomElement()!
+            availableSprites.remove(sprite)
+            sprite.weight = SpriteFactory.getRandomWeightForSprite(sprite: sprite)
+            
+            self.simulator.spots[spotIndex].sprite = sprite
             self.simulator.spots[spotIndex].isLocked = true
         }
         
@@ -92,11 +70,11 @@ struct PlacingQuestion: QuizQuestion {
         // Now calculate random sprite to place
         switch spriteWeight {
         case 0..<20:
-            simulator.selectedSprite = lightSprites.randomElement()
+            simulator.selectedSprite = SpriteFactory.getRandomUnusedSpriteForWeightCategory(availableSprites: availableSprites, weightCategory: .lightweight)
         case 20..<60:
-            simulator.selectedSprite = mediumSprites.randomElement()
+            simulator.selectedSprite = SpriteFactory.getRandomUnusedSpriteForWeightCategory(availableSprites: availableSprites, weightCategory: .middleweight)
         default:
-            simulator.selectedSprite = heavySprites.randomElement()
+            simulator.selectedSprite = SpriteFactory.getRandomUnusedSpriteForWeightCategory(availableSprites: availableSprites, weightCategory: .heavyweight)
         }
         
         simulator.selectedSprite!.weight = spriteWeight
