@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum ActiveAlert{
-    case first, second
+    case first, second, third
 }
 
 struct PredictionQuestionView: View {
@@ -16,35 +16,46 @@ struct PredictionQuestionView: View {
     @State var alertVisible: Bool = false
     @State var activeAlert: ActiveAlert = .first
     @Binding var quiz: Quiz
+    @State var incorrectNum = 0
+    
+    //Dummy questions sent to QuizAlertView
+    @State var dummyMassEstQuestion: MassEstimationQuestion = MassEstimationQuestion(level: 1)
+    @State var dummyPlacingQuestion: PlacingQuestion = PlacingQuestion(level: 1)
+    //Helps QuizAlertView know quiz type and show calculations
+    @State var quizType: Int = 1
     
     var body: some View {
         
         
         GeometryReader { geo in
-            VStack {
-                Text("¿Qué pasará?")
-                SimulatorView(simulator: $question.simulator)
-                
-                // Answer options
-                HStack {
-                    getPredictionButton(text: "Se inclina a la izquierda", swivel: .left)
-                    getPredictionButton(text: "Se queda nivelado", swivel: .equilibrium)
-                    getPredictionButton(text: "Se inclina a la derecha", swivel: .right)
-                }.alert(isPresented: $alertVisible, content: {
-                    switch activeAlert{
-                    case .first:
-                        return Alert(title: Text( "Incorrecto"), message: Text("Avanza a la siguiente pregunta o intentalo de nuevo, Tu puedes!"), primaryButton: .default(Text("Retry")), secondaryButton: .default(Text("Next"), action: { quiz.nextQuestion()} ))
-                    case .second:
-                        return Alert(title: Text("Correcto!"), message: Text("Avanza a la siguiente pregunta"), dismissButton: .default(Text("Next"), action: { quiz.nextQuestion()} ))
-                    }})
-                switch question.answerStatus {
-                case AnswerStatus.correct:
-                    Text("Answer status: Correct")
-                case AnswerStatus.incorrect:
-                    Text("Answer status: Incorrect")
-                case AnswerStatus.unanswered:
-                    Text("Answer status: Unanswered")
+            ZStack {
+                VStack {
+                    Text("¿Qué pasará?")
+                    SimulatorView(simulator: $question.simulator)
+                    
+                    // Answer options
+                    HStack {
+                        getPredictionButton(text: "Se inclina a la izquierda", swivel: .left)
+                        getPredictionButton(text: "Se queda nivelado", swivel: .equilibrium)
+                        getPredictionButton(text: "Se inclina a la derecha", swivel: .right)
+                    }
+                    switch question.answerStatus {
+                    case AnswerStatus.correct:
+                        Text("Answer status: Correct")
+                    case AnswerStatus.incorrect:
+                        Text("Answer status: Incorrect")
+                    case AnswerStatus.unanswered:
+                        Text("Answer status: Unanswered")
+                    }
                 }
+                
+                //Triggers QuizAlertView when answer is checked
+                if alertVisible {
+                    QuizAlertView(alertVisible: $alertVisible, activeAlert: $activeAlert, quiz: $quiz, predQuestion: $question, massEstQuestion: $dummyMassEstQuestion, placingQuestion: $dummyPlacingQuestion, quizType: $quizType)
+                        .frame(width: geo.size.width/2, height: geo.size.height / 4, alignment: .center)
+                }
+
+                
             }
         }
     }
@@ -62,15 +73,21 @@ struct PredictionQuestionView: View {
     }
     
     func addPoints() {
+        print(incorrectNum)
         if question.answerStatus == .correct {
             quiz.points += 1
-            alertVisible = true
             activeAlert = .second
         }
         else if question.answerStatus == .incorrect {
-            alertVisible = true
-            activeAlert = .first
+            if incorrectNum != 3 { incorrectNum += 1 }
+            if incorrectNum == 3 {
+                activeAlert = .third
+            }
+            else {
+                activeAlert = .first
+            }
         }
+        alertVisible = true
     }
 }
 

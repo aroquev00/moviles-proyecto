@@ -33,6 +33,7 @@
 		91F54E20262C9D9A00D1FF8A /* QuizMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F54E1F262C9D9A00D1FF8A /* QuizMenuView.swift */; };
 		91F54E23262C9ED600D1FF8A /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F54E22262C9ED600D1FF8A /* QuizView.swift */; };
 		91F54E26262CC52F00D1FF8A /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F54E25262CC52F00D1FF8A /* Quiz.swift */; };
+		CB033EE7264F828F00DE5652 /* QuizAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB033EE6264F828F00DE5652 /* QuizAlertView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		91F54E1F262C9D9A00D1FF8A /* QuizMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizMenuView.swift; sourceTree = "<group>"; };
 		91F54E22262C9ED600D1FF8A /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 		91F54E25262CC52F00D1FF8A /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
+		CB033EE6264F828F00DE5652 /* QuizAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizAlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				9107F1F9262CEB3B0009EA14 /* MassEstimationQuestion.swift */,
 				9179380A2644B57F0072E2A9 /* QuizSideMenuView.swift */,
 				9107F1FC262CEC3E0009EA14 /* PredictionQuestionView.swift */,
+				CB033EE6264F828F00DE5652 /* QuizAlertView.swift */,
 				9107F1F3262CDE0A0009EA14 /* PredictionQuestion.swift */,
 				9158DD0B262D0E1C008AFC02 /* Swivel.swift */,
 				9158DD08262D06B8008AFC02 /* AnswerStatus.swift */,
@@ -215,6 +218,7 @@
 				9107F203262CEE120009EA14 /* MassEstimationQuestionView.swift in Sources */,
 				9179380B2644B57F0072E2A9 /* QuizSideMenuView.swift in Sources */,
 				91F54E23262C9ED600D1FF8A /* QuizView.swift in Sources */,
+				CB033EE7264F828F00DE5652 /* QuizAlertView.swift in Sources */,
 				9107F1F4262CDE0A0009EA14 /* PredictionQuestion.swift in Sources */,
 				9158DD0C262D0E1C008AFC02 /* Swivel.swift in Sources */,
 				914704BC260BA067009F1DC2 /* CreditsView.swift in Sources */,
