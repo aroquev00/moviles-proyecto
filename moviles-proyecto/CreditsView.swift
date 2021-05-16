@@ -9,77 +9,55 @@ import SwiftUI
 
 struct CreditsView: View {
     @Environment(\.presentationMode) var presentationMode
-    @State var showMenu: Bool = false
-    
     
     var body: some View {
-        ZStack {
-            GeometryReader { mainGeo in
-                VStack {
-                    Spacer().frame(height: 20)
-                    GeometryReader { geo in
-                        HStack {
-                            Text("Notice")
-                                .foregroundColor(.black)
+        GeometryReader { mainGeo in
+            ZStack {
+                Color.white
+                    //.resizable()
+                    .edgesIgnoringSafeArea(.all)
+                ScrollView {
+                        VStack {
+                            Text("Créditos")
+                                .foregroundColor(Color.orange)
                                 .fontWeight(.bold)
-                                .font(.system(size: 70))
-                                .fixedSize()
-                        }
-                        .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
-                    }
-                    .frame(height: 41.5)
-                    
-                    Spacer().frame(height: 25)
-                    GeometryReader { geo in
-                        HStack {
+                                .font(.system(size: mainGeo.size.width * 0.07))
+                            
+                            Spacer()
+                                .frame(height: mainGeo.size.height * 0.1)
+                            Text("Notice")
+                                .foregroundColor(Color.black)
+                                .fontWeight(.bold)
+                                .font(.system(size: mainGeo.size.width * 0.05))
                             Text("Halo © Microsoft Corporation. Equilibrium was created under Microsoft's \"Game Content Usage Rules\" using assets from Halo, and it is not endorsed by or affiliated with Microsoft.")
-                                .font(Font.custom("Open Sans Hebrew", size: 30))
-                                .foregroundColor(.black)
-                                .multilineTextAlignment(.leading)
-                                .fixedSize(horizontal: false, vertical: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-
-                        }
-                        .frame(width: geo.size.width, height: geo.size.height, alignment: .leading)
-                    }
-                    .frame(height: 103.5)
-                    Spacer().frame(height: 50)
-                    GeometryReader { geo in
-                        HStack {
+                                .font(.system(size: mainGeo.size.width * 0.03))
+                                .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
+                            
+                            Spacer()
+                                .frame(height: mainGeo.size.height * 0.05)
+                            
                             Text("Team members: Armando Roque, Eduardo Pineda, Guillermo García, Marco Brown")
-                                .font(Font.custom("Open Sans Hebrew", size: 30))
-                                .foregroundColor(.black)
-                                .multilineTextAlignment(.leading)
-                                .fixedSize(horizontal: false, vertical: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                                .font(.system(size: mainGeo.size.width * 0.03))
+                                .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
 
-                        }
-                        .frame(width: geo.size.width, height: geo.size.height, alignment: .leading)
-                    }
-                    .frame(height: 69)
-
-                    Spacer().frame(height: 25)
-                    GeometryReader { geo in
-                        HStack {
+                            Spacer()
+                                .frame(height: mainGeo.size.height * 0.05)
+                            
                             Button(action: {
-                                showMenu = true
+                                presentationMode.wrappedValue.dismiss()
                             }) {
                                 Text("Menu")
-                                    .font(Font.custom("Bangers-Regular", size: 50))
+                                    .font(Font.custom("Bangers-Regular", size: (mainGeo.size.width * 0.05) + 10))
                                     .tracking(5)
-                                    .frame(width: 185, height: 65, alignment: .center)
-                                    .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 153/255, blue: 20/255, opacity: 1.0))
-                                    .foregroundColor(.white)
-                                    .fullScreenCover(isPresented: $showMenu, content: {
-                                        MainMenuView()
-                                    })
+                                    .frame(width: mainGeo.size.width * 0.28, height: mainGeo.size.height * 0.177)
+                                    .background(Color(#colorLiteral(red: 1, green: 0.6, blue: 0.07843137255, alpha: 1)))
+                                    .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                                    .cornerRadius(20)
                             }
-                        }
-                        .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
+                            
                     }
-                    .frame(height: 65)
-                    
                 }
             }
-            
         }
     }
 }
