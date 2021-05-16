@@ -29,7 +29,7 @@ struct MainMenuView: View {
                                 .tracking(5)
                                 .frame(width: geo.size.width * 0.9, height: geo.size.height * 0.7)
                                 .background(Color.mainTitleBackground)
-                                .foregroundColor(Color.mainTextForeground)
+                                .foregroundColor(Color.mainTitleTextForeground)
                                 .border(Color.init(Color.RGBColorSpace.sRGB, red: 169/255, green: 186/255, blue: 204/255, opacity: 1.0), width: 9)
                             
                         }
@@ -87,7 +87,7 @@ struct MainMenuView: View {
             //.padding()
             .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.785)
             .background(Color.mainButtonBackground)
-            .foregroundColor(Color.mainTextForeground)
+            .foregroundColor(Color.mainTitleTextForeground)
             .cornerRadius(20)
     }
 }
