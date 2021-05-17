@@ -201,14 +201,11 @@ struct spriteDataView: View {
                 .frame(width: geo.size.width * 0.05)
             VStack(alignment: .leading) {
                 Text(spot.sprite!.name)
-                    .foregroundColor(.black)
                 Text(spriteInfo1(spot: spot))
-                    .foregroundColor(.black)
                 Text(spriteInfo2(spot: spot))
-                    .foregroundColor(.black)
                 Text(spriteInfo3(spot: spot))
-                    .foregroundColor(.black)
             }
+            .foregroundColor(.black)
             Spacer()
             Image(uiImage: UIImage(named: spot.sprite!.imageURL)!)
                 .resizable()

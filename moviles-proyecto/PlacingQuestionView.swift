@@ -11,15 +11,10 @@ import SwiftUI
 struct PlacingQuestionView: View {
     @State var question: PlacingQuestion
     @Binding var quiz: Quiz
+    
     @State var incorrectNum = 0
     @State var alertVisible: Bool = false
     @State var activeAlert: ActiveAlert = .first
-    
-    //Dummy questions sent to QuizAlertView
-    @State var dummyPredQuestion: PredictionQuestion = PredictionQuestion(level: 1)
-    @State var dummyMassEstQuestion: MassEstimationQuestion = MassEstimationQuestion(level: 1)
-    //Helps QuizAlertView know quiz type and show calculations
-    @State var quizType: Int = 3
     
     var body: some View {
         GeometryReader { geo in
@@ -40,7 +35,7 @@ struct PlacingQuestionView: View {
                 
                 //Triggers QuizAlertView when answer is checked
                 if alertVisible {
-                    QuizAlertView(alertVisible: $alertVisible, activeAlert: $activeAlert, quiz: $quiz, predQuestion: $dummyPredQuestion, massEstQuestion: $dummyMassEstQuestion, placingQuestion: $question, quizType: $quizType)
+                    QuizAlertView(alertVisible: $alertVisible, activeAlert: $activeAlert, quiz: $quiz, question: $question.asQuizQuestion)
                         .frame(width: geo.size.width/2, height: geo.size.height / 4, alignment: .center)
                 }
                 

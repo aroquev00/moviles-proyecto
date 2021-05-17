@@ -7,22 +7,13 @@
 
 import SwiftUI
 
-enum ActiveAlert{
-    case first, second, third
-}
-
 struct PredictionQuestionView: View {
     @State var question: PredictionQuestion
     @State var alertVisible: Bool = false
+    
     @State var activeAlert: ActiveAlert = .first
     @Binding var quiz: Quiz
     @State var incorrectNum = 0
-    
-    //Dummy questions sent to QuizAlertView
-    @State var dummyMassEstQuestion: MassEstimationQuestion = MassEstimationQuestion(level: 1)
-    @State var dummyPlacingQuestion: PlacingQuestion = PlacingQuestion(level: 1)
-    //Helps QuizAlertView know quiz type and show calculations
-    @State var quizType: Int = 1
     
     var body: some View {
         GeometryReader { geo in
@@ -67,7 +58,7 @@ struct PredictionQuestionView: View {
                 
                 //Triggers QuizAlertView when answer is checked
                 if alertVisible {
-                    QuizAlertView(alertVisible: $alertVisible, activeAlert: $activeAlert, quiz: $quiz, predQuestion: $question, massEstQuestion: $dummyMassEstQuestion, placingQuestion: $dummyPlacingQuestion, quizType: $quizType)
+                    QuizAlertView(alertVisible: $alertVisible, activeAlert: $activeAlert, quiz: $quiz, question: $question.asQuizQuestion)
                         .frame(width: geo.size.width/2, height: geo.size.height / 4, alignment: .center)
                 }
             }
