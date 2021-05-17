@@ -10,15 +10,10 @@ import SwiftUI
 struct MassEstimationQuestionView: View {
     @State var question: MassEstimationQuestion
     @Binding var quiz: Quiz
+    
     @State var incorrectNum = 0
     @State var alertVisible: Bool = false
     @State var activeAlert: ActiveAlert = .first
-    
-    //Dummy questions sent to QuizAlertView
-    @State var dummyPredQuestion: PredictionQuestion = PredictionQuestion(level: 1)
-    @State var dummyPlacingQuestion: PlacingQuestion = PlacingQuestion(level: 1)
-    //Helps QuizAlertView know quiz type and show calculations
-    @State var quizType: Int = 2
     
     var body: some View {
         GeometryReader { geo in
