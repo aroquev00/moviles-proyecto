@@ -19,7 +19,6 @@ struct PredictionQuestionView: View {
         GeometryReader { geo in
 
             ZStack {
-
                 HStack(spacing: 0.0) {
 
                     VStack {
@@ -38,13 +37,17 @@ struct PredictionQuestionView: View {
                                 .labelsHidden()
                             Spacer()
                             Image(systemName: "ruler.fill")
-                                .foregroundColor(Color.orange)
+                                .foregroundColor(Color.mainButtonBackground)
+                                .background(
+                                    Color.mainTitleTextForeground
+                                        .scaleEffect(CGSize(width: 0.7, height: 0.6)))
                                 .font(.largeTitle)
                             Spacer()
                         }
                         .frame(width: geo.size.width * 0.19)
                         .padding(EdgeInsets(top: switchesVerticalPadding, leading: 0, bottom: switchesVerticalPadding, trailing: 0))
-                        .background(Color.init(Color.RGBColorSpace.sRGB, red: 59/255, green: 40/255, blue: 204/255, opacity: 1.0))
+                        .background(Color.resetButtonBackground)
+                        .cornerRadius(10)
                     
                         VStack {
                             getPredictionButton(text: "Se inclina a la izquierda", swivel: .left, image: Image("izquierda"), size: geo.size.width * 0.19)
@@ -76,6 +79,7 @@ struct PredictionQuestionView: View {
                     image.resizable()
                         .scaledToFit().frame(width: size)
                 }
+                .cornerRadius(10)
             })
         }
     

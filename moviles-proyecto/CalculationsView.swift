@@ -27,8 +27,7 @@ struct CalculationsView: View {
     var body: some View {
         GeometryReader { mainGeo in
             ZStack {
-                Color.blue
-                    //.resizable()
+                Color.whiteBackground
                     .edgesIgnoringSafeArea(.all)
                 ScrollView {
                     VStack {
@@ -42,7 +41,7 @@ struct CalculationsView: View {
                                     Image(systemName: "arrowshape.turn.up.left.fill")
                                         .resizable()
                                         .frame(width: geo.size.width * 0.05, height: geo.size.height * 0.4)
-                                        .foregroundColor(Color(#colorLiteral(red: 1, green: 0.6, blue: 0.07843137255, alpha: 1)))
+                                        .foregroundColor(Color.mainButtonBackground)
                                 }
                                 Text("Cálculos para el problema")
                                     .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.06))

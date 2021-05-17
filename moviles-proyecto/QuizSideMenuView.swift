@@ -29,9 +29,9 @@ struct QuizSideMenuView: View {
                     }
                     .frame(width: sideGeo.size.width)
                     .padding(EdgeInsets(top: switchesVerticalPadding, leading: 0, bottom: switchesVerticalPadding, trailing: 0))
-                    .background(Color.init(Color.RGBColorSpace.sRGB, red: 59/255, green: 40/255, blue: 204/255, opacity: 1.0))
-                    .foregroundColor(.red)
-                    
+                    .foregroundColor(Color.mainTitleTextForeground)
+                    .background(Color.resetButtonBackground)
+                    .cornerRadius(10)
                 })
                 // MARK: Ruler switch
                 HStack {
@@ -40,13 +40,17 @@ struct QuizSideMenuView: View {
                         .labelsHidden()
                     Spacer()
                     Image(systemName: "ruler.fill")
-                        .foregroundColor(Color.orange)
+                        .foregroundColor(Color.mainButtonBackground)
+                        .background(
+                            Color.mainTitleTextForeground
+                                .scaleEffect(CGSize(width: 0.7, height: 0.6)))
                         .font(.largeTitle)
                     Spacer()
                 }
                 .frame(width: sideGeo.size.width)
                 .padding(EdgeInsets(top: switchesVerticalPadding, leading: 0, bottom: switchesVerticalPadding, trailing: 0))
-                .background(Color.init(Color.RGBColorSpace.sRGB, red: 59/255, green: 40/255, blue: 204/255, opacity: 1.0))
+                .background(Color.resetButtonBackground)
+                .cornerRadius(10)
                 
                 // MARK: Check button
                 Button(action: {
@@ -59,8 +63,10 @@ struct QuizSideMenuView: View {
                         .tracking(2)
                         .frame(width: sideGeo.size.width)
                         .padding(EdgeInsets(top: switchesVerticalPadding, leading: 0, bottom: switchesVerticalPadding, trailing: 0))
-                        .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 153/255, blue: 20/255, opacity: 1.0))
-                        .foregroundColor(.white)
+                        .foregroundColor(Color.mainTitleTextForeground)
+                        .background(Color.mainButtonBackground)
+                        .cornerRadius(10)
+                        
                 }
                 
                 Spacer()
