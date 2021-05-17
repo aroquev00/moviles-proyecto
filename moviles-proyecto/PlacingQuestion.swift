@@ -9,11 +9,14 @@ struct PlacingQuestion: QuizQuestion {
     var level: Int
     var simulator: Simulator
     var answerStatus: AnswerStatus
+    var questionType: QuizQuestionType
     
     init(level: Int) {
         self.level = level
         simulator = Simulator(quizMode: true)
         answerStatus = .unanswered
+        questionType = .placing
+        
         generateQuestion()
     }
     

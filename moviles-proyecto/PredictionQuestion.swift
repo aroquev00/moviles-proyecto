@@ -9,12 +9,14 @@ struct PredictionQuestion: QuizQuestion {
     var level: Int
     var simulator: Simulator
     var answerStatus: AnswerStatus
+    var questionType: QuizQuestionType
     var selectedAnswer: Swivel?
     
     init(level: Int) {
         self.level = level
         simulator = Simulator(quizMode: true)
         answerStatus = .unanswered
+        questionType = .prediction
         selectedAnswer = nil
         
         generateQuestion()
