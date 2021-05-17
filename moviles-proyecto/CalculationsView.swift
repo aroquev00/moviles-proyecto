@@ -205,6 +205,7 @@ struct spriteDataView: View {
                 Text(spriteInfo2(spot: spot))
                 Text(spriteInfo3(spot: spot))
             }
+            .foregroundColor(.black)
             Spacer()
             Image(uiImage: UIImage(named: spot.sprite!.imageURL)!)
                 .resizable()

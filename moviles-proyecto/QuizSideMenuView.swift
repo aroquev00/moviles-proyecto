@@ -10,8 +10,10 @@ import SwiftUI
 struct QuizSideMenuView: View {
     @Binding var question: QuizQuestion
     @Binding var quiz: Quiz
-    
     let resetQuestion: () -> Void
+    @Binding var incorrectNum: Int
+    @Binding var alertVisible: Bool
+    @Binding var activeAlert: ActiveAlert
     
     var body: some View {
         GeometryReader { sideGeo in
@@ -49,6 +51,8 @@ struct QuizSideMenuView: View {
                 // MARK: Check button
                 Button(action: {
                     question.checkAnswer()
+                    addPoints()
+                    
                 }) {
                     Text("Revisar")
                         .font(Font.custom("Bangers-Regular", size: sideGeo.size.width * 0.25))
@@ -72,12 +76,29 @@ struct QuizSideMenuView: View {
             }
         }
     }
+    
+    func addPoints() {
+        if question.answerStatus == .correct {
+            quiz.points += 1
+            activeAlert = .second
+        }
+        else if question.answerStatus == .incorrect {
+            if incorrectNum != 3 { incorrectNum += 1 }
+            if incorrectNum == 3 {
+                activeAlert = .third
+            }
+            else {
+                activeAlert = .first
+            }
+        }
+        alertVisible = true
+    }
 }
 
 struct QuizSideMenuView_Previews: PreviewProvider {
     static var previews: some View {
         Landscape {
-            QuizSideMenuView(question: .constant(PlacingQuestion(level: 1)), quiz: .constant(Quiz(level: 1)), resetQuestion: {})
+            QuizSideMenuView(question: .constant(PlacingQuestion(level: 1)), quiz: .constant(Quiz(level: 1)), resetQuestion: {}, incorrectNum: .constant(0), alertVisible: .constant(false), activeAlert: .constant(.first))
         }
     }
 }
