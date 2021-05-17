@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-enum ActiveAlert{
-    case first, second, third
-}
-
 struct PredictionQuestionView: View {
     @State var question: PredictionQuestion
     @State var alertVisible: Bool = false
@@ -67,7 +63,7 @@ struct PredictionQuestionView: View {
                 
                 //Triggers QuizAlertView when answer is checked
                 if alertVisible {
-                    QuizAlertView(alertVisible: $alertVisible, activeAlert: $activeAlert, quiz: $quiz, predQuestion: $question, massEstQuestion: $dummyMassEstQuestion, placingQuestion: $dummyPlacingQuestion, quizType: $quizType)
+                    QuizAlertView(alertVisible: $alertVisible, activeAlert: $activeAlert, quiz: $quiz, question: $question.asQuizQuestion, quizType: $quizType)
                         .frame(width: geo.size.width/2, height: geo.size.height / 4, alignment: .center)
                 }
             }

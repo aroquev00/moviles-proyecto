@@ -12,9 +12,7 @@ struct QuizAlertView: View {
     @Binding var alertVisible: Bool
     @Binding var activeAlert: ActiveAlert
     @Binding var quiz: Quiz
-    @Binding var predQuestion: PredictionQuestion
-    @Binding var massEstQuestion: MassEstimationQuestion
-    @Binding var placingQuestion: PlacingQuestion
+    @Binding var question: QuizQuestion
     @Binding var quizType: Int //1 is for prediction, 2 is for mass estimation, and 3 is for placing
     
     @State var showCalculations: Bool = false
@@ -81,19 +79,7 @@ struct QuizAlertView: View {
                             }
                             .fullScreenCover(isPresented: $showCalculations, content: {
                                 
-                                switch quizType {
-                                case 1:
-                                    CalculationsView(simulator: $predQuestion.simulator)
-                                    
-                                case 2:
-                                    CalculationsView(simulator: $massEstQuestion.simulator)
-                                    
-                                case 3:
-                                    CalculationsView(simulator: $placingQuestion.simulator)
-                                    
-                                default:
-                                    CalculationsView(simulator: $predQuestion.simulator)
-                                }
+                                CalculationsView(simulator: $question.simulator)
                             })
                         }
                     }
@@ -160,7 +146,7 @@ struct QuizAlertView: View {
 struct QuizAlertView_Previews: PreviewProvider {
     static var previews: some View {
         Landscape {
-            QuizAlertView(alertVisible: .constant(false), activeAlert: .constant(.first), quiz: .constant(Quiz(level: 1)), predQuestion: .constant(PredictionQuestion(level: 1)), massEstQuestion: .constant(MassEstimationQuestion(level: 1)), placingQuestion: .constant(PlacingQuestion(level: 1)), quizType: .constant(1))
+            QuizAlertView(alertVisible: .constant(false), activeAlert: .constant(.first), quiz: .constant(Quiz(level: 1)), question: .constant(PredictionQuestion(level: 1)), quizType: .constant(1))
         }
     }
 }
