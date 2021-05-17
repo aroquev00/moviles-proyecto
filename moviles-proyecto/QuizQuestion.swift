@@ -9,6 +9,7 @@ protocol QuizQuestion {
     var level: Int { get set }
     var simulator: Simulator { get set }
     var answerStatus: AnswerStatus { get set }
+    var questionType: QuizQuestionType { get set }
     var asQuizQuestion: QuizQuestion { get set }
     
     init(level: Int)

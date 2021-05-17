@@ -32,6 +32,7 @@
 		91D72075264C4753002DAC94 /* WeightCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D72074264C4753002DAC94 /* WeightCategory.swift */; };
 		91D97EA2260EF36C008EABB7 /* SimulatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D97EA1260EF36C008EABB7 /* SimulatorView.swift */; };
 		91D98B252652264F0047674D /* ActiveAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D98B242652264F0047674D /* ActiveAlert.swift */; };
+		91D98B2726522A570047674D /* QuizQuestionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D98B2626522A570047674D /* QuizQuestionType.swift */; };
 		91F1AD502633D0720087F32C /* Bangers-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91F1AD4F2633D0720087F32C /* Bangers-Regular.ttf */; };
 		91F54E20262C9D9A00D1FF8A /* QuizMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F54E1F262C9D9A00D1FF8A /* QuizMenuView.swift */; };
 		91F54E23262C9ED600D1FF8A /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F54E22262C9ED600D1FF8A /* QuizView.swift */; };
@@ -67,6 +68,7 @@
 		91D72074264C4753002DAC94 /* WeightCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightCategory.swift; sourceTree = "<group>"; };
 		91D97EA1260EF36C008EABB7 /* SimulatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatorView.swift; sourceTree = "<group>"; };
 		91D98B242652264F0047674D /* ActiveAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveAlert.swift; sourceTree = "<group>"; };
+		91D98B2626522A570047674D /* QuizQuestionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestionType.swift; sourceTree = "<group>"; };
 		91F1AD4F2633D0720087F32C /* Bangers-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bangers-Regular.ttf"; sourceTree = "<group>"; };
 		91F54E1F262C9D9A00D1FF8A /* QuizMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizMenuView.swift; sourceTree = "<group>"; };
 		91F54E22262C9ED600D1FF8A /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				91F54E22262C9ED600D1FF8A /* QuizView.swift */,
 				91F54E25262CC52F00D1FF8A /* Quiz.swift */,
 				9107F1F0262CCAB70009EA14 /* QuizQuestion.swift */,
+				91D98B2626522A570047674D /* QuizQuestionType.swift */,
 				9107F1FF262CEDF80009EA14 /* PlacingQuestionView.swift */,
 				9107F1F6262CEB040009EA14 /* PlacingQuestion.swift */,
 				9107F202262CEE120009EA14 /* MassEstimationQuestionView.swift */,
@@ -241,6 +244,7 @@
 				9107F1F1262CCAB70009EA14 /* QuizQuestion.swift in Sources */,
 				914704C1260BAE8B009F1DC2 /* LabView.swift in Sources */,
 				9158DD09262D06B8008AFC02 /* AnswerStatus.swift in Sources */,
+				91D98B2726522A570047674D /* QuizQuestionType.swift in Sources */,
 				9190D92726053F2500C099A3 /* moviles_proyectoApp.swift in Sources */,
 				91D72075264C4753002DAC94 /* WeightCategory.swift in Sources */,
 				9107F1FD262CEC3E0009EA14 /* PredictionQuestionView.swift in Sources */,

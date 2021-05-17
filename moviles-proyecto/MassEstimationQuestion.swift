@@ -9,6 +9,7 @@ struct MassEstimationQuestion: QuizQuestion {
     var level: Int
     var simulator: Simulator
     var answerStatus: AnswerStatus
+    var questionType: QuizQuestionType
     var questionSprite: Sprite?
     var answerWeight: Float
     
@@ -16,6 +17,7 @@ struct MassEstimationQuestion: QuizQuestion {
         self.level = level
         simulator = Simulator(quizMode: true)
         answerStatus = .unanswered
+        questionType = .massEstimation
         answerWeight = 0 // Placeholder value
         generateQuestion()
     }
