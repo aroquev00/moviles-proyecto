@@ -21,7 +21,7 @@ struct QuizMenuView: View {
                     .edgesIgnoringSafeArea(.all)
                 VStack {
                     Text("¡Elige un nivel!")
-                        .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
+                        .foregroundColor(.mainTextForeground)
                         .fontWeight(.bold)
                         .font(.system(size: mainGeo.size.width * 0.07))
                     
@@ -39,9 +39,9 @@ struct QuizMenuView: View {
                             Text("Menu")
                                 .font(Font.custom("Bangers-Regular", size: (mainGeo.size.width * 0.05) + 10))
                                 .tracking(5)
-                                .frame(width: mainGeo.size.width * 0.28, height: mainGeo.size.height * 0.117, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                                .background(Color(#colorLiteral(red: 1, green: 0.6, blue: 0.07843137255, alpha: 1)))
-                                .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                                .frame(width: mainGeo.size.width * 0.28, height: mainGeo.size.height * 0.117)
+                                .background(Color.mainButtonBackground)
+                                .foregroundColor(.mainButtonTextForeground)
                                 .cornerRadius(20)
                         }
                     }
@@ -60,9 +60,9 @@ struct QuizMenuView: View {
             Text("Nivel \(level)")
                 .font(Font.custom("Bangers-Regular", size: (geo.size.width * 0.05) + 3))
                 .tracking(5)
-                .frame(width: geo.size.width * 0.19, height: geo.size.height * 0.21, alignment: .center)
-                .background(Color(#colorLiteral(red: 0.231372549, green: 0.1568627451, blue: 0.8, alpha: 1)))
-                .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                .frame(width: geo.size.width * 0.19, height: geo.size.height * 0.21)
+                .background(Color.selectLevelButtonBackground)
+                .foregroundColor(.mainButtonTextForeground)
                 .cornerRadius(20)
                 .fullScreenCover(isPresented: $showQuiz, content: {
                     QuizView(level: $selectedLevelNumber)

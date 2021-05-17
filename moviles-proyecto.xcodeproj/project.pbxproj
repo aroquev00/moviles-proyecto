@@ -31,6 +31,7 @@
 		91ACD8A8260D9C0100888CBF /* Sprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ACD8A7260D9C0100888CBF /* Sprite.swift */; };
 		91D72075264C4753002DAC94 /* WeightCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D72074264C4753002DAC94 /* WeightCategory.swift */; };
 		91D97EA2260EF36C008EABB7 /* SimulatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D97EA1260EF36C008EABB7 /* SimulatorView.swift */; };
+		91D98B232651CB810047674D /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D98B222651CB810047674D /* ColorExtension.swift */; };
 		91D98B252652264F0047674D /* ActiveAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D98B242652264F0047674D /* ActiveAlert.swift */; };
 		91D98B2726522A570047674D /* QuizQuestionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D98B2626522A570047674D /* QuizQuestionType.swift */; };
 		91F1AD502633D0720087F32C /* Bangers-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91F1AD4F2633D0720087F32C /* Bangers-Regular.ttf */; };
@@ -67,6 +68,7 @@
 		91ACD8A7260D9C0100888CBF /* Sprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprite.swift; sourceTree = "<group>"; };
 		91D72074264C4753002DAC94 /* WeightCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightCategory.swift; sourceTree = "<group>"; };
 		91D97EA1260EF36C008EABB7 /* SimulatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatorView.swift; sourceTree = "<group>"; };
+		91D98B222651CB810047674D /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		91D98B242652264F0047674D /* ActiveAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveAlert.swift; sourceTree = "<group>"; };
 		91D98B2626522A570047674D /* QuizQuestionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestionType.swift; sourceTree = "<group>"; };
 		91F1AD4F2633D0720087F32C /* Bangers-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bangers-Regular.ttf"; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				9100844C261E8D8000BDC5AD /* CalculationsView.swift */,
 				91D98B242652264F0047674D /* ActiveAlert.swift */,
 				914704BB260BA067009F1DC2 /* CreditsView.swift */,
+				91D98B222651CB810047674D /* ColorExtension.swift */,
 				9190D92A26053F2600C099A3 /* Assets.xcassets */,
 				91F1AD4F2633D0720087F32C /* Bangers-Regular.ttf */,
 				9190D92F26053F2600C099A3 /* Info.plist */,
@@ -248,6 +251,7 @@
 				9190D92726053F2500C099A3 /* moviles_proyectoApp.swift in Sources */,
 				91D72075264C4753002DAC94 /* WeightCategory.swift in Sources */,
 				9107F1FD262CEC3E0009EA14 /* PredictionQuestionView.swift in Sources */,
+				91D98B232651CB810047674D /* ColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
