@@ -81,7 +81,7 @@ struct LabView: View {
                                 }
                                 .frame(width: sideGeo.size.width, height: sideGeo.size.height * 0.15)
                                 .padding(EdgeInsets(top: switchesVerticalPadding, leading: 0, bottom: switchesVerticalPadding, trailing: 0))
-                                .background(Color.init(Color.RGBColorSpace.sRGB, red: 59/255, green: 40/255, blue: 204/255, opacity: 1.0))
+                                .background(Color.resetButtonBackground)
                                 
                                 Spacer()
                                 // MARK: Ruler switch
