@@ -13,7 +13,6 @@ struct QuizAlertView: View {
     @Binding var activeAlert: ActiveAlert
     @Binding var quiz: Quiz
     @Binding var question: QuizQuestion
-    @Binding var quizType: Int //1 is for prediction, 2 is for mass estimation, and 3 is for placing
     
     @State var showCalculations: Bool = false
     
@@ -146,7 +145,7 @@ struct QuizAlertView: View {
 struct QuizAlertView_Previews: PreviewProvider {
     static var previews: some View {
         Landscape {
-            QuizAlertView(alertVisible: .constant(false), activeAlert: .constant(.first), quiz: .constant(Quiz(level: 1)), question: .constant(PredictionQuestion(level: 1)), quizType: .constant(1))
+            QuizAlertView(alertVisible: .constant(false), activeAlert: .constant(.first), quiz: .constant(Quiz(level: 1)), question: .constant(PredictionQuestion(level: 1)))
         }
     }
 }
