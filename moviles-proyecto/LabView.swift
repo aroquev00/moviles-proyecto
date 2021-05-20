@@ -39,8 +39,8 @@ struct LabView: View {
                             VStack {
                                 Spacer()
                                 ZStack {
-                                    Image("blue").resizable()
-                                            .frame(width: geo.size.width * 0.19)
+                                    //Image("blue").resizable()
+                                    // .frame(width: geo.size.width * 0.19)
                                     HStack {
                                         // Buttons
                                         Spacer()
@@ -63,7 +63,9 @@ struct LabView: View {
                                         }
                                         Spacer()
                                     }
-                                }
+                                }.frame(width: geo.size.width * 0.19, height: geo.size.height * 0.15)
+                                .background(Color(#colorLiteral(red: 0.231372549, green: 0.1568627451, blue: 0.8, alpha: 1)))
+                                
                                 Spacer()
                                 // MARK: Columns switch
                                 HStack {
@@ -113,11 +115,9 @@ struct LabView: View {
                                     
                                 } label: {
                                     ZStack{
-                                        Image("blue").resizable()
-                                            .frame(width: geo.size.width * 0.19)
                                         Text("Cálculos ⚙️").font(Font.custom("Bangers-Regular", size: geo.size.height * 0.07)).foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
-                                    }
-                                    
+                                    }.frame(width: geo.size.width * 0.19, height: geo.size.height * 0.15)
+                                    .background(Color(#colorLiteral(red: 0.231372549, green: 0.1568627451, blue: 0.8, alpha: 1)))
                                 }
                                 .fullScreenCover(isPresented: $showCalculations, content: {
                                     CalculationsView(simulator: $simulator)
