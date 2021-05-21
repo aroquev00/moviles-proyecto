@@ -9,10 +9,37 @@ struct Quiz {
     var level: Int
     var points: Int
     var questions: [QuizQuestion]
+    var currentQuestion: Int
     
-    init(level: Int, points: Int, questions: [QuizQuestion]) {
+    init(level: Int) {
         self.level = level
-        self.points = points
-        self.questions = questions
+        self.points = 0
+        self.questions = []
+        self.currentQuestion = 0
+        
+        if level != 0 {
+            generateQuestions()
+        }
+    }
+    
+    mutating func nextQuestion() {
+        if currentQuestion + 1 < questions.count {
+            currentQuestion += 1
+        }
+    }
+    
+    mutating func previousQuestion() {
+        if currentQuestion - 1 >= 0 {
+            currentQuestion -= 1
+        }
+    }
+    
+    mutating func generateQuestions() {
+        questions.append(PredictionQuestion(level: self.level))
+        questions.append(MassEstimationQuestion(level: self.level))
+        questions.append(PlacingQuestion(level: self.level))
+        questions.append(MassEstimationQuestion(level: self.level))
+        questions.append(PredictionQuestion(level: self.level))
+        questions.append(PlacingQuestion(level: self.level))
     }
 }

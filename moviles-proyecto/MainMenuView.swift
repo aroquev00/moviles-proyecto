@@ -14,78 +14,81 @@ struct MainMenuView: View {
     @State var showQuizMenu: Bool = false
     
     var body: some View {
-        ZStack {
-            Image("Background")
-                .resizable()
-                        .scaledToFill()
-                        .edgesIgnoringSafeArea(.all)
-            VStack {
-                GeometryReader { geo in
-                    HStack {
-                        Text("EQUILIBRIUM")
-                            .padding()
-                            .frame(width: 499, height: 84, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                            .background(Color.init(Color.RGBColorSpace.sRGB, red: 59/255, green: 40/255, blue: 204/255, opacity: 1.0))
-                            .foregroundColor(.white)
-                            .font(Font.custom("Open Sans Hebrew", size: 36))
-                            .border(Color.init(Color.RGBColorSpace.sRGB, red: 169/255, green: 186/255, blue: 204/255, opacity: 1.0), width: 9)
-                        Spacer()
-                            .frame(width: 100)
-                        Button(action: {
-                            showCredits = true
-                        }) {
-                            Image("Zelda Logo")
-                                .padding()
-                                .frame(width: 102, height: 102)
+        
+        GeometryReader { mainGeo in
+            ZStack(alignment: .center) {
+                Image("Background")
+                    .resizable()
+                    .edgesIgnoringSafeArea(.all)
+                
+                VStack {
+                    GeometryReader { geo in
+                        HStack {
+                            Text("EQUILIBRIUM")
+                                .font(Font.custom("Bangers-Regular", size: geo.size.height * 0.5))
+                                .tracking(5)
+                                .frame(width: geo.size.width * 0.9, height: geo.size.height * 0.7)
+                                .background(Color.mainTitleBackground)
+                                .foregroundColor(.mainTitleTextForeground)
+                                .border(Color.mainTitleBackgroundBorder, width: 9)
+                            
                         }
-                        .sheet(isPresented: $showCredits, content: {
-                            CreditsView()
-                        })
+                        .frame(width: geo.size.width, height: geo.size.height)
                     }
-                    .position(x: geo.size.width * 0.5, y: geo.size.height * 0.9)
-                }
-                .frame(height: 84)
-                GeometryReader { geo in
-                    HStack {
-                        Spacer()
-                        
-                        Button(action: {
-                            showLab = true
-                        }) {
-                            Text("Lab")
+                    .frame(width: mainGeo.size.width, height: mainGeo.size.height * 0.3)
+                    Spacer()
+                        .frame(height: mainGeo.size.height * 0.3)
+                    GeometryReader { geo in
+                        HStack() {
+                            Spacer()
+                            Button(action: {
+                                showLab = true
+                            }) {
+                                getButtonText(text: "Lab", geo: geo)
+                            }
+                            .fullScreenCover(isPresented: $showLab, content: {
+                                LabView()
+                            })
+                            Spacer()
+                            Button(action: {
+                                showQuizMenu = true
+                            }) {
+                                getButtonText(text: "Quiz", geo: geo)
+                            }
+                            .fullScreenCover(isPresented: $showQuizMenu, content: {
+                                QuizMenuView()
+                            })
+                            Spacer()
+                            Button(action: {
+                                showCredits = true
+                            }) {
+                                getButtonText(text: "Créditos", geo: geo)
+
+                            }
+                            .fullScreenCover(isPresented: $showCredits, content: {
+                                CreditsView()
+                            })
+                            Spacer()
                         }
-                        .padding()
-                        .frame(width: 185, height: 65, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 153/255, blue: 20/255, opacity: 1.0))
-                        .foregroundColor(.white)
-                        .font(Font.custom("Open Sans Hebrew", size: 36))
-                        .sheet(isPresented: $showLab, content: {
-                            LabView()
-                        })
-                        
-                        Spacer()
-                        
-                        Button(action: {
-                            showQuizMenu = true
-                        }) {
-                            Text("Quiz")
-                        }
-                        .padding()
-                        .frame(width: 185, height: 65, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 153/255, blue: 20/255, opacity: 1.0))
-                        .foregroundColor(.white)
-                        .font(Font.custom("Open Sans Hebrew", size: 36))
-                        .sheet(isPresented: $showQuizMenu, content: {
-                            QuizMenuView()
-                        })
-                        
-                        
-                        Spacer()
+                        .frame(width: mainGeo.size.width)
                     }
-                    .position(x: geo.size.width * 0.5, y: geo.size.height * 0.7)
+                    .frame(width: mainGeo.size.width, height: mainGeo.size.height * 0.2)
                 }
+                .frame(width: mainGeo.size.width, height: mainGeo.size.height)
             }
         }
+    }
+    
+    // Function to get the Text for each button
+    func getButtonText(text: String, geo: GeometryProxy) -> some View {
+        return Text(text)
+            .font(Font.custom("Bangers-Regular", size: geo.size.height * 0.5))
+            .tracking(5)
+            //.padding()
+            .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.785)
+            .background(Color.mainButtonBackground)
+            .foregroundColor(.mainButtonTextForeground)
+            .cornerRadius(20)
     }
 }
 

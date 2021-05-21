@@ -12,39 +12,46 @@ struct Simulator: Codable {
     var rulerEnabled: Bool
     var selectedSprite: Sprite?
     
+    var potentialTorque: Float {
+        var torque: Float = 0.0
+        for spot in spots {
+            if let sprite = spot.sprite {
+                let selfTorque = sprite.weight * spot.distance
+                if spot.side == .right {
+                    torque += selfTorque
+                } else {
+                    torque -= selfTorque
+                }
+            }
+        }
+        return torque
+    }
+    
     var totalTorque: Float {
         if columnsEnabled {
             return 0.0
         }
         else {
-            var torque: Float = 0.0
-            for spot in spots {
-                if let sprite = spot.sprite {
-                    let selfTorque = sprite.weight * spot.distance
-                    if spot.side {
-                        torque += selfTorque
-                    } else {
-                        torque -= selfTorque
-                    }
-                }
-            }
-            return torque
+            return potentialTorque
         }
     }
     
-    init() {
+    var quizMode: Bool
+    var placedSpriteIndex: Int?
+    
+    init(quizMode: Bool) {
         self.spots = []
         self.columnsEnabled = true
-        self.rulerEnabled = true
+        self.rulerEnabled = false
         var index = 0
-        for dist in stride(from: 2, to: 0, by: -0.25) {
-            self.spots.append(SimulatorSpot(index: index, side: false, distance: Float(dist)))
-            index += 1
+        for dist in stride(from: -2, to: 2.25, by: 0.25) {
+            if (dist != 0) {
+                self.spots.append(SimulatorSpot(index: index, side: (dist < 0 ? .left : .right), distance: Float(abs(dist))))
+                index += 1
+            }   
         }
-        for dist in stride(from: 0.25, through: 2, by: 0.25) {
-            self.spots.append(SimulatorSpot(index: index, side: true, distance: Float(dist)))
-            index += 1
-        }
+        self.quizMode = quizMode
+        self.placedSpriteIndex = nil
     }
     
     mutating func reset() {

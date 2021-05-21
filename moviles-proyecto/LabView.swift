@@ -12,20 +12,11 @@ struct LabView: View {
     
     @State var showCalculations: Bool = false
     
-//    Sprite array
-    let spritesRow = [
-        Sprite(name: "Mario", weight: 20, height: 1, imageURL: "mario"),
-        Sprite(name: "Kirby", weight: 10, height: 1, imageURL: "kirby"),
-        Sprite(name: "Steve", weight: 30, height: 1, imageURL: "steve"),
-        Sprite(name: "Master Chief", weight: 80, height: 1, imageURL: "masterchief"),
-        Sprite(name: "Plankton", weight: 5, height: 1, imageURL: "plankton"),
-        Sprite(name: "Sonic", weight: 15, height: 1, imageURL: "sonic"),
-        Sprite(name: "Link", weight: 60, height: 1, imageURL: "link"),
-        Sprite(name: "Megaman", weight: 20, height: 1, imageURL: "megaman")
-    ]
+    //    Sprite array
+    let spritesRow = Array(SpriteFactory.all)
     
     // Data structure to store placed characters
-    @State var simulator: Simulator = Simulator()
+    @State var simulator: Simulator = Simulator(quizMode: false)
     
     @State var indexSelectedSprite: Int? = nil
     
@@ -34,88 +25,131 @@ struct LabView: View {
             // Aquí va el fondo del juego
             Image("Background2")
                 .resizable()
-                        .edgesIgnoringSafeArea(.all)
+                .edgesIgnoringSafeArea(.all)
             
             GeometryReader { geo in
-                VStack {
-                    HStack {
+                VStack() {
+                    HStack(spacing: 0.0) {
                         SimulatorView(simulator: $simulator)
                             .frame(width: geo.size.width * 0.8)
-                        VStack {
-                            Spacer()
-                            HStack {
-                                // Buttons
-                                Spacer()
-                                Button {
-                                    // Return to home
-                                    presentationMode.wrappedValue.dismiss()
-                                } label: {
-                                    Image(systemName: "house.fill")
-                                        .foregroundColor(.blue)
-                                        .font(.title)
-                                }
-                                Spacer()
-                                Button {
-                                    // Reset simulator
-                                    simulator.reset()
-                                } label: {
-                                    Image(systemName: "trash")
-                                        .foregroundColor(Color.red)
-                                        .font(.title)
-                                }
-                                Spacer()
-                            }
-                            Spacer()
-                            Toggle(isOn: $simulator.columnsEnabled) {
-                                Text("Columnas")
-                            }
-                            Spacer()
-                            Toggle(isOn: $simulator.rulerEnabled) {
-                                Text("Regla")
-                            }
-                            Spacer()
-                            Button {
-                                // Show calc screen
-                                showCalculations = true
-                                
-                            } label: {
-                                Text("Ver cálculos ⚙️")
-                            }
-                            .sheet(isPresented: $showCalculations, content: {
-                                CalculationsView(simulator: $simulator)
-                            })
-                        }
-                            .frame(width: geo.size.width * 0.2)
                         
+                        // MARK: - Side menu
+                        GeometryReader { sideGeo in
+                            let switchesVerticalPadding: CGFloat = sideGeo.size.height * 0.03
+                            VStack {
+                                Spacer()
+                                HStack {
+                                    // Buttons
+                                    Spacer()
+                                    Button {
+                                        // Return to home
+                                        presentationMode.wrappedValue.dismiss()
+                                    } label: {
+                                        Image(systemName: "house.fill")
+                                            .foregroundColor(.black)
+                                            .font(.largeTitle)
+                                    }
+                                    Spacer()
+                                    Button {
+                                        // Reset simulator
+                                        simulator.reset()
+                                    } label: {
+                                        Image(systemName: "trash")
+                                            .foregroundColor(Color.red)
+                                            .font(.largeTitle)
+                                    }
+                                    Spacer()
+                                }
+                                Spacer()
+                                // MARK: Columns switch
+                                HStack {
+                                    Spacer()
+                                    Image("columnaSwitch")
+                                        .resizable()
+                                        .scaledToFit()
+                                    Spacer()
+                                    Toggle("", isOn: Binding<Bool>(
+                                            get: {return !self.simulator.columnsEnabled},
+                                            set: {noColumns in self.simulator.columnsEnabled = !noColumns})
+                                    )
+                                    .labelsHidden()
+                                    Spacer()
+                                    Image("columnaSwitchCrossed")
+                                        .resizable()
+                                        .scaledToFit()
+                                    Spacer()
+                                }
+                                .frame(width: sideGeo.size.width, height: sideGeo.size.height * 0.15)
+                                .padding(EdgeInsets(top: switchesVerticalPadding, leading: 0, bottom: switchesVerticalPadding, trailing: 0))
+                                .background(Color.secondaryButtonBackground)
+                                
+                                Spacer()
+                                // MARK: Ruler switch
+                                HStack {
+                                    Spacer()
+                                    Toggle("",isOn: $simulator.rulerEnabled)
+                                        .labelsHidden()
+                                    Spacer()
+                                    Image(systemName: "ruler.fill")
+                                        .foregroundColor(Color.orange)
+                                        .background(
+                                            Color.white
+                                                .scaleEffect(CGSize(width: 0.7, height: 0.6)))
+                                        .font(.largeTitle)
+                                    Spacer()
+                                }
+                                .frame(width: sideGeo.size.width)
+                                .padding(EdgeInsets(top: switchesVerticalPadding, leading: 0, bottom: switchesVerticalPadding, trailing: 0))
+                                .background(Color.secondaryButtonBackground)
+                                
+                                Spacer()
+                                Button {
+                                    // Show calc screen
+                                    showCalculations = true
+                                    
+                                } label: {
+                                    Text("Ver cálculos ⚙️")
+                                }
+                                .fullScreenCover(isPresented: $showCalculations, content: {
+                                    CalculationsView(simulator: $simulator)
+                                })
+                                Spacer()
+                            }
+                        }
+                        .frame(width: geo.size.width * 0.19, alignment: .center)
                     }
                     .frame(height: geo.size.height / 1.5)
-                    
-                    
-                    ScrollView(.horizontal) {
-                        HStack(spacing: 20) {
-                            ForEach(0..<spritesRow.count) { i in
-                                Button {
-                                    if indexSelectedSprite != i {
-                                        // User just selected this sprite
-                                        simulator.selectedSprite = spritesRow[i]
-                                        indexSelectedSprite = i
-                                    } else {
-                                        // User is toggling this sprite
-                                        indexSelectedSprite = nil
-                                        simulator.selectedSprite = nil
+                    GeometryReader { spriteRowGeo in
+                        ScrollView(.horizontal) {
+                            HStack(alignment: .bottom, spacing: 20) {
+                                ForEach(0..<spritesRow.count) { i in
+                                    Button {
+                                        if indexSelectedSprite != i {
+                                            // User just selected this sprite
+                                            simulator.selectedSprite = spritesRow[i]
+                                            indexSelectedSprite = i
+                                        } else {
+                                            // User is toggling this sprite
+                                            indexSelectedSprite = nil
+                                            simulator.selectedSprite = nil
+                                        }
+                                    } label: {
+                                        VStack(spacing: 0.0) {
+                                            Image(uiImage: UIImage(named: spritesRow[i].imageURL)!)
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(height: spriteRowGeo.size.height * 0.9 * getSpriteHeight(sprite: spritesRow[i]))
+                                            Text(String(format: (floor(spritesRow[i].weight) == spritesRow[i].weight ? "%.0f" : "%.2f"), spritesRow[i].weight) + " kg")
+                                                .font(Font.custom("Bangers-Regular", size: spriteRowGeo.size.height * 0.10))
+                                                .foregroundColor(.orange)
+                                        }
+                                        .background(Color.red.opacity(indexSelectedSprite == i ? 1.0 : 0.0)) // Background is red if sprite is selected to be placed in simulator
                                     }
-                                } label: {
-                                    VStack {
-                                        Image(uiImage: UIImage(named: spritesRow[i].imageURL)!)
-                                            .resizable()
-                                            .scaledToFit()
-                                        Text(String(spritesRow[i].weight) + " kg")
-                                    }
-                                    .background(Color.red.opacity(indexSelectedSprite == i ? 1.0 : 0.0)) // Background is red if sprite is selected to be placed in simulator
                                 }
                             }
                         }
                     }
+                    
                 }
             }
         }
@@ -150,7 +184,8 @@ struct LabView: View {
                 
                 //Initialize simulator with data content
                 let decoder = JSONDecoder()
-                let s = try decoder.decode(Simulator.self, from: data)
+                var s = try decoder.decode(Simulator.self, from: data)
+                s.selectedSprite = nil
                 return s
             }
             catch {
@@ -160,10 +195,10 @@ struct LabView: View {
         else {
             //File does not exist. Load default data in simulator
             //print("No habia json")
-            let s = Simulator()
+            let s = Simulator(quizMode: false)
             return s
         }
-        return Simulator()
+        return Simulator(quizMode: false)
     }
     
     //Saves simulator data when current view disappears
@@ -174,7 +209,7 @@ struct LabView: View {
             let encodedData = try encoder.encode(simulator)
             let jsonString = String(data: encodedData, encoding: .utf8)
             try jsonString?.write(to: localPath, atomically: true, encoding: .utf8)
-            print(jsonString!)
+            //print(jsonString!)
         }
         catch {
             print("Error al guardar los datos")
@@ -184,6 +219,12 @@ struct LabView: View {
     func getDocumentsDirectory() -> URL {
         let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         return path
+    }
+    
+    // MARK: - Additional helper functions
+    
+    func getSpriteHeight(sprite: Sprite) -> CGFloat {
+        return CGFloat((sprite.height))
     }
 }
 

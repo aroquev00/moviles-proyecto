@@ -10,22 +10,42 @@ import SwiftUI
 struct QuizView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    var quiz: Quiz
+    @Binding var level: Int
+    @State var quiz: Quiz = Quiz(level: 0) // Placeholder value at start
     
     var body: some View {
         VStack {
-            Text("This is a quiz")
-            
+            if quiz.questions.count > 0 { // To wait for real quiz to be assigned
+                switch quiz.questions[quiz.currentQuestion] {
+                case is PredictionQuestion:
+                    PredictionQuestionView(question: quiz.questions[quiz.currentQuestion] as! PredictionQuestion, quiz: $quiz)
+                case is PlacingQuestion:
+                    PlacingQuestionView(question: quiz.questions[quiz.currentQuestion] as! PlacingQuestion, quiz: $quiz)
+                case is MassEstimationQuestion:
+                    MassEstimationQuestionView(question: quiz.questions[quiz.currentQuestion] as! MassEstimationQuestion, quiz: $quiz)
+                default:
+                    Text("Bruh, error!")
+                }
+            }
             HStack {
                 Text("Nivel: \(quiz.level)")
-                Text("Pregunta 1 de 6")
+                Text("Pregunta \(quiz.currentQuestion + 1) de \(quiz.questions.count)")
                 Text("Puntos: \(quiz.points)")
+                Button("Pregunta anterior") {
+                    quiz.previousQuestion()
+                }
+                Button("Siguiente pregunta") {
+                    quiz.nextQuestion()
+                }
                 Button("Regresar") {
                     presentationMode.wrappedValue.dismiss()
                 }
             }
             
         }
+        .onAppear(perform: {
+            quiz = Quiz(level: level) // To use actual level selected in QuizMenuView
+        })
         
     }
 }
@@ -33,7 +53,7 @@ struct QuizView: View {
 struct QuizView_Previews: PreviewProvider {
     static var previews: some View {
         Landscape {
-            QuizView(quiz: Quiz(level: 1, points: 0, questions: [QuizQuestion]()))
+            QuizView(level: .constant(1))
         }
     }
 }
