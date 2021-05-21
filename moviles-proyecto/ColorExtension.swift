@@ -8,24 +8,27 @@
 import SwiftUI
 
 extension Color {
-    static var mainTitleTextForeground = Color.white
-    static var mainTitleBackground = Color(#colorLiteral(red: 0.231372549, green: 0.1568627451, blue: 0.8, alpha: 1))
-    static var mainTitleBackgroundBorder = Color.init(Color.RGBColorSpace.sRGB, red: 169/255, green: 186/255, blue: 204/255, opacity: 1.0)
     
+    // MARK: - General
+    
+    // MARK: Text
+    static var mainTextForeground = Color.black
+    static var resetTextForeground = Color.red
+    
+    // MARK: Buttons
     static var mainButtonTextForeground = Color.white
     static var mainButtonBackground = Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 153/255, blue: 20/255, opacity: 1.0)
     
     static var secondaryButtonBackground = Color.init(Color.RGBColorSpace.sRGB, red: 59/255, green: 40/255, blue: 204/255, opacity: 1.0)
     
+    // MARK: Titles
+    static var mainTitleTextForeground = Color.white
+    static var mainTitleBackground = Color(#colorLiteral(red: 0.231372549, green: 0.1568627451, blue: 0.8, alpha: 1))
+    static var mainTitleBackgroundBorder = Color.init(Color.RGBColorSpace.sRGB, red: 169/255, green: 186/255, blue: 204/255, opacity: 1.0)
+    
+    
+    // MARK: - Select Level
     static var selectLevelButtonBackground = Color(#colorLiteral(red: 0.231372549, green: 0.1568627451, blue: 0.8, alpha: 1))
-    
-    static var mainTextForeground = Color.black
-    
-    static var resetTextForeground = Color.red
-    
-    static var rulerFill = Color.orange
-    
-    static var selectedSpriteTextForeground = Color.orange
     
     // MARK: - Quiz Feedback Alerts
     static var alertButtonBackground = Color.white
@@ -33,4 +36,9 @@ extension Color {
     static var correctAlertBackground = Color.init(Color.RGBColorSpace.sRGB, red: 50/255, green: 168/255, blue: 82/255, opacity: 1.0)
     
     static var wrongAlertBackground = Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 111/255, blue: 111/255, opacity: 1.0)
+    
+    // MARK: - Miscellaneous
+    static var rulerFill = Color.orange
+    
+    static var selectedSpriteTextForeground = Color.orange
 }
