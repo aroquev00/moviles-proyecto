@@ -31,14 +31,14 @@ struct CreditsView: View {
                                 .font(.system(size: mainGeo.size.width * 0.05))
                             Text("Halo © Microsoft Corporation. Equilibrium was created under Microsoft's \"Game Content Usage Rules\" using assets from Halo, and it is not endorsed by or affiliated with Microsoft.")
                                 .font(.system(size: mainGeo.size.width * 0.03))
-                                .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
+                                .foregroundColor(.mainTextForeground)
                             
                             Spacer()
                                 .frame(height: mainGeo.size.height * 0.05)
                             
                             Text("Team members: Armando Roque, Eduardo Pineda, Guillermo García, Marco Brown")
                                 .font(.system(size: mainGeo.size.width * 0.03))
-                                .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
+                                .foregroundColor(.mainTextForeground)
 
                             Spacer()
                                 .frame(height: mainGeo.size.height * 0.05)
@@ -50,8 +50,8 @@ struct CreditsView: View {
                                     .font(Font.custom("Bangers-Regular", size: (mainGeo.size.width * 0.05) + 10))
                                     .tracking(5)
                                     .frame(width: mainGeo.size.width * 0.28, height: mainGeo.size.height * 0.177)
-                                    .background(Color(#colorLiteral(red: 1, green: 0.6, blue: 0.07843137255, alpha: 1)))
-                                    .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                                    .background(Color.mainButtonBackground)
+                                    .foregroundColor(.mainButtonTextForeground)
                                     .cornerRadius(20)
                             }
                             
@@ -69,5 +69,3 @@ struct CreditsView_Previews: PreviewProvider {
         }
     }
 }
-
-
