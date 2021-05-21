@@ -38,13 +38,13 @@ struct PredictionQuestionView: View {
                                 .labelsHidden()
                             Spacer()
                             Image(systemName: "ruler.fill")
-                                .foregroundColor(Color.orange)
+                                .foregroundColor(.rulerFill)
                                 .font(.largeTitle)
                             Spacer()
                         }
                         .frame(width: geo.size.width * 0.19)
                         .padding(EdgeInsets(top: switchesVerticalPadding, leading: 0, bottom: switchesVerticalPadding, trailing: 0))
-                        .background(Color.init(Color.RGBColorSpace.sRGB, red: 59/255, green: 40/255, blue: 204/255, opacity: 1.0))
+                        .background(Color.secondaryButtonBackground)
                     
                         VStack {
                             getPredictionButton(text: "Se inclina a la izquierda", swivel: .left, image: Image("izquierda"), size: geo.size.width * 0.19)

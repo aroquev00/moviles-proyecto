@@ -37,10 +37,9 @@ struct QuizAlertView: View {
                                     .font(.system(size: 30))
                                     //.tracking(5)
                                     .frame(height: 65, alignment: .center)
-                                    .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 255/255, blue: 255/255, opacity: 1.0))
-                                    .foregroundColor(.black)
+                                    .background(Color.alertButtonBackground)
                                     .clipShape(Capsule())
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.mainTextForeground)
                             }
                         }
                         
@@ -53,10 +52,9 @@ struct QuizAlertView: View {
                                     .font(.system(size: 30))
                                     //.tracking(5)
                                     .frame(height: 65, alignment: .center)
-                                    .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 255/255, blue: 255/255, opacity: 1.0))
-                                    .foregroundColor(.black)
+                                    .background(Color.alertButtonBackground)
                                     .clipShape(Capsule())
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.mainTextForeground)
                             }
                         }
                         
@@ -71,10 +69,10 @@ struct QuizAlertView: View {
                                     .font(.system(size: 30))
                                     //.tracking(5)
                                     .frame(height: 65, alignment: .center)
-                                    .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 255/255, blue: 255/255, opacity: 1.0))
-                                    .foregroundColor(.black)
+                                    .background(Color.alertButtonBackground)
+                                    .foregroundColor(.mainTextForeground)
                                     .clipShape(Capsule())
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.mainTextForeground)
                             }
                             .fullScreenCover(isPresented: $showCalculations, content: {
                                 
@@ -96,11 +94,11 @@ struct QuizAlertView: View {
             }) {
                 Image(systemName: "xmark.circle")
                     .font(.system(size: 40, weight: .bold))
-                    .foregroundColor(.black)
+                    .foregroundColor(.mainTextForeground)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(activeAlert == .second ? Color.init(Color.RGBColorSpace.sRGB, red: 50/255, green: 168/255, blue: 82/255, opacity: 1.0) : Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 111/255, blue: 111/255, opacity: 1.0))
+        .background(activeAlert == .second ? Color.correctAlertBackground : Color.wrongAlertBackground)
     }
     
     func getTitleText() -> some View {
@@ -109,13 +107,13 @@ struct QuizAlertView: View {
         return
             Text("Incorrecto")
                 .font(.system(size: 48, weight: .bold))
-                .foregroundColor(.black)
+                .foregroundColor(.mainTextForeground)
         
         case .second:
             return
                 Text("¡Correcto!")
                     .font(.system(size: 48, weight: .bold))
-                    .foregroundColor(.black)
+                    .foregroundColor(.mainTextForeground)
         }
     }
     
@@ -125,19 +123,19 @@ struct QuizAlertView: View {
         return
             Text("Avanza a la siguiente pregunta o intentalo de nuevo. ¡Tu puedes!")
                 .font(.system(size: 30))
-                .foregroundColor(.black)
+                .foregroundColor(.mainTextForeground)
         
         case .second:
             return
                 Text("Avanza a la siguiente pregunta")
                     .font(.system(size: 30))
-                    .foregroundColor(.black)
+                    .foregroundColor(.mainTextForeground)
             
         case .third:
             return
                 Text("Avanza para ver los cálculos de esta pregunta")
                     .font(.system(size: 30))
-                    .foregroundColor(.black)
+                    .foregroundColor(.mainTextForeground)
         }
     }
 }

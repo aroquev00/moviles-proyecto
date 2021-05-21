@@ -29,8 +29,8 @@ struct QuizSideMenuView: View {
                     }
                     .frame(width: sideGeo.size.width)
                     .padding(EdgeInsets(top: switchesVerticalPadding, leading: 0, bottom: switchesVerticalPadding, trailing: 0))
-                    .background(Color.init(Color.RGBColorSpace.sRGB, red: 59/255, green: 40/255, blue: 204/255, opacity: 1.0))
-                    .foregroundColor(.red)
+                    .background(Color.secondaryButtonBackground)
+                    .foregroundColor(.resetTextForeground)
                     
                 })
                 // MARK: Ruler switch
@@ -40,13 +40,13 @@ struct QuizSideMenuView: View {
                         .labelsHidden()
                     Spacer()
                     Image(systemName: "ruler.fill")
-                        .foregroundColor(Color.orange)
+                        .foregroundColor(.rulerFill)
                         .font(.largeTitle)
                     Spacer()
                 }
                 .frame(width: sideGeo.size.width)
                 .padding(EdgeInsets(top: switchesVerticalPadding, leading: 0, bottom: switchesVerticalPadding, trailing: 0))
-                .background(Color.init(Color.RGBColorSpace.sRGB, red: 59/255, green: 40/255, blue: 204/255, opacity: 1.0))
+                .background(Color.secondaryButtonBackground)
                 
                 // MARK: Check button
                 Button(action: {
@@ -59,8 +59,8 @@ struct QuizSideMenuView: View {
                         .tracking(2)
                         .frame(width: sideGeo.size.width)
                         .padding(EdgeInsets(top: switchesVerticalPadding, leading: 0, bottom: switchesVerticalPadding, trailing: 0))
-                        .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 153/255, blue: 20/255, opacity: 1.0))
-                        .foregroundColor(.white)
+                        .background(Color.mainButtonBackground)
+                        .foregroundColor(.mainTextForeground)
                 }
                 
                 Spacer()
@@ -71,7 +71,7 @@ struct QuizSideMenuView: View {
                     //Text(String(format: "%.2f", question.simulator.selectedSprite!.weight) + " kg")
                     Text(String(format: (floor(question.simulator.selectedSprite!.weight) == question.simulator.selectedSprite!.weight ? "%.0f" : "%.2f"), question.simulator.selectedSprite!.weight) + " kg")
                         .font(Font.custom("Bangers-Regular", size: sideGeo.size.width * 0.2))
-                        .foregroundColor(.orange)
+                        .foregroundColor(.selectedSpriteTextForeground)
                 }
             }
         }
