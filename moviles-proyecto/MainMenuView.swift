@@ -28,9 +28,9 @@ struct MainMenuView: View {
                                 .font(Font.custom("Bangers-Regular", size: geo.size.height * 0.5))
                                 .tracking(5)
                                 .frame(width: geo.size.width * 0.9, height: geo.size.height * 0.7)
-                                .background(Color(#colorLiteral(red: 0.231372549, green: 0.1568627451, blue: 0.8, alpha: 1)))
-                                .foregroundColor(.white)
-                                .border(Color.init(Color.RGBColorSpace.sRGB, red: 169/255, green: 186/255, blue: 204/255, opacity: 1.0), width: 9)
+                                .background(Color.mainTitleBackground)
+                                .foregroundColor(.mainTitleTextForeground)
+                                .border(Color.mainTitleBackgroundBorder, width: 9)
                             
                         }
                         .frame(width: geo.size.width, height: geo.size.height)
@@ -86,8 +86,8 @@ struct MainMenuView: View {
             .tracking(5)
             //.padding()
             .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.785)
-            .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 153/255, blue: 20/255, opacity: 1.0))
-            .foregroundColor(.white)
+            .background(Color.mainButtonBackground)
+            .foregroundColor(.mainButtonTextForeground)
             .cornerRadius(20)
     }
 }

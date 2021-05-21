@@ -48,9 +48,9 @@ struct CalculationsView: View {
                                     .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.06))
                                     .tracking(5)
                                     .frame(width: geo.size.width, height: geo.size.height)
-                                    .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                                    .foregroundColor(.mainTitleTextForeground)
                             }
-                            .background(Color(#colorLiteral(red: 0.231372549, green: 0.1568627451, blue: 0.8, alpha: 1)))
+                            .background(Color.mainTitleBackground)
                         }
                         .frame(width: mainGeo.size.width, height: mainGeo.size.height * 0.2)
                         
@@ -66,7 +66,7 @@ struct CalculationsView: View {
                             } else {
                                 Text("No se pusieron personajes del lado izquierdo")
                                     .font(.system(size: mainGeo.size.width * 0.025))
-                                    .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
+                                    .foregroundColor(.mainTextForeground)
                             }
                         }
                         
@@ -80,7 +80,7 @@ struct CalculationsView: View {
                             } else {
                                 Text("No se pusieron personajes del lado derecho")
                                     .font(.system(size: mainGeo.size.width * 0.025))
-                                    .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
+                                    .foregroundColor(.mainTextForeground)
                             }
                         }
                         
@@ -94,18 +94,18 @@ struct CalculationsView: View {
                                 Text("Torca izquierda = \(leftData.names!)")
                                     .font(.system(size: mainGeo.size.width * 0.025))
                                     .fontWeight(.bold)
-                                    .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
+                                    .foregroundColor(.mainTextForeground)
                                 if leftSpots.count > 1 {
                                     Text("Torca izquierda = \(leftData.torques!)")
                                         .font(.system(size: mainGeo.size.width * 0.025))
                                         .fontWeight(.bold)
-                                        .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
+                                        .foregroundColor(.mainTextForeground)
                                 }
                             }
                             Text("Torca izquierda = \(leftData.totalTorque)")
                                 .font(.system(size: mainGeo.size.width * 0.025))
                                 .fontWeight(.bold)
-                                .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
+                                .foregroundColor(.mainTextForeground)
                             
                             
                             // Right torque
@@ -114,33 +114,33 @@ struct CalculationsView: View {
                                 Text("Torca derecha = \(rightData.names!)")
                                     .font(.system(size: mainGeo.size.width * 0.025))
                                     .fontWeight(.bold)
-                                    .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
+                                    .foregroundColor(.mainTextForeground)
                                 if rightSpots.count > 1 {
                                     Text("Torca derecha = \(rightData.torques!)")
                                         .font(.system(size: mainGeo.size.width * 0.025))
-                                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                                        .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
+                                        .fontWeight(.bold)
+                                        .foregroundColor(.mainTextForeground)
                                     
                                 }
                             }
                             Text("Torca derecha = \(rightData.totalTorque)")
                                 .font(.system(size: mainGeo.size.width * 0.025))
                                 .fontWeight(.bold)
-                                .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
+                                .foregroundColor(.mainTextForeground)
         
                             // Final result
                             if simulator.totalTorque == 0 {
                                 Text("Como las torcas izquierda y derecha son iguales, la tabla se mantiene en equilibrio.")
                                     .font(.system(size: mainGeo.size.width * 0.025))
-                                    .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
+                                    .foregroundColor(.mainTextForeground)
                             } else if (simulator.totalTorque > 0) {
                                 Text("Como la torca derecha es mayor, se ladea hacia la derecha.")
                                     .font(.system(size: mainGeo.size.width * 0.025))
-                                    .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
+                                    .foregroundColor(.mainTextForeground)
                             } else {
                                 Text("Como la torca izquierda es mayor, se ladea hacia la izquierda.")
                                     .font(.system(size: mainGeo.size.width * 0.025))
-                                    .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
+                                    .foregroundColor(.mainTextForeground)
                             }
                             
                         }
@@ -186,7 +186,7 @@ struct CalculationsView: View {
             .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.04))
             .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.105)
             .background(foregroundColor)
-            .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+            .foregroundColor(.mainTitleTextForeground)
             .cornerRadius(10)
     }
 }
@@ -205,7 +205,7 @@ struct spriteDataView: View {
                 Text(spriteInfo2(spot: spot))
                 Text(spriteInfo3(spot: spot))
             }
-            .foregroundColor(.black)
+            .foregroundColor(.mainTitleTextForeground)
             Spacer()
             Image(uiImage: UIImage(named: spot.sprite!.imageURL)!)
                 .resizable()
