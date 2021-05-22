@@ -98,6 +98,7 @@ struct PredictionQuestionView: View {
             if incorrectNum != 3 { incorrectNum += 1 }
             if incorrectNum == 3 {
                 activeAlert = .third
+                question.solveQuestion()
             }
             else {
                 activeAlert = .first

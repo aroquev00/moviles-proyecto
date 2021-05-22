@@ -86,4 +86,12 @@ struct PlacingQuestion: QuizQuestion {
         print("Spot respuesta: ", answerSpotIndex)
         
     }
+    
+    mutating func solveQuestion() {
+        
+    }
+    
+    func getAnswer() -> String {
+        return "Placeholder"
+    }
 }

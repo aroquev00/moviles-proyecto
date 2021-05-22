@@ -96,4 +96,12 @@ struct MassEstimationQuestion: QuizQuestion {
         print("---Mass Estimation Question---")
         print("Lugar Incógnita: \(unknownWeightSpriteIndex), Sprite: \(simulator.spots[unknownWeightSpriteIndex].sprite!.name), Weight: \(simulator.spots[unknownWeightSpriteIndex].sprite!.weight)")
     }
+    
+    mutating func solveQuestion() {
+        
+    }
+    
+    func getAnswer() -> String {
+        return "Placeholder"
+    }
 }

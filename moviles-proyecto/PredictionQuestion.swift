@@ -75,4 +75,12 @@ struct PredictionQuestion: QuizQuestion {
             placeRandomSprite(side: .right) // Right side
         }
     }
+    
+    mutating func solveQuestion() {
+        
+    }
+    
+    func getAnswer() -> String {
+        return "Placeholder"
+    }
 }

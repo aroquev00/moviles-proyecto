@@ -27,6 +27,13 @@ struct QuizAlertView: View {
                     getSubtitleText(geo: mainGeo)
                         .multilineTextAlignment(.center)
                     Spacer()
+                    
+                    // MARK: - Solution
+                    if activeAlert == .third {
+                        Text(question.getAnswer())
+                        Spacer()
+                    }
+                    
                     // MARK: - Buttons
                     HStack(spacing: mainGeo.size.width * 0.05) {
                         //TryAgain
@@ -91,12 +98,12 @@ struct QuizAlertView: View {
         var returnText: Text
         switch activeAlert {
         case .first:
-            returnText = Text("Avanza a la siguiente pregunta o intentalo de nuevo.\("\n")¡Tú puedes!")
+            returnText = Text("Avanza a la siguiente pregunta o inténtalo de nuevo.\("\n")¡Tú puedes!")
         case .second:
-            returnText = Text("Avanza a la siguiente pregunta")
+            returnText = Text("¡Avanza a la siguiente pregunta!")
             
         case .third:
-            returnText = Text("Avanza para ver los cálculos de esta pregunta")
+            returnText = Text("¡Revisa la respuesta de esta pregunta y continúa!")
         }
         return returnText
             .font(.system(size: geo.size.width * 0.03))
