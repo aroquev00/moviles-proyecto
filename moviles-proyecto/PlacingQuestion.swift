@@ -90,6 +90,11 @@ struct PlacingQuestion: QuizQuestion {
     }
     
     mutating func solveQuestion() {
+        for (index, _) in simulator.spots.enumerated() {
+            if !simulator.spots[index].isLocked {
+                simulator.spots[index].sprite = nil
+            }
+        }
         simulator.spots[answerSpotIndex].sprite = simulator.selectedSprite
         simulator.columnsEnabled = false
     }
