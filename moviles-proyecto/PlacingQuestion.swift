@@ -10,12 +10,14 @@ struct PlacingQuestion: QuizQuestion {
     var simulator: Simulator
     var answerStatus: AnswerStatus
     var questionType: QuizQuestionType
+    var answerSpotIndex: Int
     
     init(level: Int) {
         self.level = level
         simulator = Simulator(quizMode: true)
         answerStatus = .unanswered
         questionType = .placing
+        answerSpotIndex = -1 // Placeholder value
         
         generateQuestion()
     }
@@ -59,7 +61,7 @@ struct PlacingQuestion: QuizQuestion {
         
         
         // Choose place that will be correct answer
-        var answerSpotIndex: Int
+        //var answerSpotIndex: Int
         if simulator.potentialTorque > 0 {
             // Must be one of the left
             answerSpotIndex = (availableSpots.filter { $0 <= 7 }).randomElement()!
@@ -88,10 +90,11 @@ struct PlacingQuestion: QuizQuestion {
     }
     
     mutating func solveQuestion() {
-        
+        simulator.spots[answerSpotIndex].sprite = simulator.selectedSprite
+        simulator.columnsEnabled = false
     }
     
     func getAnswer() -> String {
-        return "Placeholder"
+        return "\(simulator.selectedSprite!.name) va \(simulator.spots[answerSpotIndex].distance) m. a la \(simulator.spots[answerSpotIndex].side == .left ? "izquierda" : "derecha")."
     }
 }
