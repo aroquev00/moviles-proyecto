@@ -148,6 +148,7 @@ struct CalculationsView: View {
                                 let absResultingTorqueString = "\(String(format: "%.2f", abs(leftData.totalTorque - rightData.totalTorque))) Nm"
                                 
                                 VStack {
+                                    Text("Torca resultante = Torca izquierda - Torca derecha")
                                     Text("Torca resultante = \(leftData.totalTorqueString) - \(rightData.totalTorqueString)")
                                     Text("Torca resultante = \(resultingTorqueString)")
                                         .bold()
