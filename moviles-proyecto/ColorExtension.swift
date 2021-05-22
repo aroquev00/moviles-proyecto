@@ -37,6 +37,9 @@ extension Color {
     
     static var wrongAlertBackground = Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 111/255, blue: 111/255, opacity: 1.0)
     
+    static var wrongAlertTitleBackground = Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 153/255, blue: 20/255, opacity: 1.0)
+    static var correctAlertTitleBackground = Color.white
+    
     // MARK: - Miscellaneous
     static var rulerFill = Color.orange
     
