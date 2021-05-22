@@ -163,6 +163,8 @@ struct CalculationsView: View {
                                     VStack {
                                         Text("La torca resultante es \(resultingTorqueString)")
                                         Text("Como las torcas izquierda y derecha son iguales, la tabla se mantiene en equilibrio.")
+                                        Text("Hay equilibrio rotacional.")
+                                            .bold()
                                     }
                                     .font(.system(size: mainGeo.size.width * 0.025))
                                     .foregroundColor(.mainTextForeground)
