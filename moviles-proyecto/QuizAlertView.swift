@@ -31,6 +31,8 @@ struct QuizAlertView: View {
                     // MARK: - Solution
                     if activeAlert == .third {
                         Text(question.getAnswer())
+                            .font(.system(size: mainGeo.size.width * 0.03))
+                            .foregroundColor(.mainTextForeground)
                         Spacer()
                     }
                     
@@ -45,17 +47,8 @@ struct QuizAlertView: View {
                             }
                         }
                         
-                        //Next question
-                        if activeAlert == .first || activeAlert == .second {
-                            Button(action: {
-                                quiz.nextQuestion()
-                            }) {
-                                getButtonText(text: "Siguiente pregunta", geo: mainGeo)
-                            }
-                        }
-                        
                         //CalculationsView
-                        if activeAlert == .third {
+                        if activeAlert == .third || activeAlert == .second {
                             Button {
                                 // Show calc screen
                                 showCalculations = true
@@ -66,6 +59,13 @@ struct QuizAlertView: View {
                             .fullScreenCover(isPresented: $showCalculations, content: {
                                 CalculationsView(simulator: $question.simulator)
                             })
+                        }
+                        
+                        //Next question
+                        Button(action: {
+                            quiz.nextQuestion()
+                        }) {
+                            getButtonText(text: "Siguiente pregunta", geo: mainGeo)
                         }
                     }
                     Spacer()
