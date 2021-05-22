@@ -60,7 +60,7 @@ struct QuizSideMenuView: View {
                         .frame(width: sideGeo.size.width)
                         .padding(EdgeInsets(top: switchesVerticalPadding, leading: 0, bottom: switchesVerticalPadding, trailing: 0))
                         .background(Color.mainButtonBackground)
-                        .foregroundColor(.mainTextForeground)
+                        .foregroundColor(.mainButtonTextForeground)
                 }
                 
                 Spacer()
