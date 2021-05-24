@@ -197,5 +197,3 @@ struct CreditsView_Previews: PreviewProvider {
         }
     }
 }
-
-

@@ -75,4 +75,16 @@ struct PredictionQuestion: QuizQuestion {
             placeRandomSprite(side: .right) // Right side
         }
     }
+    
+    mutating func solveQuestion() {
+        self.simulator.columnsEnabled = false
+    }
+    
+    func getAnswer() -> String {
+        if simulator.totalTorque == 0 {
+            return "Hay equilibrio rotacional. La tabla se queda nivelada."
+        } else {
+            return "La tabla se ladea hacia la \(simulator.totalTorque > 0 ? "derecha" : "izquierda")."
+        }
+    }
 }

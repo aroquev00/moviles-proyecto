@@ -41,7 +41,7 @@ struct QuizSideMenuView: View {
                     Spacer()
                     Image(systemName: "ruler.fill")
                         .resizable()
-                        .foregroundColor(Color.mainButtonBackground)
+                        .foregroundColor(.rulerFill)
                         .font(.largeTitle)
                         .frame(width: sideGeo.size.width * 0.3, height: sideGeo.size.height * 0.05, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     Spacer()
@@ -65,7 +65,6 @@ struct QuizSideMenuView: View {
                         .foregroundColor(Color.mainTitleTextForeground)
                         .background(Color.mainButtonBackground)
                         .cornerRadius(10)
-                        
                 }
                 
                 Spacer()
@@ -84,13 +83,21 @@ struct QuizSideMenuView: View {
     
     func addPoints() {
         if question.answerStatus == .correct {
-            quiz.points += 1
+            switch incorrectNum {
+            case 0:
+                quiz.points += 3
+            case 1:
+                quiz.points += 2
+            default:
+                quiz.points += 1
+            }
             activeAlert = .second
         }
         else if question.answerStatus == .incorrect {
             if incorrectNum != 3 { incorrectNum += 1 }
             if incorrectNum == 3 {
                 activeAlert = .third
+                question.solveQuestion()
             }
             else {
                 activeAlert = .first

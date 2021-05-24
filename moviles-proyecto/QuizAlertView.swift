@@ -17,128 +17,107 @@ struct QuizAlertView: View {
     @State var showCalculations: Bool = false
     
     var body: some View {
-        ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)) {
-            //Structure: Text - Text - Hstack{Buttons}
-            VStack() {
-                //Message depends on activeAlert value
-                getTitleText()
-                Spacer()
-                getSubtitleText()
-                Spacer()
-                //Buttons
-                GeometryReader { geo in
-                    HStack {
+        GeometryReader { mainGeo in
+            ZStack {
+                //Structure: Text - Text - Hstack{Buttons}
+                VStack {
+                    //Message depends on activeAlert value
+                    getTitleText(geo: mainGeo)
+                    Spacer()
+                    getSubtitleText(geo: mainGeo)
+                        .multilineTextAlignment(.center)
+                    Spacer()
+                    
+                    // MARK: - Solution
+                    if activeAlert == .third {
+                        Text(question.getAnswer())
+                            .font(.system(size: mainGeo.size.width * 0.03))
+                            .foregroundColor(.mainTextForeground)
+                        Spacer()
+                    }
+                    
+                    // MARK: - Buttons
+                    HStack(spacing: mainGeo.size.width * 0.05) {
                         //TryAgain
                         if activeAlert == .first {
                             Button(action: {
                                 alertVisible.toggle()
                             }) {
-                                Text("Intentar de nuevo")
-                                    .font(.system(size: 30))
-                                    //.tracking(5)
-                                    .frame(height: 65, alignment: .center)
-                                    .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 255/255, blue: 255/255, opacity: 1.0))
-                                    .foregroundColor(.black)
-                                    .clipShape(Capsule())
-                                    .foregroundColor(.black)
-                            }
-                        }
-                        
-                        //Next question
-                        if activeAlert == .first || activeAlert == .second {
-                            Button(action: {
-                                quiz.nextQuestion()
-                            }) {
-                                Text("Siguiente pregunta")
-                                    .font(.system(size: 30))
-                                    //.tracking(5)
-                                    .frame(height: 65, alignment: .center)
-                                    .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 255/255, blue: 255/255, opacity: 1.0))
-                                    .foregroundColor(.black)
-                                    .clipShape(Capsule())
-                                    .foregroundColor(.black)
+                                getButtonText(text: "Intentar de nuevo", geo: mainGeo)
                             }
                         }
                         
                         //CalculationsView
-                        if activeAlert == .third {
+                        if activeAlert == .third || activeAlert == .second {
                             Button {
                                 // Show calc screen
                                 showCalculations = true
-                                
+                                question.solveQuestion()
                             } label: {
-                                Text("Ver cálculos")
-                                    .font(.system(size: 30))
-                                    //.tracking(5)
-                                    .frame(height: 65, alignment: .center)
-                                    .background(Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 255/255, blue: 255/255, opacity: 1.0))
-                                    .foregroundColor(.black)
-                                    .clipShape(Capsule())
-                                    .foregroundColor(.black)
+                                getButtonText(text: "Ver cálculos", geo: mainGeo)
                             }
                             .fullScreenCover(isPresented: $showCalculations, content: {
-                                
                                 CalculationsView(simulator: $question.simulator)
                             })
                         }
+                        
+                        //Next question
+                        Button(action: {
+                            quiz.nextQuestion()
+                        }) {
+                            getButtonText(text: "Siguiente pregunta", geo: mainGeo)
+                        }
                     }
-                    .frame(width: geo.size.width, height: geo.size.height/3, alignment: .center)
-                    .padding()
+                    Spacer()
                 }
+                .padding(.bottom, mainGeo.size.height * 0.05)
+                .padding(.horizontal, mainGeo.size.width * 0.05)
             }
-                .padding(.vertical, 25)
-                .padding(.horizontal, 30)
-                .cornerRadius(25)
-                
-            //Dismiss button
-            Button(action: {
-                alertVisible.toggle()
-            }) {
-                Image(systemName: "xmark.circle")
-                    .font(.system(size: 40, weight: .bold))
-                    .foregroundColor(.black)
-            }
+            .frame(width: mainGeo.size.width, height: mainGeo.size.height)
+            .background(activeAlert == .second ? Color.correctAlertBackground : Color.wrongAlertBackground)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(activeAlert == .second ? Color.init(Color.RGBColorSpace.sRGB, red: 50/255, green: 168/255, blue: 82/255, opacity: 1.0) : Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 111/255, blue: 111/255, opacity: 1.0))
     }
     
-    func getTitleText() -> some View {
+    func getTitleText(geo: GeometryProxy) -> some View {
+        var returnText: Text
         switch activeAlert {
         case .first, .third:
-        return
-            Text("Incorrecto")
-                .font(.system(size: 48, weight: .bold))
-                .foregroundColor(.black)
-        
+            returnText = Text("Incorrecto")
         case .second:
-            return
-                Text("¡Correcto!")
-                    .font(.system(size: 48, weight: .bold))
-                    .foregroundColor(.black)
+            returnText = Text("¡Correcto!")
         }
+        return returnText
+            .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.06))
+            .tracking(5)
+            .frame(width: geo.size.width)
+            .background(activeAlert == .second ? Color.correctAlertTitleBackground : Color.wrongAlertTitleBackground)
+            .foregroundColor(.mainTextForeground)
     }
     
-    func getSubtitleText() -> some View {
+    func getSubtitleText(geo: GeometryProxy) -> some View {
+        var returnText: Text
         switch activeAlert {
         case .first:
-        return
-            Text("Avanza a la siguiente pregunta o intentalo de nuevo. ¡Tu puedes!")
-                .font(.system(size: 30))
-                .foregroundColor(.black)
-        
+            returnText = Text("Avanza a la siguiente pregunta o inténtalo de nuevo.\("\n")¡Tú puedes!")
         case .second:
-            return
-                Text("Avanza a la siguiente pregunta")
-                    .font(.system(size: 30))
-                    .foregroundColor(.black)
+            returnText = Text("¡Avanza a la siguiente pregunta!")
             
         case .third:
-            return
-                Text("Avanza para ver los cálculos de esta pregunta")
-                    .font(.system(size: 30))
-                    .foregroundColor(.black)
+            returnText = Text("¡Revisa la respuesta de esta pregunta y continúa!")
         }
+        return returnText
+            .font(.system(size: geo.size.width * 0.03))
+            .foregroundColor(.mainTextForeground)
+    }
+    
+    func getButtonText(text: String, geo: GeometryProxy) -> some View {
+        Text(text)
+            .font(.system(size: geo.size.width * 0.035))
+            .padding()
+            .frame(width: geo.size.width * 0.4)
+            .background(Color.alertButtonBackground)
+            .foregroundColor(.mainTextForeground)
+            .clipShape(Capsule())
     }
 }
 

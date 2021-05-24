@@ -44,8 +44,7 @@ struct PredictionQuestionView: View {
                             Spacer()
                             Image(systemName: "ruler.fill")
                                 .resizable()
-                                .foregroundColor(Color.mainButtonBackground)
-                                .font(.largeTitle)
+                                .foregroundColor(.rulerFill)
                                 .frame(width: geo.size.width * 0.06, height: geo.size.height * 0.06, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                             Spacer()
                         }
@@ -60,14 +59,16 @@ struct PredictionQuestionView: View {
                             getPredictionButton(text: "Se inclina a la derecha", swivel: .right, image: Image("derecha"), size: geo.size.width * 0.19)
                         }
                     
-                    }.frame(width: geo.size.width * 0.19)
-                
+                    }
+                    .frame(width: geo.size.width * 0.19)
                 }
+                .blur(radius: alertVisible ? 3.0 : 0.0)
+                .disabled(alertVisible)
                 
                 //Triggers QuizAlertView when answer is checked
                 if alertVisible {
                     QuizAlertView(alertVisible: $alertVisible, activeAlert: $activeAlert, quiz: $quiz, question: $question.asQuizQuestion)
-                        .frame(width: geo.size.width/2, height: geo.size.height / 4, alignment: .center)
+                        .frame(width: geo.size.width * 0.75, height: geo.size.height * 0.75, alignment: .center)
                 }
             }
         }
@@ -91,13 +92,21 @@ struct PredictionQuestionView: View {
     func addPoints() {
         print(incorrectNum)
         if question.answerStatus == .correct {
-            quiz.points += 1
+            switch incorrectNum {
+            case 0:
+                quiz.points += 3
+            case 1:
+                quiz.points += 2
+            default:
+                quiz.points += 1
+            }
             activeAlert = .second
         }
         else if question.answerStatus == .incorrect {
             if incorrectNum != 3 { incorrectNum += 1 }
             if incorrectNum == 3 {
                 activeAlert = .third
+                question.solveQuestion()
             }
             else {
                 activeAlert = .first

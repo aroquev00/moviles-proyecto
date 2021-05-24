@@ -87,7 +87,6 @@ struct LabView: View {
                                 .padding(EdgeInsets(top: switchesVerticalPadding, leading: 0, bottom: switchesVerticalPadding, trailing: 0))
                                 .background(Color.resetButtonBackground)
                                 .cornerRadius(10)
-
                                 
                                 Spacer()
                                 // MARK: Ruler switch

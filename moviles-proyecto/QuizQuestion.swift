@@ -15,6 +15,8 @@ protocol QuizQuestion {
     init(level: Int)
     mutating func checkAnswer()
     mutating func generateQuestion()
+    mutating func solveQuestion()
+    func getAnswer() -> String
 }
 
 extension QuizQuestion {

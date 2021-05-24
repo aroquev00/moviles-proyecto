@@ -12,6 +12,8 @@ struct MassEstimationQuestion: QuizQuestion {
     var questionType: QuizQuestionType
     var questionSprite: Sprite?
     var answerWeight: Float
+    var answerSpotIndex: Int
+    var unknownWeightSpotIndex: Int
     
     init(level: Int) {
         self.level = level
@@ -19,6 +21,9 @@ struct MassEstimationQuestion: QuizQuestion {
         answerStatus = .unanswered
         questionType = .massEstimation
         answerWeight = 0 // Placeholder value
+        answerSpotIndex = -1 // Placeholder value
+        unknownWeightSpotIndex = -1 // Placeholder value
+        
         generateQuestion()
     }
     
@@ -61,16 +66,16 @@ struct MassEstimationQuestion: QuizQuestion {
         }
 
         // Choose place where user must place the sprite to balance the tabla
-        var answerSpot: Int
+        //var answerSpotIndex: Int
         if simulator.potentialTorque > 0 {
             // Must be one of the left
-            answerSpot = (availableSpots.filter { $0 <= 7 }).randomElement()!
+            answerSpotIndex = (availableSpots.filter { $0 <= 7 }).randomElement()!
         } else {
-            answerSpot = (availableSpots.filter { $0 > 7 }).randomElement()!
+            answerSpotIndex = (availableSpots.filter { $0 > 7 }).randomElement()!
         }
         
         // Calculate the necessary weight that the sprite must have to balance tabla in that spot
-        let spriteWeight = abs(simulator.potentialTorque) / simulator.spots[answerSpot].distance
+        let spriteWeight = abs(simulator.potentialTorque) / simulator.spots[answerSpotIndex].distance
         
         // Now calculate random sprite to place
         switch spriteWeight {
@@ -85,15 +90,29 @@ struct MassEstimationQuestion: QuizQuestion {
         simulator.selectedSprite!.weight = spriteWeight
         
         // Now choose whose sprite's weight the user must find
-        let unknownWeightSpriteIndex = usedSpots.randomElement()!
+        unknownWeightSpotIndex = usedSpots.randomElement()!
         
-        simulator.spots[unknownWeightSpriteIndex].showWeight = false
+        simulator.spots[unknownWeightSpotIndex].showWeight = false
         
-        self.questionSprite = simulator.spots[unknownWeightSpriteIndex].sprite
+        self.questionSprite = simulator.spots[unknownWeightSpotIndex].sprite
 
         simulator.columnsEnabled = false // Start simulation
         
         print("---Mass Estimation Question---")
-        print("Lugar Incógnita: \(unknownWeightSpriteIndex), Sprite: \(simulator.spots[unknownWeightSpriteIndex].sprite!.name), Weight: \(simulator.spots[unknownWeightSpriteIndex].sprite!.weight)")
+        print("Lugar Incógnita: \(unknownWeightSpotIndex), Sprite: \(simulator.spots[unknownWeightSpotIndex].sprite!.name), Weight: \(simulator.spots[unknownWeightSpotIndex].sprite!.weight)")
+    }
+    
+    mutating func solveQuestion() {
+        for (index, _) in simulator.spots.enumerated() {
+            if !simulator.spots[index].isLocked {
+                simulator.spots[index].sprite = nil
+            }
+        }
+        simulator.spots[unknownWeightSpotIndex].showWeight = true
+        simulator.spots[answerSpotIndex].sprite = simulator.selectedSprite
+    }
+    
+    func getAnswer() -> String {
+        return "\(questionSprite!.name) pesa \(questionSprite!.weight) kg."
     }
 }
