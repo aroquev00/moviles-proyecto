@@ -52,7 +52,7 @@ struct QuizAlertView: View {
                             Button {
                                 // Show calc screen
                                 showCalculations = true
-                                
+                                question.solveQuestion()
                             } label: {
                                 getButtonText(text: "Ver cálculos", geo: mainGeo)
                             }
