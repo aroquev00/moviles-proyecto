@@ -12,7 +12,7 @@ struct SpriteFactory {
         Sprite(name: "Steve", weight: 30, height: 1, weightCategory: .middleweight, imageURL: "steve"),
         Sprite(name: "Master Chief", weight: 80, height: 1.0, weightCategory: .heavyweight, imageURL: "masterchief"),
         Sprite(name: "Delmont Walker", weight: 75, height: 0.7, weightCategory: .heavyweight, imageURL: "Delmont Walker"),
-        Sprite(name: "Hero of Oakvale Child", weight: 15, height: 0.6, weightCategory: .lightweight, imageURL: "Hero of Oakvale Child"),
+        Sprite(name: "Heroe de Oakvale", weight: 15, height: 0.6, weightCategory: .lightweight, imageURL: "Hero of Oakvale Child"),
         Sprite(name: "Horstachio", weight: 40, height: 0.7, weightCategory: .middleweight, imageURL: "Horstachio"),
         Sprite(name: "Inquisidor", weight: 80, height: 0.6, weightCategory: .heavyweight, imageURL: "Inquisidor"),
         Sprite(name: "James Fenix", weight: 75, height: 0.7, weightCategory: .heavyweight, imageURL: "James Fenix"),

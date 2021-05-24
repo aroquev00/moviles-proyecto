@@ -17,4 +17,9 @@ extension Color {
     static var resetButtonBackground = Color(#colorLiteral(red: 0.231372549, green: 0.1568627451, blue: 0.8, alpha: 1))
     static var mainTextForeground = Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
     static var whiteBackground = Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1))
+    static var secundaryBackground = Color(#colorLiteral(red: 0.6784313725, green: 0.4784313725, blue: 0.2117647059, alpha: 1))
+    static var pointsBackground = Color(#colorLiteral(red: 0.1058823529, green: 0.7019607843, blue: 0.1725490196, alpha: 1))
+    static var quizButtonBackground = Color(#colorLiteral(red: 0.3921568627, green: 0.5921568627, blue: 0.1921568627, alpha: 1))
+    static var quizReturnButtonBackground = Color(#colorLiteral(red: 0.8784313725, green: 0.4431372549, blue: 0.3882352941, alpha: 1))
+
 }

@@ -23,6 +23,12 @@ struct PredictionQuestionView: View {
 
                     VStack {
                         Text("¿Qué pasará?")
+                            .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.05))
+                            .tracking(1)
+                            .frame(width: geo.size.width * 0.3, height: geo.size.width * 0.1)
+                            .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                            .background(Color.mainTitleBackground)
+                            .border(Color.mainTitleBackgroundBorder, width: 7)
                         SimulatorView(simulator: $question.simulator)
                     }
                     .frame(width: geo.size.width * 0.8)
@@ -37,11 +43,10 @@ struct PredictionQuestionView: View {
                                 .labelsHidden()
                             Spacer()
                             Image(systemName: "ruler.fill")
+                                .resizable()
                                 .foregroundColor(Color.mainButtonBackground)
-                                .background(
-                                    Color.mainTitleTextForeground
-                                        .scaleEffect(CGSize(width: 0.7, height: 0.6)))
                                 .font(.largeTitle)
+                                .frame(width: geo.size.width * 0.06, height: geo.size.height * 0.06, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                             Spacer()
                         }
                         .frame(width: geo.size.width * 0.19)

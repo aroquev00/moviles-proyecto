@@ -97,11 +97,10 @@ struct LabView: View {
                                         .labelsHidden()
                                     Spacer()
                                     Image(systemName: "ruler.fill")
-                                        .foregroundColor(Color.orange)
-                                        .background(
-                                            Color.white
-                                                .scaleEffect(CGSize(width: 0.7, height: 0.6)))
+                                        .resizable()
+                                        .foregroundColor(Color.mainButtonBackground)
                                         .font(.largeTitle)
+                                        .frame(width: geo.size.width * 0.05, height: geo.size.height * 0.03, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                                     Spacer()
                                 }
                                 .frame(width: sideGeo.size.width)

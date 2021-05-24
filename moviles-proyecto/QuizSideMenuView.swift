@@ -40,11 +40,10 @@ struct QuizSideMenuView: View {
                         .labelsHidden()
                     Spacer()
                     Image(systemName: "ruler.fill")
+                        .resizable()
                         .foregroundColor(Color.mainButtonBackground)
-                        .background(
-                            Color.mainTitleTextForeground
-                                .scaleEffect(CGSize(width: 0.7, height: 0.6)))
                         .font(.largeTitle)
+                        .frame(width: sideGeo.size.width * 0.3, height: sideGeo.size.height * 0.05, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     Spacer()
                 }
                 .frame(width: sideGeo.size.width)
@@ -77,7 +76,7 @@ struct QuizSideMenuView: View {
                     //Text(String(format: "%.2f", question.simulator.selectedSprite!.weight) + " kg")
                     Text(String(format: (floor(question.simulator.selectedSprite!.weight) == question.simulator.selectedSprite!.weight ? "%.0f" : "%.2f"), question.simulator.selectedSprite!.weight) + " kg")
                         .font(Font.custom("Bangers-Regular", size: sideGeo.size.width * 0.2))
-                        .foregroundColor(.orange)
+                        .foregroundColor(Color(#colorLiteral(red: 0.5764705882, green: 0.0862745098, blue: 0.1294117647, alpha: 1)))
                 }
             }
         }
