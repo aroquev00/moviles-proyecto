@@ -60,7 +60,7 @@ struct QuizSideMenuView: View {
                         .frame(width: sideGeo.size.width)
                         .padding(EdgeInsets(top: switchesVerticalPadding, leading: 0, bottom: switchesVerticalPadding, trailing: 0))
                         .background(Color.mainButtonBackground)
-                        .foregroundColor(.mainTextForeground)
+                        .foregroundColor(.mainButtonTextForeground)
                 }
                 
                 Spacer()
@@ -79,13 +79,21 @@ struct QuizSideMenuView: View {
     
     func addPoints() {
         if question.answerStatus == .correct {
-            quiz.points += 1
+            switch incorrectNum {
+            case 0:
+                quiz.points += 3
+            case 1:
+                quiz.points += 2
+            default:
+                quiz.points += 1
+            }
             activeAlert = .second
         }
         else if question.answerStatus == .incorrect {
             if incorrectNum != 3 { incorrectNum += 1 }
             if incorrectNum == 3 {
                 activeAlert = .third
+                question.solveQuestion()
             }
             else {
                 activeAlert = .first

@@ -32,11 +32,13 @@ struct PlacingQuestionView: View {
                     }, incorrectNum: $incorrectNum, alertVisible: $alertVisible, activeAlert: $activeAlert)
                         .frame(width: geo.size.width * 0.19)
                 }
+                .blur(radius: alertVisible ? 3.0 : 0.0)
+                .disabled(alertVisible)
                 
                 //Triggers QuizAlertView when answer is checked
                 if alertVisible {
                     QuizAlertView(alertVisible: $alertVisible, activeAlert: $activeAlert, quiz: $quiz, question: $question.asQuizQuestion)
-                        .frame(width: geo.size.width/2, height: geo.size.height / 4, alignment: .center)
+                        .frame(width: geo.size.width * 0.75, height: geo.size.height * 0.75, alignment: .center)
                 }
                 
             }
