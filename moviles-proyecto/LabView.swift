@@ -38,27 +38,31 @@ struct LabView: View {
                             let switchesVerticalPadding: CGFloat = sideGeo.size.height * 0.03
                             VStack {
                                 Spacer()
-                                HStack {
-                                    // Buttons
-                                    Spacer()
-                                    Button {
-                                        // Return to home
-                                        presentationMode.wrappedValue.dismiss()
-                                    } label: {
-                                        Image(systemName: "house.fill")
-                                            .foregroundColor(.black)
-                                            .font(.largeTitle)
+                                ZStack {
+                                    Image("blue").resizable()
+                                            .frame(width: geo.size.width * 0.19)
+                                    HStack {
+                                        // Buttons
+                                        Spacer()
+                                        Button {
+                                            // Return to home
+                                            presentationMode.wrappedValue.dismiss()
+                                        } label: {
+                                            Image(systemName: "house.fill")
+                                                .foregroundColor(.white)
+                                                .font(.largeTitle)
+                                        }
+                                        Spacer()
+                                        Button {
+                                            // Reset simulator
+                                            simulator.reset()
+                                        } label: {
+                                            Image(systemName: "trash")
+                                                .foregroundColor(Color.red)
+                                                .font(.largeTitle)
+                                        }
+                                        Spacer()
                                     }
-                                    Spacer()
-                                    Button {
-                                        // Reset simulator
-                                        simulator.reset()
-                                    } label: {
-                                        Image(systemName: "trash")
-                                            .foregroundColor(Color.red)
-                                            .font(.largeTitle)
-                                    }
-                                    Spacer()
                                 }
                                 Spacer()
                                 // MARK: Columns switch
@@ -81,7 +85,8 @@ struct LabView: View {
                                 }
                                 .frame(width: sideGeo.size.width, height: sideGeo.size.height * 0.15)
                                 .padding(EdgeInsets(top: switchesVerticalPadding, leading: 0, bottom: switchesVerticalPadding, trailing: 0))
-                                .background(Color.secondaryButtonBackground)
+                                .background(Color.resetButtonBackground)
+                                .cornerRadius(10)
                                 
                                 Spacer()
                                 // MARK: Ruler switch
@@ -91,16 +96,17 @@ struct LabView: View {
                                         .labelsHidden()
                                     Spacer()
                                     Image(systemName: "ruler.fill")
-                                        .foregroundColor(Color.orange)
-                                        .background(
-                                            Color.white
-                                                .scaleEffect(CGSize(width: 0.7, height: 0.6)))
+                                        .resizable()
+                                        .foregroundColor(Color.mainButtonBackground)
                                         .font(.largeTitle)
+                                        .frame(width: geo.size.width * 0.05, height: geo.size.height * 0.03, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                                     Spacer()
                                 }
                                 .frame(width: sideGeo.size.width)
                                 .padding(EdgeInsets(top: switchesVerticalPadding, leading: 0, bottom: switchesVerticalPadding, trailing: 0))
-                                .background(Color.secondaryButtonBackground)
+                                .background(Color.resetButtonBackground)
+                                .cornerRadius(10)
+
                                 
                                 Spacer()
                                 Button {
@@ -108,7 +114,12 @@ struct LabView: View {
                                     showCalculations = true
                                     
                                 } label: {
-                                    Text("Ver cálculos ⚙️")
+                                    ZStack{
+                                        Image("blue").resizable()
+                                            .frame(width: geo.size.width * 0.19)
+                                        Text("Cálculos ⚙️").font(Font.custom("Bangers-Regular", size: geo.size.height * 0.07)).foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                                    }
+                                    
                                 }
                                 .fullScreenCover(isPresented: $showCalculations, content: {
                                     CalculationsView(simulator: $simulator)
@@ -120,30 +131,34 @@ struct LabView: View {
                     }
                     .frame(height: geo.size.height / 1.5)
                     GeometryReader { spriteRowGeo in
-                        ScrollView(.horizontal) {
-                            HStack(alignment: .bottom, spacing: 20) {
-                                ForEach(0..<spritesRow.count) { i in
-                                    Button {
-                                        if indexSelectedSprite != i {
-                                            // User just selected this sprite
-                                            simulator.selectedSprite = spritesRow[i]
-                                            indexSelectedSprite = i
-                                        } else {
-                                            // User is toggling this sprite
-                                            indexSelectedSprite = nil
-                                            simulator.selectedSprite = nil
+                        ZStack {
+                            Image("green").resizable()
+                                .frame(width: geo.size.width)
+                            ScrollView(.horizontal) {
+                                HStack(alignment: .bottom, spacing: 20) {
+                                    ForEach(0..<spritesRow.count) { i in
+                                        Button {
+                                            if indexSelectedSprite != i {
+                                                // User just selected this sprite
+                                                simulator.selectedSprite = spritesRow[i]
+                                                indexSelectedSprite = i
+                                            } else {
+                                                // User is toggling this sprite
+                                                indexSelectedSprite = nil
+                                                simulator.selectedSprite = nil
+                                            }
+                                        } label: {
+                                            VStack(spacing: 0.0) {
+                                                Image(uiImage: UIImage(named: spritesRow[i].imageURL)!)
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(height: spriteRowGeo.size.height * 0.9 * getSpriteHeight(sprite: spritesRow[i]))
+                                                Text(String(format: (floor(spritesRow[i].weight) == spritesRow[i].weight ? "%.0f" : "%.2f"), spritesRow[i].weight) + " kg")
+                                                    .font(Font.custom("Bangers-Regular", size: spriteRowGeo.size.height * 0.10))
+                                                    .foregroundColor(.white)
+                                            }
+                                            .background(Color.red.opacity(indexSelectedSprite == i ? 1.0 : 0.0)) // Background is red if sprite is selected to be placed in simulator
                                         }
-                                    } label: {
-                                        VStack(spacing: 0.0) {
-                                            Image(uiImage: UIImage(named: spritesRow[i].imageURL)!)
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(height: spriteRowGeo.size.height * 0.9 * getSpriteHeight(sprite: spritesRow[i]))
-                                            Text(String(format: (floor(spritesRow[i].weight) == spritesRow[i].weight ? "%.0f" : "%.2f"), spritesRow[i].weight) + " kg")
-                                                .font(Font.custom("Bangers-Regular", size: spriteRowGeo.size.height * 0.10))
-                                                .foregroundColor(.orange)
-                                        }
-                                        .background(Color.red.opacity(indexSelectedSprite == i ? 1.0 : 0.0)) // Background is red if sprite is selected to be placed in simulator
                                     }
                                 }
                             }

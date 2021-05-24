@@ -19,11 +19,16 @@ struct PredictionQuestionView: View {
         GeometryReader { geo in
 
             ZStack {
-
                 HStack(spacing: 0.0) {
 
                     VStack {
                         Text("¿Qué pasará?")
+                            .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.05))
+                            .tracking(1)
+                            .frame(width: geo.size.width * 0.3, height: geo.size.width * 0.1)
+                            .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                            .background(Color.mainTitleBackground)
+                            .border(Color.mainTitleBackgroundBorder, width: 7)
                         SimulatorView(simulator: $question.simulator)
                     }
                     .frame(width: geo.size.width * 0.8)
@@ -38,13 +43,15 @@ struct PredictionQuestionView: View {
                                 .labelsHidden()
                             Spacer()
                             Image(systemName: "ruler.fill")
+                                .resizable()
                                 .foregroundColor(.rulerFill)
-                                .font(.largeTitle)
+                                .frame(width: geo.size.width * 0.06, height: geo.size.height * 0.06, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                             Spacer()
                         }
                         .frame(width: geo.size.width * 0.19)
                         .padding(EdgeInsets(top: switchesVerticalPadding, leading: 0, bottom: switchesVerticalPadding, trailing: 0))
-                        .background(Color.secondaryButtonBackground)
+                        .background(Color.resetButtonBackground)
+                        .cornerRadius(10)
                     
                         VStack {
                             getPredictionButton(text: "Se inclina a la izquierda", swivel: .left, image: Image("izquierda"), size: geo.size.width * 0.19)
@@ -78,6 +85,7 @@ struct PredictionQuestionView: View {
                     image.resizable()
                         .scaledToFit().frame(width: size)
                 }
+                .cornerRadius(10)
             })
         }
     

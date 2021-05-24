@@ -16,8 +16,7 @@ struct QuizMenuView: View {
     var body: some View {
         GeometryReader { mainGeo in
             ZStack {
-                Color.white
-                    //.resizable()
+                Color.whiteBackground
                     .edgesIgnoringSafeArea(.all)
                 VStack {
                     Text("¡Elige un nivel!")
