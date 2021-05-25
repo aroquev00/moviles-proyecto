@@ -98,6 +98,8 @@ struct MassEstimationQuestion: QuizQuestion {
 
         simulator.columnsEnabled = false // Start simulation
         
+        simulator.rulerEnabled = true
+        
         print("---Mass Estimation Question---")
         print("Lugar Incógnita: \(unknownWeightSpotIndex), Sprite: \(simulator.spots[unknownWeightSpotIndex].sprite!.name), Weight: \(simulator.spots[unknownWeightSpotIndex].sprite!.weight)")
     }

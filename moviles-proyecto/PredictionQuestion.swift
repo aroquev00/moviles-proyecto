@@ -74,6 +74,8 @@ struct PredictionQuestion: QuizQuestion {
             placeRandomSprite(side: .left) // Left side
             placeRandomSprite(side: .right) // Right side
         }
+        
+        simulator.rulerEnabled = true
     }
     
     mutating func solveQuestion() {

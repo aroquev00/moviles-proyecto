@@ -84,6 +84,8 @@ struct PlacingQuestion: QuizQuestion {
         
         simulator.selectedSprite!.weight = spriteWeight
         
+        simulator.rulerEnabled = true
+        
         print("---Placing Question---")
         print("Spot respuesta: ", answerSpotIndex)
         
