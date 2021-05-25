@@ -49,8 +49,10 @@ struct LabView: View {
                                             presentationMode.wrappedValue.dismiss()
                                         } label: {
                                             Image(systemName: "house.fill")
+                                                .resizable()
                                                 .foregroundColor(.white)
                                                 .font(.largeTitle)
+                                                .frame(width: sideGeo.size.width * 0.35, height: sideGeo.size.height * 0.15)
                                         }
                                         Spacer()
                                         Button {
@@ -58,13 +60,17 @@ struct LabView: View {
                                             simulator.reset()
                                         } label: {
                                             Image(systemName: "trash")
+                                                .resizable()
                                                 .foregroundColor(Color.red)
                                                 .font(.largeTitle)
+                                                .frame(width: sideGeo.size.width * 0.25, height: sideGeo.size.height * 0.15)
                                         }
                                         Spacer()
                                     }
-                                }.frame(width: geo.size.width * 0.19, height: geo.size.height * 0.15)
-                                .background(Color(#colorLiteral(red: 0.231372549, green: 0.1568627451, blue: 0.8, alpha: 1)))
+                                    .frame(width: sideGeo.size.width, height: sideGeo.size.height * 0.2)
+                                    .background(Color(#colorLiteral(red: 0.231372549, green: 0.1568627451, blue: 0.8, alpha: 1)))
+                                    .cornerRadius(10)
+                                }
                                 
                                 Spacer()
                                 // MARK: Columns switch
@@ -117,9 +123,10 @@ struct LabView: View {
                                     
                                 } label: {
                                     ZStack{
-                                        Text("Cálculos ⚙️").font(Font.custom("Bangers-Regular", size: geo.size.height * 0.07)).foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                                        Text("Cálculos ⚙️").font(Font.custom("Bangers-Regular", size: geo.size.width * 0.035)).foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
                                     }.frame(width: geo.size.width * 0.19, height: geo.size.height * 0.15)
                                     .background(Color(#colorLiteral(red: 0.231372549, green: 0.1568627451, blue: 0.8, alpha: 1)))
+                                    .cornerRadius(10)
                                 }
                                 .fullScreenCover(isPresented: $showCalculations, content: {
                                     CalculationsView(simulator: $simulator)

@@ -28,8 +28,9 @@ struct MassEstimationQuestionView: View {
                             .background(Color.mainTitleBackground)
                             .border(Color.mainTitleBackgroundBorder, width: 7)
                         SimulatorView(simulator: $question.simulator)
-                        Text(String(format: "%.0f", question.answerWeight))
+                        Text("La masa de \(question.questionSprite!.name) es de \(String(format: "%.0f", question.answerWeight))")
                             .font(.system(size: geo.size.width * 0.03))
+                            .foregroundColor(Color.mainTextForeground)
                         Slider(value: $question.answerWeight, in: 0...100, step: 1.0, minimumValueLabel: Text("0"), maximumValueLabel: Text("100")) {
                             Text("Masa de \(question.questionSprite!.name)")
                         }
