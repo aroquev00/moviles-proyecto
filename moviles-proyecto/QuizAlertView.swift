@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct QuizAlertView: View {
+    @Environment(\.presentationMode) var presentationMode
     
     @Binding var alertVisible: Bool
     @Binding var activeAlert: ActiveAlert
@@ -62,11 +63,19 @@ struct QuizAlertView: View {
                         }
                         
                         //Next question
-                        Button(action: {
-                            quiz.nextQuestion()
-                        }) {
-                            getButtonText(text: "Siguiente pregunta", geo: mainGeo)
-                        }
+                        if quiz.currentQuestion == quiz.questions.count - 1 {
+                            Button(action: {
+                                presentationMode.wrappedValue.dismiss()
+                            }) {
+                                getButtonText(text: "Terminar Quiz", geo: mainGeo)
+                            }
+                        } else {
+                            Button(action: {
+                                quiz.nextQuestion()
+                            }) {
+                                getButtonText(text: "Siguiente pregunta", geo: mainGeo)
+                            }
+                        }      
                     }
                     Spacer()
                 }
