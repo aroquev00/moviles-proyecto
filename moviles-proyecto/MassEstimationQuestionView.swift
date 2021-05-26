@@ -21,9 +21,9 @@ struct MassEstimationQuestionView: View {
                 HStack(spacing: 0.0) {
                     VStack {
                         Text("¿Cuál es la masa de \(question.questionSprite!.name)?")
-                            .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.03))
+                            .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.02))
                             .tracking(1)
-                            .frame(width: geo.size.width * 0.5, height: geo.size.width * 0.1)
+                            .frame(width: geo.size.width * 0.5, height: geo.size.height * 0.1)
                             .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
                             .background(Color.mainTitleBackground)
                             .border(Color.mainTitleBackgroundBorder, width: 7)

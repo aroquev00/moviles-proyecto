@@ -23,9 +23,9 @@ struct PredictionQuestionView: View {
 
                     VStack {
                         Text("¿Qué pasará?")
-                            .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.05))
+                            .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.025))
                             .tracking(1)
-                            .frame(width: geo.size.width * 0.3, height: geo.size.width * 0.1)
+                            .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.1)
                             .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
                             .background(Color.mainTitleBackground)
                             .border(Color.mainTitleBackgroundBorder, width: 7)
