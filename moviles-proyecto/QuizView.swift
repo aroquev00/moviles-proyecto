@@ -12,6 +12,7 @@ struct QuizView: View {
     
     @Binding var level: Int
     @State var quiz: Quiz = Quiz(level: 0) // Placeholder value at start
+    @State var showHelp = false
     
     var body: some View {
         ZStack {
@@ -33,6 +34,24 @@ struct QuizView: View {
                     }
                     GeometryReader { geo in
                         HStack(spacing: 75) {
+                            Button {
+                                // Show help screen
+                                showHelp = true
+                                
+                            } label: {
+                                Text("?")
+                                    .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.03))
+                                    .tracking(1)
+                                    .frame(width: geo.size.width * 0.035, height: geo.size.height)
+                                    .background(Color.mainButtonBackground)
+                                    .foregroundColor(.mainButtonTextForeground)
+                                    .cornerRadius(20)
+                                
+                            }
+                            .fullScreenCover(isPresented: $showHelp, content: {
+                                QuizHelpView(question: $quiz.questions[quiz.currentQuestion]
+                            )})
+                            
                             Text("Nivel: \(quiz.level)")
                                 .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.03))
                                 .tracking(1)

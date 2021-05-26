@@ -39,6 +39,7 @@
 		91F54E23262C9ED600D1FF8A /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F54E22262C9ED600D1FF8A /* QuizView.swift */; };
 		91F54E26262CC52F00D1FF8A /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F54E25262CC52F00D1FF8A /* Quiz.swift */; };
 		CB033EE7264F828F00DE5652 /* QuizAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB033EE6264F828F00DE5652 /* QuizAlertView.swift */; };
+		CB3893EB265DD59900D31978 /* QuizHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3893EA265DD59900D31978 /* QuizHelpView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		91F54E22262C9ED600D1FF8A /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 		91F54E25262CC52F00D1FF8A /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		CB033EE6264F828F00DE5652 /* QuizAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizAlertView.swift; sourceTree = "<group>"; };
+		CB3893EA265DD59900D31978 /* QuizHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizHelpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 				CB033EE6264F828F00DE5652 /* QuizAlertView.swift */,
 				91D98B242652264F0047674D /* ActiveAlert.swift */,
 				9100844C261E8D8000BDC5AD /* CalculationsView.swift */,
+				CB3893EA265DD59900D31978 /* QuizHelpView.swift */,
 				914704BB260BA067009F1DC2 /* CreditsView.swift */,
 				91D98B222651CB810047674D /* ColorExtension.swift */,
 				9190D92A26053F2600C099A3 /* Assets.xcassets */,
@@ -225,6 +228,7 @@
 			files = (
 				918050BE2648CCF70093D913 /* Side.swift in Sources */,
 				9107F1FA262CEB3B0009EA14 /* MassEstimationQuestion.swift in Sources */,
+				CB3893EB265DD59900D31978 /* QuizHelpView.swift in Sources */,
 				9107F1F7262CEB040009EA14 /* PlacingQuestion.swift in Sources */,
 				9100844D261E8D8000BDC5AD /* CalculationsView.swift in Sources */,
 				9107F200262CEDF80009EA14 /* PlacingQuestionView.swift in Sources */,
