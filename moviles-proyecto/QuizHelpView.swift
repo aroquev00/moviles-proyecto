@@ -57,14 +57,17 @@ struct QuizHelpView: View {
                         HStack {
                             if question.questionType == .prediction {
                                 Text(messages[0])
+                                    .font(.system(size: mainGeo.size.width * 0.03))
                                     .foregroundColor(Color.mainTextForeground)
                             }
                             else if question.questionType == .massEstimation {
                                 Text(messages[1])
+                                    .font(.system(size: mainGeo.size.width * 0.03))
                                     .foregroundColor(Color.mainTextForeground)
                             }
                             else {
                                 Text(messages[2])
+                                    .font(.system(size: mainGeo.size.width * 0.03))
                                     .foregroundColor(Color.mainTextForeground)
                             }
                         }
