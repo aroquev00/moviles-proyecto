@@ -51,7 +51,7 @@ struct LabView: View {
                                             Image(systemName: "house.fill")
                                                 .resizable()
                                                 .foregroundColor(.white)
-                                                .font(.largeTitle)
+                                                .aspectRatio(contentMode: .fit)
                                                 .frame(width: sideGeo.size.width * 0.35, height: sideGeo.size.height * 0.15)
                                         }
                                         Spacer()
@@ -62,8 +62,8 @@ struct LabView: View {
                                             Image(systemName: "trash")
                                                 .resizable()
                                                 .foregroundColor(Color.red)
-                                                .font(.largeTitle)
-                                                .frame(width: sideGeo.size.width * 0.25, height: sideGeo.size.height * 0.15)
+                                                .aspectRatio(contentMode: .fit)
+                                                .frame(width: sideGeo.size.width * 0.3, height: sideGeo.size.height * 0.15)
                                         }
                                         Spacer()
                                     }
