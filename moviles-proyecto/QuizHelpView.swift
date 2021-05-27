@@ -12,7 +12,7 @@ struct QuizHelpView: View {
     
     @Binding var question: QuizQuestion
     
-    //Array with the 3 possible message outputs
+    // Array with the 3 possible message outputs
     let messages = ["Calcula la torca resultante según los personajes que están en la tabla y presiona el botón que represente cómo quedaría si se quitan los soportes.",
                     "Primero, balancea la tabla colocando al personaje que se te da en el lugar que le corresponda.\nDespúes, realiza los cálculos necesarios para despejar la masa del personaje especificado.\nReporta el resultado utilizando el slider que se encuentra debajo de la tabla.",
                     "Haz los cálculos necesarios para saber en qué posición debe ir el personaje indicado para que la tabla esté balanceada si se quitan los soportes.\nEs decir, que la torca resultante sea 0."
@@ -21,14 +21,14 @@ struct QuizHelpView: View {
     var body: some View {
         GeometryReader { mainGeo in
             ZStack {
-                //Background color
+                // Background color
                 Color.quizHelpBackground
                     .edgesIgnoringSafeArea(.all)
                 
                 ScrollView {
                     VStack {
-                        //Bar at the top
-                        HStack() {
+                        // Bar at the top
+                        HStack {
                             Spacer()
                                 .frame(width: mainGeo.size.width * 0.02)
                             //Back button
@@ -42,7 +42,7 @@ struct QuizHelpView: View {
                                     .foregroundColor(Color.mainButtonBackground)
                             }
                             Spacer()
-                            //Title text
+                            // Title text
                             Text("Ayuda")
                                 .font(Font.custom("Bangers-Regular", size: mainGeo.size.width * 0.06))
                                 .tracking(5)
@@ -52,33 +52,31 @@ struct QuizHelpView: View {
                         }
                         .frame(width: mainGeo.size.width)
                         .background(Color.mainTitleBackground)
-
-                        Spacer()
                         
-                        if question.questionType == .prediction {
-                            Text(messages[0])
-                                .font(.system(size: mainGeo.size.width * 0.05))
-                                .foregroundColor(Color.mainTextForeground)
-                                //.multilineTextAlignment(.leading)
-                        }
-                        else if question.questionType == .massEstimation {
-                            Text(messages[1])
-                                .font(.system(size: mainGeo.size.width * 0.05))
-                                .foregroundColor(Color.mainTextForeground)
-                                //.multilineTextAlignment(.leading)
-                        }
-                        else {
-                            Text(messages[2])
-                                .font(.system(size: mainGeo.size.width * 0.05))
-                                .foregroundColor(Color.mainTextForeground)
-                                .lineLimit(nil)
-                        }   
+                        getHelpMessage(questionType: question.questionType, geo: mainGeo)
+                            .frame(width: mainGeo.size.width * 0.95)
                     }
                 }
                 .frame(width: mainGeo.size.width)
             }
             
         }
+    }
+    
+    func getHelpMessage(questionType: QuizQuestionType, geo: GeometryProxy) -> some View {
+        var returnText: Text
+        if questionType == .prediction {
+            returnText = Text(messages[0])
+        }
+        else if questionType == .massEstimation {
+            returnText = Text(messages[1])
+        }
+        else {
+            returnText = Text(messages[2])
+        }
+        return returnText
+            .font(.system(size: geo.size.width * 0.05))
+            .foregroundColor(Color.mainTextForeground)
     }
 }
 
