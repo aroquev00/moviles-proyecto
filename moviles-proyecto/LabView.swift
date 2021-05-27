@@ -137,6 +137,7 @@ struct LabView: View {
                         .frame(width: geo.size.width * 0.19, alignment: .center)
                     }
                     .frame(height: geo.size.height / 1.5)
+                    // MARK: - Sprites Row
                     GeometryReader { spriteRowGeo in
                         ZStack {
                             Image("green").resizable()
@@ -165,6 +166,7 @@ struct LabView: View {
                                                     .foregroundColor(.white)
                                             }
                                             .background(Color.red.opacity(indexSelectedSprite == i ? 1.0 : 0.0)) // Background is red if sprite is selected to be placed in simulator
+                                            .cornerRadius(10)
                                         }
                                     }
                                 }
