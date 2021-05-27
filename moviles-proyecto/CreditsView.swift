@@ -13,7 +13,7 @@ struct CreditsView: View {
     var body: some View {
         GeometryReader { mainGeo in
             ZStack {
-                Color.white
+                Color.quizHelpBackground
                     .edgesIgnoringSafeArea(.all)
                 ScrollView {
                     VStack {
@@ -28,17 +28,12 @@ struct CreditsView: View {
                             .background(Color.mainTitleBackground)
                         }
                         .frame(width: mainGeo.size.width, height: mainGeo.size.height * 0.15)
+                        .background(Color.mainTitleBackground)
                         
-                        GeometryReader { geo in
-                            HStack {
-                                Text("Notice")
-                                    .foregroundColor(Color.black)
-                                    .fontWeight(.bold)
-                                    .font(.system(size: geo.size.width * 0.05))
-                            }
-                            .frame(width: geo.size.width, height: geo.size.height)
-                        }
-                        .frame(width: mainGeo.size.width, height: mainGeo.size.height * 0.1, alignment: .center)
+                        Text("Notice")
+                            .foregroundColor(Color.black)
+                            .fontWeight(.bold)
+                            .font(.system(size: mainGeo.size.width * 0.05))
                         
                         GeometryReader { geo in
                             VStack {

@@ -21,14 +21,14 @@ struct QuizHelpView: View {
         GeometryReader { mainGeo in
             ZStack {
                 //Background color
-                Color.whiteBackground
+                Color.quizHelpBackground
                     .edgesIgnoringSafeArea(.all)
                 
                 ScrollView {
                     VStack {
                         GeometryReader { geo in
                             //Bar at the top
-                            HStack(spacing: 10) {
+                            HStack() {
                                 Spacer()
                                 //Back button
                                 Button {
@@ -71,7 +71,7 @@ struct QuizHelpView: View {
                                     .foregroundColor(Color.mainTextForeground)
                             }
                         }
-                        .frame(width: mainGeo.size.width, height: mainGeo.size.height, alignment: .topLeading)
+                        .frame(width: mainGeo.size.width * 0.95, alignment: .topLeading)
                     }
                 }
             }
