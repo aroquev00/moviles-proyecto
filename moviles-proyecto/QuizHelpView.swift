@@ -30,6 +30,7 @@ struct QuizHelpView: View {
                         //Bar at the top
                         HStack() {
                             Spacer()
+                                .frame(width: mainGeo.size.width * 0.02)
                             //Back button
                             Button {
                                 // Dismiss view
@@ -40,13 +41,16 @@ struct QuizHelpView: View {
                                     .frame(width: mainGeo.size.width * 0.05, height: mainGeo.size.height * 0.08)
                                     .foregroundColor(Color.mainButtonBackground)
                             }
+                            Spacer()
                             //Title text
                             Text("Ayuda")
                                 .font(Font.custom("Bangers-Regular", size: mainGeo.size.width * 0.06))
                                 .tracking(5)
-                                .frame(width: mainGeo.size.width, height: mainGeo.size.height *  0.2)
+                                .frame(width: mainGeo.size.width * 0.5, height: mainGeo.size.height *  0.2)
                                 .foregroundColor(.mainTitleTextForeground)
+                            Spacer()
                         }
+                        .frame(width: mainGeo.size.width)
                         .background(Color.mainTitleBackground)
 
                         Spacer()
@@ -68,10 +72,12 @@ struct QuizHelpView: View {
                                 .font(.system(size: mainGeo.size.width * 0.05))
                                 .foregroundColor(Color.mainTextForeground)
                                 .lineLimit(nil)
-                        }
+                        }   
                     }
                 }
+                .frame(width: mainGeo.size.width)
             }
+            
         }
     }
 }
