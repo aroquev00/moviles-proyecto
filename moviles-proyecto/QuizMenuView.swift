@@ -16,11 +16,12 @@ struct QuizMenuView: View {
     var body: some View {
         GeometryReader { mainGeo in
             ZStack {
-                Color.whiteBackground
+                Image("selectLevelBack")
+                    .resizable()
                     .edgesIgnoringSafeArea(.all)
                 VStack {
                     Text("¡Elige un nivel!")
-                        .foregroundColor(.mainTextForeground)
+                        .foregroundColor(.mainTitleTextForeground)
                         .fontWeight(.bold)
                         .font(.system(size: mainGeo.size.width * 0.07))
                     

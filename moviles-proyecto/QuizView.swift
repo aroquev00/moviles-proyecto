@@ -16,8 +16,10 @@ struct QuizView: View {
     
     var body: some View {
         ZStack {
-            Color.whiteBackground
+            Image("fondoQuiz")
+                .resizable()
                 .edgesIgnoringSafeArea(.all)
+            
             GeometryReader { mainGeo in
                 VStack {
                     if quiz.questions.count > 0 { // To wait for real quiz to be assigned
@@ -33,16 +35,16 @@ struct QuizView: View {
                         }
                     }
                     GeometryReader { geo in
-                        HStack(spacing: 75) {
+                        HStack(spacing: 50) {
                             Button {
                                 // Show help screen
                                 showHelp = true
                                 
                             } label: {
-                                Text("?")
+                                Text("Ayuda")
                                     .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.03))
                                     .tracking(1)
-                                    .frame(width: geo.size.width * 0.035, height: geo.size.height)
+                                    .frame(width: geo.size.width * 0.1, height: geo.size.height)
                                     .background(Color.mainButtonBackground)
                                     .foregroundColor(.mainButtonTextForeground)
                                     .cornerRadius(20)
