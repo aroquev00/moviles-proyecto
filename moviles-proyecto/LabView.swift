@@ -161,7 +161,7 @@ struct LabView: View {
                                         }
                                     }
                                 }
-                            }
+                            }.background(Color(red: 0, green: 0.3, blue: 0.12))
                         }
                     }
                     
