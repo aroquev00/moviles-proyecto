@@ -45,6 +45,7 @@ struct PlacingQuestionView: View {
                 if alertVisible {
                     QuizAlertView(alertVisible: $alertVisible, activeAlert: $activeAlert, quiz: $quiz, question: $question.asQuizQuestion)
                         .frame(width: geo.size.width * 0.75, height: geo.size.height * 0.75, alignment: .center)
+                        .cornerRadius(20)
                 }
                 
             }
