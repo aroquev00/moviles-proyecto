@@ -15,7 +15,7 @@ struct QuizHelpView: View {
     //Array with the 3 possible message outputs
     let messages = ["Calcula la torca resultante según los personajes que están en la tabla y presiona el botón que represente cómo quedaría si se quitan los soportes.",
                     "Primero, balancea la tabla colocando al personaje que se te da en el lugar que le corresponda.\nDespúes, realiza los cálculos necesarios para despejar la masa del personaje especificado.\nReporta el resultado utilizando el slider que se encuentra debajo de la tabla.",
-                    "Haz los cálculos necesarios para saber en qué posición debe ir el personaje indicado para que la tabla esté balanceada si se quitan los soportes, es decir, que la torca resultante sea 0."]
+                    "Haz los cálculos necesarios para saber en qué posición debe ir el personaje indicado para que la tabla esté balanceada si se quitan los soportes. Es decir, que la torca resultante sea 0."]
     
     var body: some View {
         GeometryReader { mainGeo in
@@ -57,17 +57,17 @@ struct QuizHelpView: View {
                         HStack {
                             if question.questionType == .prediction {
                                 Text(messages[0])
-                                    .font(.system(size: mainGeo.size.width * 0.03))
+                                    .font(.system(size: mainGeo.size.width * 0.05))
                                     .foregroundColor(Color.mainTextForeground)
                             }
                             else if question.questionType == .massEstimation {
                                 Text(messages[1])
-                                    .font(.system(size: mainGeo.size.width * 0.03))
+                                    .font(.system(size: mainGeo.size.width * 0.05))
                                     .foregroundColor(Color.mainTextForeground)
                             }
                             else {
                                 Text(messages[2])
-                                    .font(.system(size: mainGeo.size.width * 0.03))
+                                    .font(.system(size: mainGeo.size.width * 0.05))
                                     .foregroundColor(Color.mainTextForeground)
                             }
                         }
