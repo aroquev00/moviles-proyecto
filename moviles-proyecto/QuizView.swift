@@ -16,8 +16,10 @@ struct QuizView: View {
     
     var body: some View {
         ZStack {
-            Color.whiteBackground
+            Image("fondoQuiz")
+                .resizable()
                 .edgesIgnoringSafeArea(.all)
+            
             GeometryReader { mainGeo in
                 VStack {
                     if quiz.questions.count > 0 { // To wait for real quiz to be assigned

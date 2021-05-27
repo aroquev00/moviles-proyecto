@@ -75,7 +75,7 @@ struct QuizSideMenuView: View {
                     //Text(String(format: "%.2f", question.simulator.selectedSprite!.weight) + " kg")
                     Text(String(format: (floor(question.simulator.selectedSprite!.weight) == question.simulator.selectedSprite!.weight ? "%.0f" : "%.2f"), question.simulator.selectedSprite!.weight) + " kg")
                         .font(Font.custom("Bangers-Regular", size: sideGeo.size.width * 0.2))
-                        .foregroundColor(Color(#colorLiteral(red: 0.5764705882, green: 0.0862745098, blue: 0.1294117647, alpha: 1)))
+                        .foregroundColor(.quizSelectedSpriteWeightTextForeground)
                 }
             }
         }

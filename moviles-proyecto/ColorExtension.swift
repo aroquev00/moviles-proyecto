@@ -32,6 +32,10 @@ extension Color {
     // MARK: - Quiz
     static var resetButtonBackground = Color(#colorLiteral(red: 0.231372549, green: 0.1568627451, blue: 0.8, alpha: 1))
     
+    static var quizTextForeground = Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1))
+    
+    static var quizSelectedSpriteWeightTextForeground = Color(#colorLiteral(red: 0.9215686275, green: 0.1647058824, blue: 0.1647058824, alpha: 1))
+    
     // MARK: - Quiz Feedback Alerts
     static var alertButtonBackground = Color.white
     
