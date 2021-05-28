@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		425397A3265DAF190014CB1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425397A2265DAF190014CB1E /* AppDelegate.swift */; };
 		9100844D261E8D8000BDC5AD /* CalculationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9100844C261E8D8000BDC5AD /* CalculationsView.swift */; };
 		9107F1F1262CCAB70009EA14 /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9107F1F0262CCAB70009EA14 /* QuizQuestion.swift */; };
 		9107F1F4262CDE0A0009EA14 /* PredictionQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9107F1F3262CDE0A0009EA14 /* PredictionQuestion.swift */; };
@@ -44,7 +43,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		425397A2265DAF190014CB1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9100844C261E8D8000BDC5AD /* CalculationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationsView.swift; sourceTree = "<group>"; };
 		9107F1F0262CCAB70009EA14 /* QuizQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
 		9107F1F3262CDE0A0009EA14 /* PredictionQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionQuestion.swift; sourceTree = "<group>"; };
@@ -114,7 +112,6 @@
 			children = (
 				9190D92626053F2500C099A3 /* moviles_proyectoApp.swift */,
 				9190D92826053F2500C099A3 /* MainMenuView.swift */,
-				425397A2265DAF190014CB1E /* AppDelegate.swift */,
 				914704C0260BAE8B009F1DC2 /* LabView.swift */,
 				91D97EA1260EF36C008EABB7 /* SimulatorView.swift */,
 				9126C2182617AC5600240F36 /* Simulator.swift */,
@@ -248,7 +245,6 @@
 				9141F9A5264A0948007DF6E4 /* SpriteFactory.swift in Sources */,
 				9190D92926053F2500C099A3 /* MainMenuView.swift in Sources */,
 				9126C2192617AC5600240F36 /* Simulator.swift in Sources */,
-				425397A3265DAF190014CB1E /* AppDelegate.swift in Sources */,
 				9126C21C2617AD4600240F36 /* SimulatorSpot.swift in Sources */,
 				91F54E20262C9D9A00D1FF8A /* QuizMenuView.swift in Sources */,
 				91D97EA2260EF36C008EABB7 /* SimulatorView.swift in Sources */,

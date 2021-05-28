@@ -9,11 +9,9 @@ import SwiftUI
 
 @main
 struct moviles_proyectoApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
         WindowGroup {
             MainMenuView()
         }
     }
 }
-
