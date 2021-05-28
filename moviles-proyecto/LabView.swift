@@ -139,10 +139,13 @@ struct LabView: View {
                     .frame(height: geo.size.height / 1.5)
                     // MARK: - Sprites Row
                     GeometryReader { spriteRowGeo in
-                        ZStack {
-                            Image("green").resizable()
-                                .frame(width: geo.size.width)
+                        VStack(spacing: 0) {
+                            Rectangle()
+                                .fill(Color.gray)
+                                .frame(height: spriteRowGeo.size.height * 0.02)
+                            
                             ScrollView(.horizontal) {
+                                
                                 HStack(alignment: .bottom, spacing: 20) {
                                     ForEach(0..<spritesRow.count) { i in
                                         Button {
@@ -160,20 +163,20 @@ struct LabView: View {
                                                 Image(uiImage: UIImage(named: spritesRow[i].imageURL)!)
                                                     .resizable()
                                                     .scaledToFit()
-                                                    .frame(height: spriteRowGeo.size.height * 0.9 * getSpriteHeight(sprite: spritesRow[i]))
+                                                    .frame(height: spriteRowGeo.size.height * 0.88 * getSpriteHeight(sprite: spritesRow[i]))
                                                 Text(String(format: (floor(spritesRow[i].weight) == spritesRow[i].weight ? "%.0f" : "%.2f"), spritesRow[i].weight) + " kg")
                                                     .font(Font.custom("Bangers-Regular", size: spriteRowGeo.size.height * 0.10))
                                                     .foregroundColor(.white)
                                             }
                                             .background(Color.red.opacity(indexSelectedSprite == i ? 1.0 : 0.0)) // Background is red if sprite is selected to be placed in simulator
-                                            .cornerRadius(10)
                                         }
                                     }
                                 }
+                                .frame(height: spriteRowGeo.size.height * 0.98)
                             }
+                            .background(Color(red: 0, green: 0.3, blue: 0.12))
                         }
                     }
-                    
                 }
             }
         }
