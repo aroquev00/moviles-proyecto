@@ -169,6 +169,7 @@ struct LabView: View {
                                                     .foregroundColor(.white)
                                             }
                                             .background(Color.red.opacity(indexSelectedSprite == i ? 1.0 : 0.0)) // Background is red if sprite is selected to be placed in simulator
+                                            .cornerRadius(10)
                                         }
                                     }
                                 }
