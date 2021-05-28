@@ -54,7 +54,7 @@ struct QuizHelpView: View {
                         .background(Color.mainTitleBackground)
                         
                         getHelpMessage(questionType: question.questionType, geo: mainGeo)
-                            .frame(width: mainGeo.size.width * 0.95)
+                            .frame(width: mainGeo.size.width * 0.95, height: mainGeo.size.height, alignment: .topLeading)
                     }
                 }
                 .frame(width: mainGeo.size.width)
