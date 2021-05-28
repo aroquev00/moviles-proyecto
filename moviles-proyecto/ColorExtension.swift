@@ -29,8 +29,15 @@ extension Color {
     // MARK: - Select Level
     static var selectLevelButtonBackground = Color(#colorLiteral(red: 0.231372549, green: 0.1568627451, blue: 0.8, alpha: 1))
     
+    // MARK: - Calculations View
+    static var calculationsBackground = Color(#colorLiteral(red: 0.9647058824, green: 0.8941176471, blue: 0.8274509804, alpha: 1))
+    
     // MARK: - Quiz
     static var resetButtonBackground = Color(#colorLiteral(red: 0.231372549, green: 0.1568627451, blue: 0.8, alpha: 1))
+    
+    static var quizTextForeground = Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1))
+    
+    static var quizSelectedSpriteWeightTextForeground = Color(#colorLiteral(red: 0.9215686275, green: 0.1647058824, blue: 0.1647058824, alpha: 1))
     
     // MARK: - Quiz Feedback Alerts
     static var alertButtonBackground = Color.white
@@ -41,6 +48,9 @@ extension Color {
     
     static var wrongAlertTitleBackground = Color.init(Color.RGBColorSpace.sRGB, red: 255/255, green: 153/255, blue: 20/255, opacity: 1.0)
     static var correctAlertTitleBackground = Color.white
+    
+    // MARK: - Quiz Help
+    static var quizHelpBackground = Color(#colorLiteral(red: 0.9647058824, green: 0.8941176471, blue: 0.8274509804, alpha: 1))
     
     // MARK: - Miscellaneous
     static var rulerFill = Color.orange

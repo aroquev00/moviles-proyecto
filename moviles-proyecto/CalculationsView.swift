@@ -28,7 +28,7 @@ struct CalculationsView: View {
         GeometryReader { mainGeo in
             ZStack {
                 // MARK: - Background
-                Color.whiteBackground
+                Color.calculationsBackground
                     .edgesIgnoringSafeArea(.all)
                 
                 // MARK: - Text content

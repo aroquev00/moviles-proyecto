@@ -52,11 +52,11 @@ struct SimulatorView: View {
                                             //Text(String(spot.index))
                                             Text(String(format: (floor(sprite.weight) == sprite.weight ? "%.0f" : "%.2f"), sprite.weight))
                                                 .font(Font.custom("Bangers-Regular", size: spriteAreaHeight * 0.15))
-                                                .foregroundColor(.mainTextForeground)
+                                                .foregroundColor(simulator.quizMode ?  .quizTextForeground : .mainTextForeground)
                                         } else {
                                             Text("?")
                                                 .font(Font.custom("Bangers-Regular", size: spriteAreaHeight * 0.15))
-                                                .foregroundColor(.mainTextForeground)
+                                                .foregroundColor(simulator.quizMode ?  .quizTextForeground : .mainTextForeground)
                                         }
                                         Button {
                                             if (!spot.isLocked) {

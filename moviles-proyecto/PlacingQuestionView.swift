@@ -22,9 +22,9 @@ struct PlacingQuestionView: View {
                 HStack(spacing: 0.0) {
                     VStack {
                         Text("¡Coloca a \(question.simulator.selectedSprite!.name) en la posición adecuada para equilibrar la tabla!")
-                            .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.03))
+                            .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.015))
                             .tracking(1)
-                            .frame(width: geo.size.width * 0.6, height: geo.size.width * 0.1, alignment: .center)
+                            .frame(width: geo.size.width * 0.6, height: geo.size.height * 0.1, alignment: .center)
                             .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
                             .background(Color.mainTitleBackground)
                             .border(Color.mainTitleBackgroundBorder, width: 7)
@@ -45,6 +45,7 @@ struct PlacingQuestionView: View {
                 if alertVisible {
                     QuizAlertView(alertVisible: $alertVisible, activeAlert: $activeAlert, quiz: $quiz, question: $question.asQuizQuestion)
                         .frame(width: geo.size.width * 0.75, height: geo.size.height * 0.75, alignment: .center)
+                        .cornerRadius(20)
                 }
                 
             }
