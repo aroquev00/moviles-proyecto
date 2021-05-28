@@ -7,14 +7,23 @@
 
 struct SpriteFactory {
     static let all: Set = [
-        Sprite(name: "Mario", weight: 20, height: 1, weightCategory: .middleweight, imageURL: "mario"),
-        Sprite(name: "Kirby", weight: 10, height: 0.4, weightCategory: .lightweight, imageURL: "kirby"),
-        Sprite(name: "Steve", weight: 30, height: 1, weightCategory: .middleweight, imageURL: "steve"),
+        Sprite(name: "Buck", weight: 80, height: 1, weightCategory: .heavyweight, imageURL: "Buck"),
+        Sprite(name: "Celeste", weight: 5, height: 0.5, weightCategory: .lightweight, imageURL: "Celeste"),
+        Sprite(name: "Steve", weight: 30, height: 0.75, weightCategory: .middleweight, imageURL: "steve"),
         Sprite(name: "Master Chief", weight: 80, height: 1.0, weightCategory: .heavyweight, imageURL: "masterchief"),
-        Sprite(name: "Plankton", weight: 5, height: 0.5, weightCategory: .lightweight, imageURL: "plankton"),
-        Sprite(name: "Sonic", weight: 15, height: 0.6, weightCategory: .lightweight, imageURL: "sonic"),
-        Sprite(name: "Link", weight: 60, height: 0.85, weightCategory: .heavyweight, imageURL: "link"),
-        Sprite(name: "Megaman", weight: 20, height: 1, weightCategory: .middleweight, imageURL: "megaman")
+        Sprite(name: "Delmont Walker", weight: 75, height: 0.9, weightCategory: .heavyweight, imageURL: "Delmont Walker"),
+        Sprite(name: "Heroe de Oakvale", weight: 15, height: 0.6, weightCategory: .lightweight, imageURL: "Hero of Oakvale Child"),
+        Sprite(name: "Horstachio", weight: 40, height: 0.7, weightCategory: .middleweight, imageURL: "Horstachio"),
+        Sprite(name: "Alex", weight: 25, height: 0.75, weightCategory: .middleweight, imageURL: "alex"),
+        Sprite(name: "Inquisidor", weight: 80, height: 0.6, weightCategory: .heavyweight, imageURL: "Inquisidor"),
+        Sprite(name: "James Fenix", weight: 75, height: 0.9, weightCategory: .heavyweight, imageURL: "James Fenix"),
+        Sprite(name: "Jardiniero", weight: 60, height: 0.7, weightCategory: .middleweight, imageURL: "Jardiniero"),
+        Sprite(name: "Kait Diaz", weight: 65, height: 0.85, weightCategory: .heavyweight, imageURL: "Kait Diaz"),
+        Sprite(name: "Leafos", weight: 50, height: 0.6, weightCategory: .middleweight, imageURL: "Leafos"),
+        Sprite(name: "Marcus Fenix", weight: 75, height: 0.6, weightCategory: .heavyweight, imageURL: "Marcus Fenix"),
+        Sprite(name: "Noble Seis", weight: 80, height: 1, weightCategory: .heavyweight, imageURL: "Noble Seis"),
+        Sprite(name: "Seedos", weight: 60, height: 0.8, weightCategory: .middleweight, imageURL: "Seedos"),
+        Sprite(name: "Rojo", weight: 5, height: 0.4, weightCategory: .middleweight, imageURL: "Rojo"),
     ]
     
     static var lightweights: Set<Sprite> = getWeightSet(weightCategory: .lightweight)

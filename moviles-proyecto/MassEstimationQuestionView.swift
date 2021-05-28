@@ -21,11 +21,24 @@ struct MassEstimationQuestionView: View {
                 HStack(spacing: 0.0) {
                     VStack {
                         Text("¿Cuál es la masa de \(question.questionSprite!.name)?")
+                            .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.02))
+                            .tracking(1)
+                            .frame(width: geo.size.width * 0.5, height: geo.size.height * 0.1)
+                            .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                            .background(Color.mainTitleBackground)
+                            .border(Color.mainTitleBackgroundBorder, width: 7)
                         SimulatorView(simulator: $question.simulator)
-                        Text(String(format: "%.0f", question.answerWeight))
+                        Text("La masa de \(question.questionSprite!.name) es de \(String(format: "%.0f", question.answerWeight)) kg.")
+                            .font(Font.custom("Bangers-Regular", size: geo.size.width * 0.02))
+                            .tracking(1)
+                            .frame(width: geo.size.width * 0.5, height: geo.size.height * 0.1)
+                            .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                            .background(Color.mainTitleBackground)
                         Slider(value: $question.answerWeight, in: 0...100, step: 1.0, minimumValueLabel: Text("0"), maximumValueLabel: Text("100")) {
                             Text("Masa de \(question.questionSprite!.name)")
                         }
+                        .font(.system(size: geo.size.width * 0.03))
+                        .frame(width: geo.size.width * 0.75, height: geo.size.height * 0.1, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     }
                     .frame(width: geo.size.width * 0.8)
                     
@@ -35,11 +48,14 @@ struct MassEstimationQuestionView: View {
                     }, incorrectNum: $incorrectNum, alertVisible: $alertVisible, activeAlert: $activeAlert)
                         .frame(width: geo.size.width * 0.19)
                 }
+                .blur(radius: alertVisible ? 3.0 : 0.0)
+                .disabled(alertVisible)
                 
                 //Triggers QuizAlertView when answer is checked
                 if alertVisible {
                     QuizAlertView(alertVisible: $alertVisible, activeAlert: $activeAlert, quiz: $quiz, question: $question.asQuizQuestion)
-                        .frame(width: geo.size.width/2, height: geo.size.height / 4, alignment: .center)
+                        .frame(width: geo.size.width * 0.75, height: geo.size.height * 0.75, alignment: .center)
+                        .cornerRadius(20)
                 }
                 
             }

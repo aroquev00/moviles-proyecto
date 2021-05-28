@@ -6,7 +6,7 @@
 //
 
 enum ActiveAlert{
-    case first
-    case second
-    case third
+    case first // Try again
+    case second // Correct
+    case third // See answer
 }
