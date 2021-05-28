@@ -139,39 +139,44 @@ struct LabView: View {
                     .frame(height: geo.size.height / 1.5)
                     // MARK: - Sprites Row
                     GeometryReader { spriteRowGeo in
-                        ScrollView(.horizontal) {
-                            HStack(alignment: .bottom, spacing: 20) {
-                                ForEach(0..<spritesRow.count) { i in
-                                    Button {
-                                        if indexSelectedSprite != i {
-                                            // User just selected this sprite
-                                            simulator.selectedSprite = spritesRow[i]
-                                            indexSelectedSprite = i
-                                        } else {
-                                            // User is toggling this sprite
-                                            indexSelectedSprite = nil
-                                            simulator.selectedSprite = nil
+                        VStack(spacing: 0) {
+                            Rectangle()
+                                .fill(Color.gray)
+                                .frame(height: spriteRowGeo.size.height * 0.02)
+                            
+                            ScrollView(.horizontal) {
+                                
+                                HStack(alignment: .bottom, spacing: 20) {
+                                    ForEach(0..<spritesRow.count) { i in
+                                        Button {
+                                            if indexSelectedSprite != i {
+                                                // User just selected this sprite
+                                                simulator.selectedSprite = spritesRow[i]
+                                                indexSelectedSprite = i
+                                            } else {
+                                                // User is toggling this sprite
+                                                indexSelectedSprite = nil
+                                                simulator.selectedSprite = nil
+                                            }
+                                        } label: {
+                                            VStack(spacing: 0.0) {
+                                                Image(uiImage: UIImage(named: spritesRow[i].imageURL)!)
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(height: spriteRowGeo.size.height * 0.88 * getSpriteHeight(sprite: spritesRow[i]))
+                                                Text(String(format: (floor(spritesRow[i].weight) == spritesRow[i].weight ? "%.0f" : "%.2f"), spritesRow[i].weight) + " kg")
+                                                    .font(Font.custom("Bangers-Regular", size: spriteRowGeo.size.height * 0.10))
+                                                    .foregroundColor(.white)
+                                            }
+                                            .background(Color.red.opacity(indexSelectedSprite == i ? 1.0 : 0.0)) // Background is red if sprite is selected to be placed in simulator
                                         }
-                                    } label: {
-                                        VStack(spacing: 0.0) {
-                                            Image(uiImage: UIImage(named: spritesRow[i].imageURL)!)
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(height: spriteRowGeo.size.height * 0.9 * getSpriteHeight(sprite: spritesRow[i]))
-                                            Text(String(format: (floor(spritesRow[i].weight) == spritesRow[i].weight ? "%.0f" : "%.2f"), spritesRow[i].weight) + " kg")
-                                                .font(Font.custom("Bangers-Regular", size: spriteRowGeo.size.height * 0.10))
-                                                .foregroundColor(.white)
-                                        }
-                                        .background(Color.red.opacity(indexSelectedSprite == i ? 1.0 : 0.0)) // Background is red if sprite is selected to be placed in simulator
                                     }
                                 }
+                                .frame(height: spriteRowGeo.size.height * 0.98)
                             }
-                            .frame(height: spriteRowGeo.size.height)
+                            .background(Color(red: 0, green: 0.3, blue: 0.12))
                         }
-                        .background(Color(red: 0, green: 0.3, blue: 0.12))
-                        //.overlay(Rectangle().frame(width: nil, height: spriteRowGeo.size.height * 0.02, alignment: .top).foregroundColor(.gray), alignment: .top)
                     }
-                    
                 }
             }
         }
