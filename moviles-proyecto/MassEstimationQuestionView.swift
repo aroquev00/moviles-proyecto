@@ -34,7 +34,7 @@ struct MassEstimationQuestionView: View {
                             .frame(width: geo.size.width * 0.5, height: geo.size.height * 0.1)
                             .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
                             .background(Color.mainTitleBackground)
-                        Slider(value: $question.answerWeight, in: 0...100, step: 1.0, minimumValueLabel: Text("0"), maximumValueLabel: Text("100")) {
+                        Slider(value: $question.answerWeight, in: 0...100, step: 1.0, minimumValueLabel: Text("0").foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1))), maximumValueLabel: Text("100").foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))) {
                             Text("Masa de \(question.questionSprite!.name)")
                         }
                         .font(.system(size: geo.size.width * 0.03))
