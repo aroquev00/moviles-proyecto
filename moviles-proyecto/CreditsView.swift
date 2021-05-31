@@ -37,6 +37,14 @@ struct CreditsView: View {
         "Equilibrium is distributed as is free of charge and its distribution and use for profit is prohibited."
     ]
     
+    let teamInfoTexts: [String] = [
+        "Armando Roque Villasana\naroquev00@gmail.com - github.com/aroquev00",
+        "Eduardo Pineda Guerra\nedpinedaguerra@gmail.com - github.com/NeoMty",
+        "Guillermo Andrés García Vázquez\nmemogarcia246@gmail.com - github.com/MemazoG",
+        "Marco Brown Cunningham\nmarbrocu@gmail.com - github.com/marbrocu",
+        "Equilibrium is distributed as is free of charge and its distribution and use for profit is prohibited."
+    ]
+    
     var body: some View {
         GeometryReader { mainGeo in
             ZStack {
@@ -110,18 +118,22 @@ struct CreditsView: View {
                             
                             Spacer()
                                 .frame(height: mainGeo.size.height * 0.05)
+                        }
+                        
+                        VStack {
+                            Text("Team members")
+                                .bold()
                             
-                            // Fourth texts
-                            ForEach(0..<fourthLicencesTexts.count) { i in
-                                Text(fourthLicencesTexts[i])
-                                    .font(.system(size: mainGeo.size.width * 0.03))
-                                    .foregroundColor(Color.mainTextForeground)
+                            ForEach(0..<teamInfoTexts.count) { i in
+                                Text(teamInfoTexts[i])
                                 Spacer()
                                     .frame(height: mainGeo.size.height * 0.05)
                             }
-                            .multilineTextAlignment(.center)
-                            .frame(width: mainGeo.size.width * 0.95)
                         }
+                        .font(.system(size: mainGeo.size.width * 0.03))
+                        .foregroundColor(Color.mainTextForeground)
+                        .multilineTextAlignment(.center)
+                        .frame(width: mainGeo.size.width * 0.95)
                         
                         
                         
