@@ -77,6 +77,19 @@ struct MainMenuView: View {
                 .frame(width: mainGeo.size.width, height: mainGeo.size.height)
             }
         }
+//        .onAppear {
+//            print("A")
+//            AppDelegate.orientationLock = UIInterfaceOrientationMask.landscapeLeft
+//            UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
+//            UINavigationController.attemptRotationToDeviceOrientation()
+//        }
+//        .onDisappear {
+//            DispatchQueue.main.async {
+//                AppDelegate.orientationLock = UIInterfaceOrientationMask.portrait
+//                UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+//                UINavigationController.attemptRotationToDeviceOrientation()
+//            }
+//        }
     }
     
     // Function to get the Text for each button

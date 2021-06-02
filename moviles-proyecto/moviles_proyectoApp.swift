@@ -6,9 +6,21 @@
 //
 
 import SwiftUI
+import UIKit
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    static var orientationLock = UIInterfaceOrientationMask.landscape
+    
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return .landscape
+    }
+}
+
 
 @main
 struct moviles_proyectoApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     var body: some Scene {
         WindowGroup {
             MainMenuView()
