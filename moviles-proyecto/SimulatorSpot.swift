@@ -7,7 +7,7 @@
 
 struct SimulatorSpot: Hashable, Codable {
     var index: Int
-    var side: Side // Left is false, right is true
+    var side: Side
     var distance: Float // Distance from centre
     var sprite: Sprite? // The sprite placed in it
     
