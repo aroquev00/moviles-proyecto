@@ -1,1 +1,2 @@
-This is the way.
+# Equilibrium
+Project for Tec de Monterrey's iOS Development class.
